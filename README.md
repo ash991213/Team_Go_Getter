@@ -99,6 +99,6 @@
 
 
 ## 😎 More Info 
-➡️ [Wiki](https://github.com/codestates/Donorticon/wiki)
+➡️ [Wiki](https://github.com/ash991213/Team_Go_Getter/wiki)
 
 <div>
