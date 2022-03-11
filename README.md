@@ -64,7 +64,7 @@
             <a href="https://github.com/kimhelp">팀장 : 김도움</a>
         </td>
        <td align="center" width="120px" height="80px">
-            <a href="https://github.com/rlatjdgh1"><img height="100px" width="100px" src="https://user-images.githubusercontent.com/90431155/156329849-d4e31b14-58d0-4f22-9658-928c07ee4b70.png" /></a>
+            <a href="https://github.com/cho112"><img height="100px" width="100px" src="https://user-images.githubusercontent.com/90431155/156329849-d4e31b14-58d0-4f22-9658-928c07ee4b70.png" /></a>
             <br />
             <a href="https://github.com/cho112">조용훈</a>
         </td>
