@@ -66,7 +66,7 @@
        <td align="center" width="120px" height="80px">
             <a href="https://github.com/rlatjdgh1"><img height="100px" width="100px" src="https://user-images.githubusercontent.com/90431155/156329849-d4e31b14-58d0-4f22-9658-928c07ee4b70.png" /></a>
             <br />
-            <a href="https://github.com/rlatjdgh1">조용훈</a>
+            <a href="https://github.com/cho112">조용훈</a>
         </td>
         <td align="center" width="120px" height="80px">
             <a href="https://github.com/ash991213"><img height="100px" width="100px" src="https://user-images.githubusercontent.com/90431155/156328028-d508c5d6-e640-4f1b-82b7-6a367e2db953.png" /></a>
@@ -79,7 +79,7 @@
         <a href="https://github.com/kimhelp">Kim doum</a>
        </td>
       <td align="center">
-        <a href="https://github.com/rlatjdgh1">Jo yonghun</a>
+        <a href="https://github.com/cho112">Jo yonghun</a>
       </td>
       <td align="center">
            <a href="https://github.com/ash991213">An suhwan</a>
@@ -90,7 +90,7 @@
 |  이름  |   직책   |   역할    |                                                                                                  Github                                                                                                   |
 | :----: | :------: | :-------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | 김도움 | **팀장** |  Front-End  |        <a href="https://github.com/kimhelp"><img src="https://img.shields.io/badge/kimhelp-339933?style=flat-square&logo=github&logoColor=white&link=https://github.com/kimhelp"/></a>        |
-| 조용훈 |   팀원   |  Back-End | <a href="https://github.com/rlatjdgh1"><img src="https://img.shields.io/badge/rlatjdgh1-EA4AAA?style=flat-square&logo=github&logoColor=white&link=https://github.com/rlatjdgh1"/></a> |
+| 조용훈 |   팀원   |  Back-End | <a href="https://github.com/cho112"><img src="https://img.shields.io/badge/rlatjdgh1-EA4AAA?style=flat-square&logo=github&logoColor=white&link=https://github.com/cho112"/></a> |
 | 안수환 |   팀원   | Back-End |    <a href="https://github.com/ash991213"><img src="https://img.shields.io/badge/ash991213-F5792A?style=flat-square&logo=github&logoColor=white&link=https://github.com/ash991213"/></a>
 
 ## 🗓 프로젝트 기간 🗓
