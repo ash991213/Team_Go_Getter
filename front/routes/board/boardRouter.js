@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const boardRouter = require('./boardController.js')
+const boardController = require('./boardController.js')
 
 
 

@@ -1,6 +1,6 @@
 const express = require('express')
-const userRouter = require('./user/userRouter.js');
-const boardRouter = require('./board.boardRouter.js');
+const userRouter = require('./user/userRorter.js');
+const boardRouter = require('./board/boardRouter.js');
 const adminRouter = require('./admin/adminRouter.js');
 const replyRouter = require('./reply/replyRouter.js');
 
