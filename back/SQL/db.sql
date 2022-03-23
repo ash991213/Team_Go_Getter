@@ -35,7 +35,7 @@ CREATE TABLE subcategory (
 
 CREATE TABLE board (
     b_idx INT PRIMARY KEY AUTO_INCREMENT,
-    s_idx INT NOT NULL,
+    s_idx INT,
     userid VARCHAR(32) NOT NULL,
     subject VARCHAR(64) NOT NULL,
     content TEXT,
@@ -86,7 +86,12 @@ CREATE TABLE file (
 
 CREATE TABLE hashtag (
     h_idx INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(32) NOT NULL
+);
+
+CREATE TABLE board_hash (
+    h_idx INT NOT NULL,
     b_idx INT NOT NULL,
-    name VARCHAR(32) NOT NULL,
+    FOREIGN KEY (h_idx) REFERENCES hashtag (h_idx),
     FOREIGN KEY (b_idx) REFERENCES board (b_idx)
 );
