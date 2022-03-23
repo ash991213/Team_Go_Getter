@@ -21,14 +21,28 @@ CREATE TABLE user (
     INDEX idx_user_userid(userid)
 );
 
+CREATE TABLE maincategory (
+    m_idx INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(32) NOT NULL
+);
+
+CREATE TABLE subcategory (
+    s_idx INT PRIMARY KEY AUTO_INCREMENT,
+    m_idx INT NOT NULL,
+    name VARCHAR(32) NOT NULL,
+    FOREIGN KEY (m_idx) REFERENCES maincategory (m_idx)
+);
+
 CREATE TABLE board (
     b_idx INT PRIMARY KEY AUTO_INCREMENT,
+    s_idx INT NOT NULL,
     userid VARCHAR(32) NOT NULL,
     subject VARCHAR(64) NOT NULL,
     content TEXT,
     date TIMESTAMP NOT NULL,
     hit INT DEFAULT 0,
-    FOREIGN KEY (userid) REFERENCES user (userid)
+    FOREIGN KEY (userid) REFERENCES user (userid),
+    FOREIGN KEY (s_idx) REFERENCES subcategory (s_idx)
 );
 
 CREATE TABLE reply (
@@ -64,28 +78,14 @@ CREATE TABLE likes (
 );
 
 CREATE TABLE file (
-    f_idx INT PRIMARY KEY,
+    f_idx INT PRIMARY KEY AUTO_INCREMENT,
     b_idx INT NOT NULL,
     image VARCHAR(64) NOT NULL,
     FOREIGN KEY (b_idx) REFERENCES board (b_idx)
 );
 
-CREATE TABLE maincategory (
-    m_idx INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(32) NOT NULL
-);
-
-CREATE TABLE subcategory (
-    s_idx INT PRIMARY KEY AUTO_INCREMENT,
-    m_idx INT NOT NULL,
-    b_idx INT NOT NULL,
-    name VARCHAR(32) NOT NULL,
-    FOREIGN KEY (m_idx) REFERENCES maincategory (m_idx),
-    FOREIGN KEY (b_idx) REFERENCES board (b_idx)
-);
-
 CREATE TABLE hashtag (
-    h_idx INT PRIMARY KEY,
+    h_idx INT PRIMARY KEY AUTO_INCREMENT,
     b_idx INT NOT NULL,
     name VARCHAR(32) NOT NULL,
     FOREIGN KEY (b_idx) REFERENCES board (b_idx)
