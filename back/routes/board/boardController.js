@@ -52,3 +52,52 @@ exports.write = async (req,res) => {
     }
     res.json(response)
 }
+
+exports.GetEdit = async (req,res) => {
+    const b_idx = req.query
+
+    const sql = `SELECT * FROM board WHERE b_idx=${b_idx}`
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [result] = await pool.execute(sql)
+        response = {
+            ...response,
+            result
+        }
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+};
+
+exports.PostEdit = async (req,res) => {
+    const { subject,content } = req.body
+    const b_idx = req.query
+
+    const sql = `UPDATE board SET content='${content}',subject='${subject}' WHERE b_idx=${b_idx}`
+    
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [result] = await pool.execute(sql)
+        response = {
+            ...response,
+            result
+        }
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+};
