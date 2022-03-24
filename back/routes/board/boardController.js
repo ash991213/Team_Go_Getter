@@ -61,11 +61,16 @@ exports.write = async (req,res) => {
     res.json(response)
 }
 
-// b_idx에 맞는 이미지 , 해시태그 데이터 보내야함
 exports.GetEdit = async (req,res) => {
-    const b_idx = req.query
+    const b_idx = 1 // req.query
 
-    const sql = `SELECT * FROM board WHERE b_idx=${b_idx}`
+    const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.image, d.name
+                 FROM board a
+                 LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
+                 LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
+                 LEFT OUTER JOIN hashtag AS d ON c.h_idx = d.h_idx
+                 WHERE a.b_idx = ${b_idx}
+                 `
 
     let response = {
         errno:0
