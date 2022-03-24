@@ -1,0 +1,146 @@
+*{
+    transition-duration: 0.8s;
+}
+body{
+    margin: 0;
+    padding: 0;
+    -ms-overflow-style: none;
+    background-color: #F3EBF6;
+    font-family: 'Ubuntu', sans-serif;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+body::-webkit-scrollbar{
+    display:none; 
+}
+.section{
+    margin: 0 auto;
+    /* section 크기 설정됨 */
+    width: 1920px;
+    height: 1080px;
+}
+.main_video{
+    margin: 0 auto;
+    width: 100%;
+    height: 1080px;
+    /* 화면 꽉 채우려면 1080 */
+    position: relative;
+    overflow: hidden;
+}
+.video_con{
+    overflow: hidden;
+}
+.container{
+    position: relative;
+    width: 100%;
+    height: 833px;
+    background-color: black;  
+}
+div{
+    width: 100%;
+    height: 110vh;
+    font-size: 32px; 
+    text-align: center;
+}
+html.open {
+  overflow: hidden;
+}
+.main {
+    border: 2 solid black;
+    opacity: 0.5;
+    position: absolute;
+    background-color: #fff;
+    width: 450px;
+    height: 300px;
+    margin: 0 auto;
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    margin-top: -35%; 
+    /* 하단 23% 중앙 -36% */
+    margin-left: 38%;
+}
+    
+.sign {
+    padding-top: 5px;
+    color: black;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+}
+    
+.un {
+    width: 90%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 10px;
+    text-align: center;
+    margin-bottom: 26px;
+    font-family: 'Ubuntu', sans-serif;
+}
+    
+form.form1 {
+    padding-top: 20px;
+}
+    
+.pass {
+    width: 90%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 10px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: 'Ubuntu', sans-serif;
+}
+    
+   
+.un:focus, .pass:focus {
+    border: 2px solid rgba(0, 0, 0, 0.18) !important;
+}
+    
+.submit {
+    cursor: pointer;
+    border-radius: 5em;
+    color: #fff;
+    background: linear-gradient(to left, skyblue, rgb(58, 58, 230));
+    border: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 10px;
+    font-size: 13px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+a {
+    text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+    color: black;
+    text-decoration: none
+}
+    
+@media (max-width: 600px) {
+    .main {
+        border-radius: 0px;
+    }
+}

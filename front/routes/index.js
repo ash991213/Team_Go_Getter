@@ -15,4 +15,7 @@ router.get('/',(req,res)=>{
     res.render('index.html');
 });
 
+//이미지 불러오는 라우터
+router.use(express.static('views'));
+
 module.exports = router;

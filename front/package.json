@@ -16,6 +16,7 @@
     "express": "^4.17.3",
     "nodemon": "^2.0.15",
     "nunjucks": "^3.2.3",
+    "vid-streamer": "^1.0.0",
     "ws": "^8.5.0"
   }
 }

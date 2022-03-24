@@ -6,7 +6,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+    <link href="/css/index.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 <body>
-    메인페이지
+    
+    <div class="section" style="color: white; font-size: 32px; text-align: center; background-color: black;">
+        <div class="container">
+            <video class="main_video" autoplay loop muted poster="aaa" preload="bbb" width="100%">
+                <source src="./KakaoTalk_20220324_090914533 (online-video-cutter.com).mp4" type="video/mp4">
+            </video>
+            <div class="main">
+                <p class="sign" align="center">Sign in</p>
+                <form class="form1">
+                  <input class="un" type="text" align="center" placeholder="Username">
+                  <input class="pass" type="password" align="center" placeholder="Password">
+                  <a class="submit" align="center">login</a>
+                  <a class="submit" align="center">register</a>
+                </form>         
+            </div>
+        </div>
+    </div>
+    <div class="section" style="font-size: 32px; text-align: center; background-color: white;">.</div> 
+    <div class="section" style="font-size: 32px; text-align: center; background-color: black;">.</div>
+
+    <script>
+
+    
+    //스크롤 화면 이동 이벤트
+        window.onload = function(){
+
+        const elm = document.querySelectorAll('.section');
+        const elmCount = elm.length;
+        elm.forEach(function(item, index){
+            item.addEventListener('mousewheel', function(event){
+                event.preventDefault();
+                let delta = 0;
+
+                if (!event) event = window.event;
+
+                if (event.wheelDelta) {
+                    delta = event.wheelDelta / 120;
+                    if (window.opera) delta = -delta;
+                } 
+                else if (event.detail)
+                    delta = -event.detail / 3;
+
+                let moveTop = window.scrollY;
+                let elmSelector = elm[index];
+
+            // 스크롤 다운
+            if (delta < 0){
+                if (elmSelector !== elmCount-1){
+                    try{
+                        moveTop = window.pageYOffset + elmSelector.nextElementSibling.getBoundingClientRect().top;
+                    }catch(e){}
+                }
+            }
+            // 스크롤 업
+            else{
+                if (elmSelector !== 0){
+                    try{
+                        moveTop = window.pageYOffset + elmSelector.previousElementSibling.getBoundingClientRect().top;
+                    }catch(e){}
+                }
+            }
+
+            const body = document.querySelector('html');
+            window.scrollTo({top:moveTop, left:0, behavior:'smooth'});
+            });
+        });
+    }
+    </script>
 </body>
 </html>
