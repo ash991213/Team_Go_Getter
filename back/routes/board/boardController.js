@@ -61,6 +61,37 @@ exports.write = async (req,res) => {
     res.json(response)
 }
 
+exports.view = async (req,res) => {
+    const b_idx = 2 // req.query
+
+    const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.image, d.name
+                 FROM board a
+                 LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
+                 LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
+                 LEFT OUTER JOIN hashtag AS d ON c.h_idx = d.h_idx
+                 WHERE a.b_idx = ${b_idx}
+                 `
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [result] = await pool.execute(sql)
+        console.log(result)
+        response = {
+            ...response,
+            result
+        }
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+}
+
 exports.GetEdit = async (req,res) => {
     const b_idx = 1 // req.query
 
