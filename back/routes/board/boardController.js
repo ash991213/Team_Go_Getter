@@ -156,3 +156,31 @@ exports.PostEdit = async (req,res) => {
     }
     res.json(response)
 };
+
+exports.delete = async (req,res) => {
+    const b_idx = 1 //req.query
+
+    const sql = `DELETE a,b,c
+                 FROM board AS a
+                 INNER JOIN board_hash AS b
+                 INNER JOIN file AS c
+                 ON a.b_idx = b.b_idx = c.b_idx
+                 WHERE a.b_idx = ${b_idx}`
+
+    // 해시태그 테이블에 사용되지않고있는 해시태그 체크하고 삭제해야함
+    // ON DELETE CASCADE ??
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [result] = await pool.execute(sql)
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+}
