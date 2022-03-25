@@ -40,7 +40,7 @@ exports.write = async (req,res) => {
                 await pool.execute(sql4)
             }
             // 게시판_해시 테이블에 추가
-            const h_idx = result5[0].h_idx
+            const h_idx = result3[0].h_idx
             const sql5 = `INSERT INTO board_hash(h_idx,b_idx) VALUES (${h_idx},${b_idx})`
             await pool.execute(sql5)
         });
@@ -252,10 +252,12 @@ exports.delete = async (req,res) => {
 
     const sql = `DELETE a,b,c
                  FROM board AS a
-                 INNER JOIN board_hash AS b
-                 INNER JOIN file AS c
-                 ON a.b_idx = b.b_idx = c.b_idx
-                 WHERE a.b_idx = ${b_idx}`
+                 LEFT OUTER JOIN board_hash AS b
+                 LEFT OUTER JOIN file AS c
+                 ON a.b_idx = b.b_idx
+                 ON a.b_idx = c.b_idx
+                 WHERE a.b_idx = ${b_idx}
+                 `
 
     // 해시태그 테이블에 사용되지않고있는 해시태그 체크하고 삭제해야함
     // ON DELETE CASCADE ??
@@ -265,7 +267,9 @@ exports.delete = async (req,res) => {
     }
 
     try {
+        await pool.execute('SET foreign_key_checks = 0')
         const [result] = await pool.execute(sql)
+        await pool.execute('SET foreign_key_checks = 1')
     } catch (error) {
         console.log(error.message)
         response = {
