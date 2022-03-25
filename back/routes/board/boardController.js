@@ -61,6 +61,65 @@ exports.write = async (req,res) => {
     res.json(response)
 }
 
+exports.mainList = async (req,res) => {
+    const m_idx = 1 // req.query
+
+    const sql = `SELECT a.b_idx, a.userid, a.subject, a.date, a.hit, a.s_idx, b.image, d.name, e.s_name, f.m_name
+                 FROM board a
+                 LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
+                 LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
+                 LEFT OUTER JOIN hashtag AS d ON c.h_idx = d.h_idx
+                 LEFT OUTER JOIN subcategory AS e ON a.s_idx = e.s_idx
+                 LEFT OUTER JOIN maincategory AS f ON e.m_idx = f.m_idx
+                 WHERE f.m_idx = ${m_idx}`
+    
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [result] = await pool.execute(sql)
+        response = {
+            ...response,
+            result
+        }
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+}
+
+exports.subList = async (req,res) => {
+    const s_idx = 1 //req.query
+
+    const sql = `SELECT a.b_idx, a.userid, a.subject, a.date, a.hit, a.s_idx, b.image, d.name, e.name
+                 FROM board a
+                 LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
+                 LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
+                 LEFT OUTER JOIN hashtag AS d ON c.h_idx = d.h_idx
+                 LEFT OUTER JOIN subcategory AS e ON a.s_idx = e.s_idx
+                 WHERE a.s_idx = ${s_idx}`
+
+    let response = {
+        errno:0
+    }
+    try {
+        const [result] = await pool.execute(sql) 
+        response = {
+            ...response,
+            result
+        }
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+}
+
 exports.view = async (req,res) => {
     const b_idx = 2 // req.query
 
