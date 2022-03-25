@@ -15,7 +15,6 @@ body::-webkit-scrollbar{
     display:none; 
 }
 .section{
-    margin: 0 auto;
     /* section 크기 설정됨 */
     width: 1920px;
     height: 1080px;
@@ -48,15 +47,15 @@ html.open {
 }
 .main {
     border: 2 solid black;
-    opacity: 0.5;
     position: absolute;
+    opacity: 0.999;
     background-color: #fff;
     width: 450px;
-    height: 300px;
+    height: 280px;
     margin: 0 auto;
     border-radius: 1.5em;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-    margin-top: -35%; 
+    margin-top: -23%; 
     /* 하단 23% 중앙 -36% */
     margin-left: 38%;
 }
@@ -117,28 +116,256 @@ form.form1 {
 .un:focus, .pass:focus {
     border: 2px solid rgba(0, 0, 0, 0.18) !important;
 }
-    
-.submit {
-    cursor: pointer;
-    border-radius: 5em;
-    color: #fff;
-    background: linear-gradient(to left, skyblue, rgb(58, 58, 230));
-    border: 0;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    font-family: 'Ubuntu', sans-serif;
-    margin-left: 10px;
-    font-size: 13px;
-    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+
+.main2_button{
+    position: relative;
+    float: left;
+    width: 15%;
+    height: 100%;
+    border-right: solid 2px rgb(58, 58, 58);
 }
+.button_con1{
+    width: 250px;
+    margin-top: 50px;
+    position: absolute;
+    box-sizing: border-box;
+}
+.button_con2{
+    width: 250px;
+    margin-top: 150px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* 버튼 */
+
+/* 버튼9 */
+.custom-btn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+}
+.btn-9 {
+    border: none;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+.btn-9:after {
+    position: absolute;
+    content: " ";
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1fd1f9;
+    background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
+    transition: all 0.3s ease;
+}
+  .btn-9:hover {
+    background: transparent;
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+      inset -4px -4px 6px 0 rgba(255,255,255,.5),
+      inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+    color: #fff;
+  }
+  .btn-9:hover:after {
+    -webkit-transform: scale(2) rotate(180deg);
+    transform: scale(2) rotate(180deg);
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+      inset -4px -4px 6px 0 rgba(255,255,255,.5),
+      inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  }
+
+  /* 버튼9 끝 */
+  
+  /* 버튼12 */
+.btn-12{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    position: relative;
+    right: 20px;
+    bottom: 20px;
+    border:none;
+    box-shadow: none;
+    width: 130px;
+    height: 40px;
+    line-height: 42px;
+    -webkit-perspective: 230px;
+    perspective: 230px;
+    padding-top: 40px;
+    margin-right: 20px;
+}
+.btn-12 span {
+    
+    background: rgb(0,172,238);
+    background: linear-gradient(2deg, #1fd1f9 0%, #b621fe 74%);
+    display: block;
+    position: absolute;
+    width: 200px;
+    height: 45px;
+    box-shadow:inset 3px 3px 3px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    border-radius: 5px;
+    margin:0;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    
+}
+.btn-12 span:nth-child(1) {
+    box-shadow:
+     -7px -7px 20px 0px #fff9,
+     -4px -4px 5px 0px #fff9,
+     7px 7px 20px 0px #0002,
+     4px 4px 5px 0px #0001;
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transform: rotateX(90deg);
+    -webkit-transform-origin: 50% 50% -20px;
+    -moz-transform-origin: 50% 50% -20px;
+    transform-origin: 50% 50% -20px;
+}
+.btn-12 span:nth-child(2) {
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: 50% 50% -20px;
+    -moz-transform-origin: 50% 50% -20px;
+    transform-origin: 50% 50% -20px;
+}
+.btn-12:hover span:nth-child(1) {
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+}
+.btn-12:hover span:nth-child(2) {
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    color: transparent;
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+    transform: rotateX(-90deg);
+}
+  /* 버튼12 끝  */
 a {
     text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-    color: black;
+    color: white;
     text-decoration: none
 }
-    
+.logo_con{
+    width: 250px;
+    height: 150px;
+    border: solid 5px rgb(58, 58, 58);
+    margin-top: -450px;
+    margin-left: 17px;
+}
+/* 통계 div */
+
+.statistics{
+    width: 85%;
+    height: 100%;
+    margin-left: 15%;
+}
+.stat_1{
+    float: left;
+    width: 17%;
+    height: 60%;
+    margin-left: 30px;
+    margin-top: 30px;
+    border-radius: 30px 10px;
+    background-color: #fff;
+    border: solid 2px rgb(58, 58, 58);
+    box-shadow: 5px 5px 5px;
+}
+.stat_2{
+    float: left;
+    width: 17%;
+    height: 60%;
+    margin-left: 30px;
+    margin-top: 30px;
+    border-radius: 30px 10px;
+    background-color: #fff;
+    border: solid 2px rgb(58, 58, 58);
+    box-shadow: 5px 5px 5px;
+}
+.stat_3{
+    float: left;
+    width: 17%;
+    height: 60%;
+    margin-left: 30px;
+    margin-top: 30px;
+    border-radius: 30px 10px;
+    background-color: #fff;
+    border: solid 2px rgb(58, 58, 58);
+    box-shadow: 5px 5px 5px;
+}
+.stat_4{
+    float: left;
+    width: 17%;
+    height: 60%;
+    margin-left: 30px;
+    margin-top: 30px;
+    border-radius: 30px 10px;
+    background-color: #fff;
+    border: solid 2px rgb(58, 58, 58);
+    box-shadow: 5px 5px 5px;
+}
+.stat_5{
+    float: left;
+    width: 17%;
+    height: 60%;
+    margin-left: 30px;
+    margin-top: 30px;
+    border-radius: 30px 10px;
+    background-color: #fff;
+    border: solid 2px rgb(58, 58, 58);
+    box-shadow: 5px 5px 5px;
+}
+/* 원형 그래프 */
+.pie-chart2 {
+    margin-top: 30px;
+    display:inline-block;
+    position:relative;
+    width: 200px;
+    height: 200px;
+    background: conic-gradient(#8b22ff 0% 25%, #ffc33b 25% 56%, #21f3d6 56% 100%);
+    border-radius: 50%;
+  }
+  .pie-chart2  .center{
+    margin: 0 auto;
+    position:absolute;
+    width:100px; 
+    height: 100px;
+    background :#fff;
+    border-radius: 50%;
+    top: 50px;
+    left:50px;
+  }
 @media (max-width: 600px) {
     .main {
         border-radius: 0px;
