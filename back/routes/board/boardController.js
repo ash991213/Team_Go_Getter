@@ -259,6 +259,13 @@ exports.delete = async (req,res) => {
                  WHERE a.b_idx = ${b_idx}
                  `
 
+    const sql2 = `DELETE a
+                  FROM hashtag AS a
+                  LEFT OUTER JOIN board_hash AS b
+                  ON a.h_idx = b.h_idx
+                  WHERE b.h_idx IS NULL
+                  `
+
     // 해시태그 테이블에 사용되지않고있는 해시태그 체크하고 삭제해야함
     // ON DELETE CASCADE ??
 
@@ -268,7 +275,8 @@ exports.delete = async (req,res) => {
 
     try {
         await pool.execute('SET foreign_key_checks = 0')
-        const [result] = await pool.execute(sql)
+        await pool.execute(sql)
+        await pool.execute(sql2)
         await pool.execute('SET foreign_key_checks = 1')
     } catch (error) {
         console.log(error.message)
