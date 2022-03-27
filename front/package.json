@@ -14,8 +14,10 @@
     "chokidar": "^3.5.3",
     "cookie-parser": "^1.4.6",
     "express": "^4.17.3",
+    "mvc": "^1.0.0",
     "nodemon": "^2.0.15",
     "nunjucks": "^3.2.3",
+    "vid-streamer": "^1.0.0",
     "ws": "^8.5.0"
   }
 }
