@@ -136,16 +136,20 @@ exports.edit = async (req,res) => {
 }
 
 exports.delete = async (req,res) => {
-    const r_idx = 5 // req.body
+    const { r_idx,groupNum,depth } = req.body
 
-    const sql = `DELETE FROM reply WHERE r_idx = ${r_idx}`
+    const sql = `DELETE FROM reply WHERE groupNum = ${groupNum}`
+    const sql2 = `DELETE FROM reply WHERE r_idx = ${r_idx}`
 
     let response = {
         errno:0
     }
 
     try {
+        if ( depth == 1 )
         await pool.execute(sql)
+        else 
+        await pool.execute(sql2)
     } catch (error) {
         console.log(error.message)
         response = {
