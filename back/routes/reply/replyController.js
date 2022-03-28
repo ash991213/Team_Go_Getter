@@ -88,6 +88,34 @@ exports.subwrite = async (req,res) => {
     res.json(response)
 }
 
+exports.view = async (req,res) => {
+    const b_idx = 5 // req.query
+
+    const sql = `SELECT * FROM reply WHERE depth = 1`
+    const sql2 = 'SELECT * FROM reply WHERE depth = 2'
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [result] = await pool.execute(sql)
+        const [result2] = await pool.execute(sql2)
+
+        response = {
+            ...response,
+            result,
+            result2
+        }
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+}
+
 exports.delete = async (req,res) => {
     const r_idx = 5 // req.body
 
