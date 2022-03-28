@@ -116,6 +116,25 @@ exports.view = async (req,res) => {
     res.json(response)
 }
 
+exports.edit = async (req,res) => {
+    const { r_idx,content } = req.body
+
+    const sql = `UPDATE reply SET content = '${content}' WHERE r_idx = '${r_idx}'`
+
+    let response = {
+        errno:0
+    }
+
+    try{
+        await pool.execute(sql)
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:0
+        }
+    }
+}
+
 exports.delete = async (req,res) => {
     const r_idx = 5 // req.body
 
