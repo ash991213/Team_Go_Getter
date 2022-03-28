@@ -22,14 +22,17 @@ exports.mainwrite = async (req,res) => {
 
     try {
         const [result] = await pool.execute(sql,prepare)
+        const [result2] = await pool.execute(`SELECT * FROM reply WHERE depth = 1`)
+
+        const groupNum = result2[result2.length-2].groupNum+1
         const r_idx = result.insertId
-        const [result2] = await pool.execute(`UPDATE reply SET groupNum=${r_idx} WHERE r_idx=${r_idx}`)
+        const [result3] = await pool.execute(`UPDATE reply SET groupNum=${groupNum} WHERE r_idx=${r_idx}`)
 
         response = {
             ...response,
             result:{
                 affectedRows:result.affectedRows,
-                groupNum:result.insertId
+                groupNum,
             }
         }
 
@@ -72,8 +75,8 @@ exports.subwrite = async (req,res) => {
         response = {
             ...response,
             result:{
-                affectedRows:result.affectedRows,
-                insertId:result.insertId
+                affectedRows:result2.affectedRows,
+                insertId:result2.insertId
             }
         }
     } catch (error) {
