@@ -87,3 +87,23 @@ exports.subwrite = async (req,res) => {
     }
     res.json(response)
 }
+
+exports.delete = async (req,res) => {
+    const r_idx = 5 // req.body
+
+    const sql = `DELETE FROM reply WHERE r_idx = ${r_idx}`
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        await pool.execute(sql)
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+}
