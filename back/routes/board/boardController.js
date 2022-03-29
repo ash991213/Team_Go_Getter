@@ -62,6 +62,28 @@ exports.write = async (req,res) => {
     res.json(response)
 }
 
+exports.list = async (req,res) => {
+    const sql = 'SELECT * FROM board'
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [result] = await pool.execute(sql)
+        console.log(result)
+        response = {
+            ...response,
+            result
+        }
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+}
+
 exports.mainList = async (req,res) => {
     const m_idx = 1 // req.query
 
