@@ -11,7 +11,7 @@ const issuer = process.env.JWT_ISSUER; // 토큰 발급자
 
 
 //회원가입
-exports.joinpostMid  = async (req,res)=>{
+exports.joinpost  = async (req,res)=>{
     const { userid,userpw,username,nickname,birthdate,adress,gender,mobile,tel,email,intro } = req.body;
     const sql = `INSERT INTO user(
                     userid,
@@ -60,7 +60,7 @@ exports.joinpostMid  = async (req,res)=>{
 
 
 //중복체크
-exports.idcheckpostMid = async (req,res) =>{
+exports.idcheckpost = async (req,res) =>{
         const {userid} = req.body;
         console.log(userid);
 
@@ -70,7 +70,7 @@ exports.idcheckpostMid = async (req,res) =>{
             console.log(result);
             console.log(result.length);
         try {
-            if (result.length === 0) throw new Error ('중복된 아이디입니다.');
+            if (result.length === 1) throw new Error ('중복된 아이디입니다.');
             res.send('1');
         } catch (error) {
             res.send('2');
@@ -81,7 +81,7 @@ exports.idcheckpostMid = async (req,res) =>{
 };
 
 
-exports.loginpostMid = async (req,res) => {
+exports.loginpost = async (req,res) => {
     const { userid,userpw } = req.body
     
     const sql = `SELECT * FROM user WHERE userid=? AND userpw=?`
