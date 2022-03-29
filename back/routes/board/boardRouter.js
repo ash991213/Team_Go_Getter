@@ -9,5 +9,7 @@ router.post('/subList',boardController.subList);
 router.get('/edit',boardController.GetEdit);
 router.post('/edit',boardController.PostEdit);
 router.post('/delete',boardController.delete);
+router.post('/likes',boardController.likes);
+router.post('/dislikes',boardController.dislikes);
 
 module.exports = router;
