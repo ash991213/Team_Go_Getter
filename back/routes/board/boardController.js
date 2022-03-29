@@ -1,4 +1,5 @@
 const pool = require('../../models/db.js').pool;
+const cookieParser = require('cookie-parser')
 const { decodePayload } = require('../../utils/jwt.js');
 
 exports.write = async (req,res) => {
@@ -121,7 +122,9 @@ exports.subList = async (req,res) => {
 }
 
 exports.view = async (req,res) => {
-    const b_idx = 1 // req.query
+    const b_idx = 4 // req.query
+
+    let cookies = req.cookies.visit
 
     const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.image, d.name
                  FROM board a
@@ -136,13 +139,25 @@ exports.view = async (req,res) => {
     }
 
     try {
-        await pool.execute(`UPDATE board SET hit = hit+1 WHERE b_idx = ${b_idx}`)
+        if ( cookies != undefined ) {
+            let newCookie = cookies.split('/')
+
+            function findNum(n) { if(parseInt(n) === b_idx) return true }
+
+            if ( newCookie.findIndex(findNum) == -1 )
+                cookies = cookies + '/' + b_idx
+                res.cookie('visit',cookies)
+        } else {
+            res.cookie('visit',b_idx)
+        }
+
         const [result] = await pool.execute(sql)
-        console.log(result)
+
         response = {
             ...response,
             result
         }
+
     } catch (error) {
         console.log(error.message)
         response = {
@@ -266,9 +281,6 @@ exports.delete = async (req,res) => {
                   ON a.h_idx = b.h_idx
                   WHERE b.h_idx IS NULL
                   `
-
-    // 해시태그 테이블에 사용되지않고있는 해시태그 체크하고 삭제해야함
-    // ON DELETE CASCADE ??
 
     let response = {
         errno:0
