@@ -18,7 +18,7 @@
             </video>
             <div class="main">
                 <!-- if user -->
-                <p class="sign" align="center">Sign in</p>
+                <p class="sign" align="center">SIGN IN</p>
                 <!-- else -->
                 <!-- <p class="sign" align="center">{{username}}, Welcome!</p> -->
                 <!-- endif -->
@@ -26,13 +26,20 @@
                     <!-- if user -->
                     <input class="un" type="text" align="center" placeholder="Username">
                     <input class="pass" type="password" align="center" placeholder="Password">
-                    <button class="custom-btn btn-9"><a href="/user/login" align="center">login</a></button>
-                    <button class="custom-btn btn-9"><a href="/user/register" class="submit" align="center">register</a></button>
+                    <button class="custom-btn btn-5"><a href="/user/login" align="center">LOGIN</a></button>
+                    <button class="custom-btn btn-5"><a href="/user/register" class="submit" align="center">REGISTER</a></button>
                 <!-- else -->
                     <!-- <a class="submit" align="center">profile</a> -->
                 <!-- endif -->
-
-
+                <div class="kakao_login">
+                    <a href="/" ><img src="./kakao_login_medium_narrow (1).png"> </a>
+                </div>
+                <div class="google_login">
+                    <a href="/" ><img src="./btn_google_signin_dark_normal_web.png"> </a>
+                </div>
+                <div class="naver_login">
+                    <a href="/" ><img src="./btnG_official.png" width="185" height="40"> </a>
+                </div>
                 </form>         
             </div>
         </div>
@@ -40,24 +47,18 @@
     <div class="section" style="font-size: 32px; text-align: center; background-color: rgb(70, 70, 70);">
         <div class="main2_button">
             <div class="button_con1">
-                <button class="custom-btn btn-12">
-                    <span><a href="/board/list" align="center">welcome!</a></span>
-                    <span>
-                        <a href="/board/list" align="center">community</a>
-                    </span>
+                <button class="custom-btn btn-7">
+                    <a href="/board/list" align="center"><span class="munu_button">COMMUNITY</span></a>
                 </button>
             </div>
             <div class="button_con2">
-                <button class="custom-btn btn-12">
+                <button class="custom-btn btn-7">
                     <!-- 채팅방 라우터 적어야함 -->
-                    <span><a href="/" align="center">welcome!</a></span> 
-                    <span>
-                        <a href="/" align="center">chat</a>
-                    </span>
+                    <a href="/" align="center"><span class="munu_button">CHAT</span></a>
                 </button>
             </div>
             <div class="logo_con">
-                <img src="./linkedin_banner_image_1.png" width="250" height="150">
+                <img src="./KakaoTalk_20220325_185658666.jpg" width="250" height="150">
             </div>
         </div>
         <div class="statistics">
@@ -78,7 +79,55 @@
             </div>
         </div>
     </div> 
-    <div class="section" style="font-size: 32px; text-align: center; background-color: black;">.</div>
+    
+    <div class="section" style="font-size: 32px; text-align: center; background-color: black;">
+        
+        <!-- admin 로그인 화면 -->
+
+        <div class="admin_back">
+            <div class="admin_main">
+                <div class="admin_login_con">
+                    <form id="login-form" method="post">
+
+                        <label class="legend">ID</label>
+      
+                        <input name="userid" type="text">
+      
+      
+      
+                        <label class="legend">password</label> 
+      
+                        <input name="passwprd" type="password"> 
+      
+                        <button class="custom-btn btn-5"><a href="/" class="admin_login_button" align="center">admin login</a></button>
+               </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- admin 로그인 후 화면 -->
+
+        <!-- <div class="admin_back">
+            <div class="admin_main">
+                <div class="admin_con1">
+                    <div class="admin_span_box">
+                        <span class="admin_span">회원 리스트</span>
+                    </div>
+                </div>
+                <div class="admin_con2">
+                    <div class="admin_span_box">
+                        <span class="admin_span">회원 정보 수정</span>
+                    </div>
+                </div>
+                <div class="admin_con3">
+                    <div class="admin_span_box">
+                        <span class="admin_span">카테고리 설정</span>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+    </div>
 
     <script>
 
