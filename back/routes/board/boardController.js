@@ -1,5 +1,4 @@
 const pool = require('../../models/db.js').pool;
-const cookieParser = require('cookie-parser')
 const { decodePayload } = require('../../utils/jwt.js');
 
 exports.write = async (req,res) => {
@@ -7,7 +6,12 @@ exports.write = async (req,res) => {
     const token = req.headers.cookie
     const userid = decodePayload(token).userid
 
-    const files = req.files
+    const files = new Array()
+    if ( req.files.upload1 != undefined ) {filename.push(req.files.upload1[0].filename)}
+    if ( req.files.upload2 != undefined ) {filename.push(req.files.upload2[0].filename)}
+    if ( req.files.upload3 != undefined ) {filename.push(req.files.upload3[0].filename)}
+    if ( req.files.upload4 != undefined ) {filename.push(req.files.upload4[0].filename)}
+    if ( req.files.upload5 != undefined ) {filename.push(req.files.upload5[0].filename)}
 
     const hashtag = req.body
     
