@@ -121,7 +121,7 @@ exports.subList = async (req,res) => {
 }
 
 exports.view = async (req,res) => {
-    const b_idx = 2 // req.query
+    const b_idx = 1 // req.query
 
     const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.image, d.name
                  FROM board a
@@ -136,6 +136,7 @@ exports.view = async (req,res) => {
     }
 
     try {
+        await pool.execute(`UPDATE board SET hit = hit+1 WHERE b_idx = ${b_idx}`)
         const [result] = await pool.execute(sql)
         console.log(result)
         response = {
