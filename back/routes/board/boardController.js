@@ -309,3 +309,109 @@ exports.delete = async (req,res) => {
     }
     res.json(response)
 }
+
+exports.likes = async (req,res) => {
+    const b_idx = 1 // req.body
+
+    // const token = req.headers.cookie
+    const userid = 'ash991213' // decodePayload(token).userid
+
+    const sql = `SELECT * FROM likes WHERE userid=? AND b_idx=?`
+
+    const sql2 = `INSERT INTO likes (userid,b_idx,like_num,like_check)
+                 VALUES (?,?,?,?)`
+
+    const sql3 = `DELETE FROM likes WHERE userid=? AND b_idx=?`
+
+    const prepare = [userid,b_idx]
+
+    const prepare2 = [userid,b_idx,+1,1]
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [result] = await pool.execute(sql,prepare)
+        if ( result.length == 0 ) {
+            await pool.execute(sql2,prepare2)
+
+            response = {
+                ...response,
+                like_check:0
+            }
+
+        } else {
+            if ( result[0].like_num == 1 ) {
+                await pool.execute(sql3,prepare)
+            } else {
+                await pool.execute(sql3,prepare)
+                await pool.execute(sql2,prepare2)
+            }
+
+            response = {
+                ...response,
+                like_check:1
+            }
+
+        }
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+}
+
+exports.dislikes = async (req,res) => {
+    const b_idx = 1 // req.body
+
+    // const token = req.headers.cookie
+    const userid = 'ash991213' // decodePayload(token).userid
+
+    const sql = `SELECT * FROM likes WHERE userid=? AND b_idx=?`
+
+    const sql2 = `INSERT INTO likes (userid,b_idx,dislike_num,like_check)
+                 VALUES (?,?,?,?)`
+
+    const sql3 = `DELETE FROM likes WHERE userid=? AND b_idx=?`
+
+    const prepare = [userid,b_idx]
+
+    const prepare2 = [userid,b_idx,+1,1]
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [result] = await pool.execute(sql,prepare)
+        if ( result.length == 0 ) {
+            await pool.execute(sql2,prepare2)
+
+            response = {
+                ...response,
+                like_check:0
+            }
+
+        } else {
+            if ( result[0].dislike_num == 1 ) {
+                await pool.execute(sql3,prepare)
+            } else {
+                await pool.execute(sql3,prepare)
+                await pool.execute(sql2,prepare2)
+            }
+
+            response = {
+                ...response,
+                like_check:1
+            }
+
+        }
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+}
