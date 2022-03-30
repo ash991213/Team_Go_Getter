@@ -51,11 +51,11 @@ html.open {
     opacity: 0.999;
     background-color: rgb(70, 70, 70);
     width: 400px;
-    height: 1030px;
+    height: 80%;
     margin: 0 auto;
     border-radius: 0.7em;
     box-shadow: 0px 0px 35px 3px rgb(41, 189, 235);
-    margin-top: 1%;
+    margin-top: 10.3%;
     margin-left: 1%;
     border: solid 5px rgb(58, 58, 58);
 }
@@ -81,6 +81,7 @@ html.open {
     box-sizing: border-box;
     border: 2px solid rgba(0, 0, 0, 0.02);
     margin-left: 10px;
+    margin-bottom: 10px;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
 }
@@ -98,10 +99,9 @@ html.open {
     outline: none;
     box-sizing: border-box;
     border: 2px solid rgba(0, 0, 0, 0.02);
-
     margin-left: 10px;
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
     font-family: 'Ubuntu', sans-serif;
 }
 .kakao_login{
@@ -125,11 +125,45 @@ html.open {
     margin-left: 50px;
     margin-right: 75px;
 }
-   
-.un:focus, .pass:focus {
+.reg_userid,.reg_userpw,.reg_username,.reg_nickname,.reg_birthdate,.reg_adress,.reg_gender,.reg_mobile,.reg_tel,.reg_email{
+    
+    margin-bottom: 15px;
+    width: 90%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgb(54, 44, 44);
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-left: 10px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+.un:focus, .pass:focus ,.reg_userid:focus,.reg_userpw:focus,.reg_username:focus,.reg_nickname:focus,.reg_birthdate:focus,.reg_adress:focus,.reg_gender:focus,.reg_mobile:focus,.reg_tel:focus,.reg_email:focus{
     border: 2px solid rgb(41, 189, 235) !important;
 }
+.menu_back{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: rgb(58, 58, 58);
+    
+}
+.menu_con{
+    position: relative;
+    margin: 0 auto;
+    width: 98%;
+    height: 99%;
+    border: solid 5px rgb(58, 58, 58);
+    border-radius: 0.7em;
+    box-shadow: 0px 0px 10px 1px rgb(41, 189, 235);
 
+}
 .main2_button{
     position: relative;
     float: left;
@@ -150,9 +184,29 @@ html.open {
     box-sizing: border-box;
 }
 .munu_button{
+    position: relative;
     width: 300px;
 }
-
+/* 팝업창 css */
+.btn_open{margin:5px; padding:4px 6px; color:#fff;}
+.pop_wrap{z-index: 10;position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.7); font-size:0; text-align:center;}
+.pop_wrap:after{display:inline-block; height:100%; vertical-align:middle; content:'';}
+.pop_wrap .pop_inner{
+    display:inline-block;
+    padding:20px 30px; 
+    background:#fff; 
+    width:400px; 
+    height: 600px;
+    vertical-align:middle; 
+    font-size:15px;
+    background-color: rgb(70, 70, 70);
+    border-radius: 50px 50px;
+    border: solid 4px rgb(58, 58, 58); 
+    box-shadow: 0px 0px 35px 5px rgb(41, 189, 235);
+}
+.btn_close{
+    color:#fff;
+}
 /* 버튼 */
 
 .custom-btn {
@@ -163,7 +217,7 @@ html.open {
     border-radius: 5px;
     padding: 10px 25px;
     font-family: 'Lato', sans-serif;
-    font-weight: 500;
+    font-weight: bold;
     background: transparent;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -351,7 +405,7 @@ a {
     width: 1900px;
     height: 1000px;
     margin: 0 auto;
-    border-top: solid 50px black;
+    border-top: solid 70px black;
 }
 .admin_main{
     width: 90%;
