@@ -3,6 +3,7 @@ const { decodePayload } = require('../../utils/jwt.js');
 
 exports.write = async (req,res) => {
     const { subject,content } = req.body
+
     const token = req.headers.cookie
     const userid = decodePayload(token).userid
 
@@ -29,7 +30,7 @@ exports.write = async (req,res) => {
         // 이미지 파일이 있으면 추가
         if ( files != [] )
         files.forEach( async v => {
-            const sql2 = `INSERT INTO file(image,b_idx) VALUES ('${v.filename}',${b_idx})`
+            const sql2 = `INSERT INTO file(image,b_idx) VALUES ('${v}',${b_idx})`
             await pool.execute(sql2)
         });
 
@@ -43,11 +44,16 @@ exports.write = async (req,res) => {
             if ( result3.length == 0 ){
                 const sql4 = `INSERT INTO hashtag(name) VALUES ('${v}')`
                 await pool.execute(sql4)
-            }
+                const [result3] = await pool.execute(sql3)
+                const h_idx = result3[0].h_idx
+                const sql5 = `INSERT INTO board_hash(h_idx,b_idx) VALUES (${h_idx},${b_idx})`
+                await pool.execute(sql5)
+            } else {
             // 게시판_해시 테이블에 추가
-            const h_idx = result3[0].h_idx
-            const sql5 = `INSERT INTO board_hash(h_idx,b_idx) VALUES (${h_idx},${b_idx})`
-            await pool.execute(sql5)
+                const h_idx = result3[0].h_idx
+                const sql5 = `INSERT INTO board_hash(h_idx,b_idx) VALUES (${h_idx},${b_idx})`
+                await pool.execute(sql5)
+            }
         });
 
         response = {
@@ -106,6 +112,7 @@ exports.mainList = async (req,res) => {
 
     try {
         const [result] = await pool.execute(sql)
+        console.log(result)
         response = {
             ...response,
             result
@@ -235,11 +242,11 @@ exports.GetEdit = async (req,res) => {
 
 exports.PostEdit = async (req,res) => {
     const { subject,content } = req.body
-    const b_idx = req.query
+    const b_idx = 1 // req.query
 
-    const files = req.files
+    const files = ['수정이미지1','수정이미지2','수정이미지3','수정이미지4','수정이미지5'] // req.files
 
-    const hashtag = req.body // 해시태그 배열에 담아서 주세요.
+    const hashtag = ['테스트1','테스트2','테스트3','테스트4','테스트5'] // req.body // 해시태그 배열에 담아서 주세요.
 
     const sql = `UPDATE board SET content='${content}',subject='${subject}' WHERE b_idx=${b_idx}`
 
@@ -256,29 +263,73 @@ exports.PostEdit = async (req,res) => {
         await pool.execute(sql2)
 
         files.forEach( async v => {
-            const sql3 = `INSERT INTO file(image,b_idx) VALUES ('${v.filename}',${b_idx})`
+            const sql3 = `INSERT INTO file(image,b_idx) VALUES ('${v}',${b_idx})`
             await pool.execute(sql3)
         });
-        
-        // 해시태그 
+
+        // 해시태그
+        if ( hashtag.length == 0 ){
+            console.log('삭제')
+            const sql4=`DELETE a FROM board_hash AS a
+                        LEFT OUTER JOIN hashtag AS b
+                        ON a.h_idx = b.h_idx
+                        WHERE a.b_idx = ${b_idx}`
+
+            await pool.execute(sql4)
+        }
         hashtag.forEach( async v => {
-            // 입력된 해시태그가 없으면 모든 해시태그 지우기
-            if ( v == '' ){
-                const sql4=`DELETE FROM board_hash WHERE b_idx=${b_idx}`
-                await pool.execute(sql4)
-            } else {
+            const sql = `SELECT a.b_idx, b.h_idx, c.name
+                             FROM board a
+                             LEFT OUTER JOIN board_hash AS b ON a.b_idx = b.b_idx
+                             LEFT OUTER JOIN hashtag AS c ON b.h_idx = c.h_idx
+                             WHERE c.name = '${v}'
+                             `
+            const [result] = await pool.execute(sql)
+            console.log(result)
+
+            if ( result.length == 0 ) { // 사용중인 것인지 아닌지 확인하여 신규 / 수정 체크
+                console.log('신규')
+                const sql = `DELETE FROM board_hash WHERE b_idx = ${b_idx}`
+                await pool.execute(sql)
                 // 입력한 해시태그가 이미 있는지 체크
-                const sql5 = `SELECT * FROM hashtag WHERE name='${v}'`
-                const [result5] = await pool.execute(sql5)
+                const sql3 = `SELECT * FROM hashtag WHERE name='${v}'`
+                const [result3] = await pool.execute(sql3)
                 // 없으면 해시태그 테이블에 추가
-                if ( result5.length == 0 ){
-                    const sql6 = `INSERT INTO hashtag(name) VALUES ('${v}')`
-                    await pool.execute(sql6)
-                }
+
+                if ( result3.length == 0 ){
+                    const sql4 = `INSERT INTO hashtag(name) VALUES ('${v}')`
+                    await pool.execute(sql4)
+                    const [result3] = await pool.execute(sql3)
+                    const h_idx = result3[0].h_idx
+                    const sql5 = `INSERT INTO board_hash(h_idx,b_idx) VALUES (${h_idx},${b_idx})`
+                    await pool.execute(sql5)
+                } else {
                 // 게시판_해시 테이블에 추가
-                const h_idx = result5[0].h_idx
-                const sql7 = `INSERT INTO board_hash(h_idx,b_idx) VALUES (${h_idx},${b_idx})`
-                await pool.execute(sql7)
+                const h_idx = result3[0].h_idx
+                const sql5 = `INSERT INTO board_hash(h_idx,b_idx) VALUES (${h_idx},${b_idx})`
+                await pool.execute(sql5)
+                }
+            } else {
+                console.log('수정')
+                const sql = `DELETE FROM board_hash WHERE b_idx = ${b_idx}`
+                await pool.execute(sql)
+                const sql3 = `SELECT * FROM hashtag WHERE name='${v}'`
+                const [result3] = await pool.execute(sql3)
+                // 없으면 해시태그 테이블에 추가
+
+                if ( result3.length == 0 ){
+                    const sql4 = `INSERT INTO hashtag(name) VALUES ('${v}')`
+                    await pool.execute(sql4)
+                    const [result3] = await pool.execute(sql3)
+                    const h_idx = result3[0].h_idx
+                    const sql5 = `INSERT INTO board_hash(h_idx,b_idx) VALUES (${h_idx},${b_idx})`
+                    await pool.execute(sql5)
+                } else {
+                // 게시판_해시 테이블에 추가
+                const h_idx = result3[0].h_idx
+                const sql5 = `INSERT INTO board_hash(h_idx,b_idx) VALUES (${h_idx},${b_idx})`
+                await pool.execute(sql5)
+                }
             }
         });
 
