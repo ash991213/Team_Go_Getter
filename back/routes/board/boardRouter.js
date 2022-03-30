@@ -13,5 +13,6 @@ router.post('/edit',boardController.PostEdit);
 router.post('/delete',boardController.delete);
 router.post('/likes',boardController.likes);
 router.post('/dislikes',boardController.dislikes);
+router.post('/down',boardController.down);
 
 module.exports = router;

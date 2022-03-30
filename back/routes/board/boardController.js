@@ -73,18 +73,30 @@ exports.write = async (req,res) => {
 }
 
 exports.list = async (req,res) => {
+    // const token = req.headers.cookie
+    const userid = 'admin' // decodePayload(token).userid
+
     const sql = 'SELECT * FROM board'
+
+    const sql2 = 'SELECT * FROM board WHERE isActive = 1'
 
     let response = {
         errno:0
     }
 
     try {
-        const [result] = await pool.execute(sql)
-        console.log(result)
-        response = {
-            ...response,
-            result
+        if ( userid == 'admin' ) {
+            const [result] = await pool.execute(sql)
+            response = {
+                ...response,
+                result
+            }
+        } else {
+            const [result2] = await pool.execute(sql2)
+            response = {
+                ...response,
+                result2
+            }
         }
     } catch (error) {
         console.log(error.message)
@@ -92,10 +104,14 @@ exports.list = async (req,res) => {
             errno:1
         }
     }
+    res.json(response)
 }
 
 exports.mainList = async (req,res) => {
     const m_idx = 1 // req.query
+
+    // const token = req.headers.cookie
+    const userid = 'admin' // decodePayload(token).userid
 
     const sql = `SELECT a.b_idx, a.userid, a.subject, a.date, a.hit, a.s_idx, b.image, d.name, e.s_name, f.m_name
                  FROM board a
@@ -105,17 +121,33 @@ exports.mainList = async (req,res) => {
                  LEFT OUTER JOIN subcategory AS e ON a.s_idx = e.s_idx
                  LEFT OUTER JOIN maincategory AS f ON e.m_idx = f.m_idx
                  WHERE f.m_idx = ${m_idx}`
+
+    const sql2 = `SELECT a.b_idx, a.userid, a.subject, a.date, a.hit, a.s_idx, b.image, d.name, e.s_name, f.m_name
+                 FROM board a
+                 LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
+                 LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
+                 LEFT OUTER JOIN hashtag AS d ON c.h_idx = d.h_idx
+                 LEFT OUTER JOIN subcategory AS e ON a.s_idx = e.s_idx
+                 LEFT OUTER JOIN maincategory AS f ON e.m_idx = f.m_idx
+                 WHERE f.m_idx = ${m_idx} AND isActive = 1`
     
     let response = {
         errno:0
     }
 
     try {
-        const [result] = await pool.execute(sql)
-        console.log(result)
-        response = {
-            ...response,
-            result
+        if ( userid == 'admin' ) {
+            const [result] = await pool.execute(sql)
+            response = {
+                ...response,
+                result
+            }
+        } else {
+            const [result2] = await pool.execute(sql2)
+            response = {
+                ...response,
+                result2
+            }
         }
     } catch (error) {
         console.log(error.message)
@@ -123,12 +155,16 @@ exports.mainList = async (req,res) => {
             errno:1
         }
     }
+    res.json(response)
 }
 
 exports.subList = async (req,res) => {
     const s_idx = 1 //req.query
 
-    const sql = `SELECT a.b_idx, a.userid, a.subject, a.date, a.hit, a.s_idx, b.image, d.name, e.name
+    // const token = req.headers.cookie
+    const userid = 'admin' // decodePayload(token).userid
+
+    const sql = `SELECT a.b_idx, a.userid, a.subject, a.date, a.hit, a.s_idx, b.image, d.name, e.s_name
                  FROM board a
                  LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
                  LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
@@ -136,14 +172,31 @@ exports.subList = async (req,res) => {
                  LEFT OUTER JOIN subcategory AS e ON a.s_idx = e.s_idx
                  WHERE a.s_idx = ${s_idx}`
 
+    const sql2 = `SELECT a.b_idx, a.userid, a.subject, a.date, a.hit, a.s_idx, b.image, d.name, e.s_name
+                  FROM board a
+                  LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
+                  LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
+                  LEFT OUTER JOIN hashtag AS d ON c.h_idx = d.h_idx
+                  LEFT OUTER JOIN subcategory AS e ON a.s_idx = e.s_idx
+                  WHERE a.s_idx = ${s_idx} AND a.isActive = 1`
+
     let response = {
         errno:0
     }
     try {
-        const [result] = await pool.execute(sql) 
-        response = {
-            ...response,
-            result
+        if ( userid == 'admin' ) {
+            const [result] = await pool.execute(sql) 
+            response = {
+                ...response,
+                result
+            }
+        } else {
+            const [result2] = await pool.execute(sql2)
+            response = {
+                ...response,
+                result2
+            }
+            console.log(result2)
         }
     } catch (error) {
         console.log(error.message)
@@ -485,6 +538,32 @@ exports.dislikes = async (req,res) => {
             }
 
         }
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+}
+
+exports.down = async (rep,res) => {
+    const b_idx = 1 // req.body
+
+    const sql = `SELECT * FROM board WHERE b_idx = ${b_idx}`
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [result] = await pool.execute(sql)
+        console.log(result)
+        if ( result[0].isActive == 1 ) {
+            await pool.execute(`UPDATE board SET isActive = 2 WHERE b_idx = ${b_idx}`)
+        } else {
+            await pool.execute(`UPDATE board SET isActive = 1 WHERE b_idx = ${b_idx}`)
+        }
+
     } catch (error) {
         console.log(error.message)
         response = {
