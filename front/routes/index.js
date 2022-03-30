@@ -17,6 +17,9 @@ router.get('/',(req,res)=>{
 router.get('/main_category',(req,res)=>{
     res.render('main_category.html');
 });
+router.get('/sub_category',(req,res)=>{
+    res.render('sub_category.html');
+});
 
 //이미지 불러오는 라우터
 router.use(express.static('views'));
