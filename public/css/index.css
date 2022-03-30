@@ -1,0 +1,552 @@
+*{
+    transition-duration: 0.8s;
+}
+body{
+    margin: 0;
+    padding: 0;
+    -ms-overflow-style: none;
+    background-color: #F3EBF6;
+    font-family: 'Ubuntu', sans-serif;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+body::-webkit-scrollbar{
+    display:none; 
+}
+.section{
+    /* section 크기 설정됨 */
+    width: 1920px;
+    height: 1080px;
+}
+
+.main_video{
+    float: right;
+    width: 78%;
+    height: 1080px;
+    /* 화면 꽉 채우려면 1080 */
+    position: relative;
+    overflow: hidden;
+}
+.video_con{
+    overflow: hidden;
+}
+.container{
+    position: absolute;
+    width: 100%;
+    height: 833px;
+    background-color: black;
+}
+
+html.open {
+  overflow: hidden;
+}
+.main {
+    position: relative;
+    width: 100%;
+    height: 110vh;
+    font-size: 32px; 
+    text-align: center;
+    position: absolute;
+    opacity: 0.999;
+    background-color: rgb(70, 70, 70);
+    width: 400px;
+    height: 80%;
+    margin: 0 auto;
+    border-radius: 0.7em;
+    box-shadow: 0px 0px 35px 3px rgb(41, 189, 235);
+    margin-top: 10.3%;
+    margin-left: 1%;
+    border: solid 5px rgb(58, 58, 58);
+}
+    
+.sign {
+    color: rgba(2,126,251,1);
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+}
+    
+.un {
+    width: 90%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgb(54, 44, 44);
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-left: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+    
+.pass {
+    width: 90%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgb(54, 44, 44);
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-left: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Ubuntu', sans-serif;
+}
+.kakao_login{
+    width: 300px;
+    height: 50px;
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 75px;
+}   
+.google_login{
+    width: 300px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 75px;
+}
+.naver_login{
+    width: 300px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 75px;
+}
+.reg_userid,.reg_userpw,.reg_username,.reg_nickname,.reg_birthdate,.reg_adress,.reg_gender,.reg_mobile,.reg_tel,.reg_email{
+    
+    margin-bottom: 15px;
+    width: 90%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgb(54, 44, 44);
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-left: 10px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+.un:focus, .pass:focus ,.reg_userid:focus,.reg_userpw:focus,.reg_username:focus,.reg_nickname:focus,.reg_birthdate:focus,.reg_adress:focus,.reg_gender:focus,.reg_mobile:focus,.reg_tel:focus,.reg_email:focus{
+    border: 2px solid rgb(41, 189, 235) !important;
+}
+.menu_back{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: rgb(58, 58, 58);
+    
+}
+.menu_con{
+    position: relative;
+    margin: 0 auto;
+    width: 98%;
+    height: 99%;
+    border: solid 5px rgb(58, 58, 58);
+    border-radius: 0.7em;
+    box-shadow: 0px 0px 10px 1px rgb(41, 189, 235);
+
+}
+.main2_button{
+    position: relative;
+    float: left;
+    width: 15%;
+    height: 100%;
+    border-right: solid 2px rgb(58, 58, 58);
+}
+.button_con1{
+    width: 280px;
+    margin-top: 50px;
+    position: absolute;
+    box-sizing: border-box;
+}
+.button_con2{
+    width: 280px;
+    margin-top: 150px;
+    position: relative;
+    box-sizing: border-box;
+}
+.munu_button{
+    position: relative;
+    width: 300px;
+}
+/* 팝업창 css */
+.btn_open{margin:5px; padding:4px 6px; color:#fff;}
+.pop_wrap{z-index: 10;position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.7); font-size:0; text-align:center;}
+.pop_wrap:after{display:inline-block; height:100%; vertical-align:middle; content:'';}
+.pop_wrap .pop_inner{
+    display:inline-block;
+    padding:20px 30px; 
+    background:#fff; 
+    width:400px; 
+    height: 600px;
+    vertical-align:middle; 
+    font-size:15px;
+    background-color: rgb(70, 70, 70);
+    border-radius: 50px 50px;
+    border: solid 4px rgb(58, 58, 58); 
+    box-shadow: 0px 0px 35px 5px rgb(41, 189, 235);
+}
+.btn_close{
+    color:#fff;
+}
+/* 버튼 */
+
+.custom-btn {
+    font-size: 17px;
+    width: 170px;
+    height: 40px;
+    color: black;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+}
+  
+  /* 버튼3 */
+  .btn-7 {
+    background: linear-gradient(0deg, rgb(41, 189, 235) 0%, rgba(2,126,251,1) 100%);
+      line-height: 42px;
+      padding: 0;
+      border: none;
+    }
+    .btn-7 span {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .btn-7:before,
+    .btn-7:after {
+      position: absolute;
+      content: "";
+      right: 0;
+      bottom: 0;
+      background: rgb(41, 189, 235);
+      box-shadow:
+       -7px -7px 20px 0px rgba(255,255,255,.9),
+       -4px -4px 5px 0px rgba(255,255,255,.9),
+       7px 7px 20px 0px rgba(0,0,0,.2),
+       4px 4px 5px 0px rgba(0,0,0,.3);
+      transition: all 0.3s ease;
+    }
+    .btn-7:before{
+       height: 0%;
+       width: 2px;
+    }
+    .btn-7:after {
+      width: 0%;
+      height: 2px;
+    }
+    .btn-7:hover{
+      color: rgb(41, 189, 235);
+      background: transparent;
+    }
+    .btn-7:hover:before {
+      height: 100%;
+    }
+    .btn-7:hover:after {
+      width: 100%;
+    }
+    .btn-7 span:before,
+    .btn-7 span:after {
+      position: absolute;
+      content: "";
+      left: 0;
+      top: 0;
+      background: rgb(41, 189, 235);
+      box-shadow:
+       -7px -7px 20px 0px rgba(255,255,255,.9),
+       -4px -4px 5px 0px rgba(255,255,255,.9),
+       7px 7px 20px 0px rgba(0,0,0,.2),
+       4px 4px 5px 0px rgba(0,0,0,.3);
+      transition: all 0.3s ease;
+    }
+    .btn-7 span:before {
+      width: 2px;
+      height: 0%;
+    }
+    .btn-7 span:after {
+      height: 2px;
+      width: 0%;
+    }
+    .btn-7 span:hover:before {
+      height: 100%;
+    }
+    .btn-7 span:hover:after {
+      width: 100%;
+    }
+  /* 버튼12 끝  */
+a {
+    text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+    color: white;
+    text-decoration: none
+}
+.logo_con{
+    width: 250px;
+    height: 150px;
+    border: solid 7px rgb(58, 58, 58);
+    margin-top: 50px;
+    margin-left: 13px;
+    box-shadow: 0px 0px 30px 2px rgb(41, 189, 235);
+}
+
+/* 통계 div */
+
+.statistics{
+    width: 85%;
+    height: 100%;
+    margin-left: 15%;
+}
+.stat_1{
+    float: left;
+    width: 17%;
+    height: 60%;
+    margin-left: 30px;
+    margin-top: 30px;
+    border-radius: 30px 10px;
+    background-color: #fff;
+    border: solid 2px rgb(58, 58, 58);
+    box-shadow: 5px 5px 5px;
+}
+.stat_2{
+    float: left;
+    width: 17%;
+    height: 60%;
+    margin-left: 30px;
+    margin-top: 30px;
+    border-radius: 30px 10px;
+    background-color: #fff;
+    border: solid 2px rgb(58, 58, 58);
+    box-shadow: 5px 5px 5px;
+}
+.stat_3{
+    float: left;
+    width: 17%;
+    height: 60%;
+    margin-left: 30px;
+    margin-top: 30px;
+    border-radius: 30px 10px;
+    background-color: #fff;
+    border: solid 2px rgb(58, 58, 58);
+    box-shadow: 5px 5px 5px;
+}
+.stat_4{
+    float: left;
+    width: 17%;
+    height: 60%;
+    margin-left: 30px;
+    margin-top: 30px;
+    border-radius: 30px 10px;
+    background-color: #fff;
+    border: solid 2px rgb(58, 58, 58);
+    box-shadow: 5px 5px 5px;
+}
+.stat_5{
+    float: left;
+    width: 17%;
+    height: 60%;
+    margin-left: 30px;
+    margin-top: 30px;
+    border-radius: 30px 10px;
+    background-color: #fff;
+    border: solid 2px rgb(58, 58, 58);
+    box-shadow: 5px 5px 5px;
+}
+/* 원형 그래프 */
+.pie-chart2 {
+    margin-top: 30px;
+    display:inline-block;
+    position:relative;
+    width: 200px;
+    height: 200px;
+    background: conic-gradient(#8b22ff 0% 25%, #ffc33b 25% 56%, #21f3d6 56% 100%);
+    border-radius: 50%;
+  }
+  .pie-chart2  .center{
+    margin: 0 auto;
+    position:absolute;
+    width:100px; 
+    height: 100px;
+    background :#fff;
+    border-radius: 50%;
+    top: 50px;
+    left:50px;
+  }
+
+/* admin login section */
+.admin_back{
+    width: 1900px;
+    height: 1000px;
+    margin: 0 auto;
+    border-top: solid 70px black;
+}
+.admin_main{
+    width: 90%;
+    height: 85%;
+    background-color: rgb(70, 70, 70);
+    margin: 0 auto;
+    border-radius: 50px 50px;
+    /* border: solid 50px black; */
+    border: solid 4px rgb(58, 58, 58); 
+    box-shadow: 0px 0px 35px 5px rgb(41, 189, 235);
+}
+.admin_con1{
+    position: absolute;
+    width: 20%;
+    height: 91%;
+    border-right: solid 2px rgb(58, 58, 58); 
+}
+.admin_con2{
+    position: absolute;
+    margin-left: 20%;
+    width: 20%;
+    height: 91%;
+    border-right: solid 2px rgb(58, 58, 58); 
+}
+.admin_con3{
+    position: absolute;
+    margin-left: 40%;
+    width: 49.1%;
+    height: 91%;
+}
+.admin_span{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+    color: #fff;
+}
+.admin_span_box{
+    margin: 0 auto;
+    width: 90%;
+    height: 6%;
+
+    background-color: rgb(58, 58, 58);
+    border-radius: 10px 10px;
+    
+}
+/* admin login */
+.admin_login_con{
+    display: block;
+    width: 600px;
+    height: 500px;
+    margin: 0 auto;
+}
+#login-form{
+
+    font-family: "맑은 고딕";
+
+    font-size: 0.5em;
+
+    color: #fff;
+
+    width:200px;
+
+    margin:100px auto;
+
+    border: 1px solid rgb(58, 58, 58);
+
+    border-radius: 10px;
+
+    padding: 15px;
+
+    margin-top: 300px;
+    background-color: rgb(58, 58, 58);
+}
+
+#login-form input, #login-form label{
+
+    display:block;
+    width: 190px;
+}
+
+
+#login-form label{
+
+    margin-top: 10px;
+
+}
+
+
+
+#login-form input{
+
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+#login-form input[type='image']{
+
+    margin: 10px auto;
+
+}
+/* admin login button */
+.btn-5 {
+    width: 130px;
+    height: 40px;
+    line-height: 42px;
+    padding: 0;
+    border: none;
+    background: rgb(41, 189, 235);
+  background: linear-gradient(0deg, rgb(41, 189, 235) 0%, rgba(2,126,251,1) 100%);
+  }
+  .btn-5:hover {
+    color: rgb(41, 189, 235);
+    background: transparent;
+     box-shadow:none;
+  }
+  .btn-5:before,
+  .btn-5:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: rgb(41, 189, 235);
+    box-shadow:
+     -1px -1px 5px 0px #fff,
+     7px 7px 20px 0px #0003,
+     4px 4px 5px 0px #0002;
+    transition:400ms ease all;
+  }
+  .btn-5:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  .btn-5:hover:before,
+  .btn-5:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
+@media (max-width: 600px) {
+    .main {
+        border-radius: 0px;
+    }
+}
