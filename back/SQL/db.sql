@@ -16,7 +16,6 @@ CREATE TABLE user (
     email VARCHAR(64) NOT NULL,
     level INT NOT NULL DEFAULT 3,
     isActive BOOLEAN NOT NULL DEFAULT 1,
-    point INT NOT NULL DEFAULT 0,
     PRIMARY KEY (idx, userid),
     INDEX idx_user_userid(userid)
 );
