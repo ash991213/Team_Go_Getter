@@ -16,9 +16,15 @@ CREATE TABLE user (
     email VARCHAR(64) NOT NULL,
     level INT NOT NULL DEFAULT 3,
     isActive BOOLEAN NOT NULL DEFAULT 1,
-    point INT NOT NULL DEFAULT 0,
     PRIMARY KEY (idx, userid),
     INDEX idx_user_userid(userid)
+);
+
+CREATE TABLE point (
+    userid VARCHAR(32) NOT NULL,
+    b_point INT NOT NULL DEFAULT 0,
+    r_point INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (userid) REFERENCES user (userid)
 );
 
 CREATE TABLE maincategory (
@@ -41,6 +47,9 @@ CREATE TABLE board (
     content TEXT,
     date TIMESTAMP NOT NULL,
     hit INT DEFAULT 0,
+    isActive BOOLEAN NOT NULL DEFAULT 1,
+    reply_count INT DEFAULT 0,
+    subcategory VARCHAR(32) NOT NULL,
     FOREIGN KEY (userid) REFERENCES user (userid),
     FOREIGN KEY (s_idx) REFERENCES subcategory (s_idx)
 );
@@ -52,7 +61,7 @@ CREATE TABLE reply (
     content TEXT NOT NULL,
     depth INT NOT NULL DEFAULT 0,
     seq INT NOT NULL,
-    groupNum INT NOT NULL,
+    groupNum INT,
     date TIMESTAMP NOT NULL,
     FOREIGN KEY (userid) REFERENCES user (userid)
 );
@@ -67,8 +76,8 @@ CREATE TABLE intro (
 CREATE TABLE likes (
     l_idx INT PRIMARY KEY AUTO_INCREMENT,
     userid VARCHAR(32) NOT NULL,
-    b_idx INT NOT NULL,
-    r_idx INT NOT NULL,
+    b_idx INT,
+    r_idx INT,
     like_num INT NOT NULL DEFAULT 0,
     dislike_num INT NOT NULL DEFAULT 0,
     like_check INT NOT NULL DEFAULT 0,
