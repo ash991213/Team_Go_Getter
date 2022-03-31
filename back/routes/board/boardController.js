@@ -1,8 +1,30 @@
 const pool = require('../../models/db.js').pool;
 const { decodePayload } = require('../../utils/jwt.js');
 
-exports.write = async (req,res) => {
-    const { subject,content } = req.body
+exports.GetWrite = async (req,res) => {
+    const sql = 'SELECT * FROM subcategory'
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [result] = await pool.execute(sql)
+        response = {
+            ...response,
+            result
+        }
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+}
+
+exports.PostWrite = async (req,res) => {
+    const { subject,content,subcategory } = req.body
 
     const token = req.headers.cookie
     const userid = decodePayload(token).userid
@@ -16,8 +38,8 @@ exports.write = async (req,res) => {
 
     const hashtag = req.body
     
-    const sql = `INSERT INTO board(userid,subject,content,date) VALUES (?,?,?,CURRENT_TIMESTAMP)`
-    const prepare = [userid,subject,content]
+    const sql = `INSERT INTO board(userid,subject,content,date,subcategory) VALUES (?,?,?,CURRENT_TIMESTAMP,?)`
+    const prepare = [userid,subject,content,subcategory]
 
     let response = {
         errno:0
@@ -55,6 +77,11 @@ exports.write = async (req,res) => {
                 await pool.execute(sql5)
             }
         });
+
+        // 게시글 작성 point 추가
+        const [[result4]] = await pool.execute(`SELECT * FROM point WHERE userid = ${userid}`)
+        const b_point = result.b_point + 10
+        await pool.execute(`UPDATE point SET b_point = ${b_point}`)
 
         response = {
             ...response,
@@ -491,6 +518,7 @@ exports.likes = async (req,res) => {
             errno:1
         }
     }
+    res.json(response)
 }
 
 exports.dislikes = async (req,res) => {
@@ -544,6 +572,7 @@ exports.dislikes = async (req,res) => {
             errno:1
         }
     }
+    res.json(response)
 }
 
 exports.down = async (rep,res) => {
@@ -570,4 +599,5 @@ exports.down = async (rep,res) => {
             errno:1
         }
     }
+    res.json(response)
 }
