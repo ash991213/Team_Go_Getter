@@ -26,7 +26,7 @@ exports.GetWrite = async (req,res) => {
 exports.PostWrite = async (req,res) => {
     const { subject,content,subcategory } = req.body
 
-    const token = req.headers.cookie
+    const token = req.cookies.user
     const userid = decodePayload(token).userid
 
     const files = new Array()
@@ -100,7 +100,7 @@ exports.PostWrite = async (req,res) => {
 }
 
 exports.list = async (req,res) => {
-    // const token = req.headers.cookie
+    // const token = req.cookies.user
     const userid = 'admin' // decodePayload(token).userid
 
     const sql = 'SELECT * FROM board'
@@ -137,7 +137,7 @@ exports.list = async (req,res) => {
 exports.mainList = async (req,res) => {
     const m_idx = 1 // req.query
 
-    // const token = req.headers.cookie
+    // const token = req.cookies.user
     const userid = 'admin' // decodePayload(token).userid
 
     const sql = `SELECT a.b_idx, a.userid, a.subject, a.date, a.hit, a.s_idx, a.reply_count b.image, d.name, e.s_name, f.m_name
@@ -188,7 +188,7 @@ exports.mainList = async (req,res) => {
 exports.subList = async (req,res) => {
     const s_idx = 1 //req.query
 
-    // const token = req.headers.cookie
+    // const token = req.cookies.user
     const userid = 'admin' // decodePayload(token).userid
 
     const sql = `SELECT a.b_idx, a.userid, a.subject, a.date, a.hit, a.s_idx, a.reply_count, b.image, d.name, e.s_name
@@ -298,6 +298,9 @@ exports.view = async (req,res) => {
 exports.GetEdit = async (req,res) => {
     const b_idx = 1 // req.query
 
+    // const token = req.cookies.user
+    const userid = 'admin' // decodePayload(token).userid
+
     const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.image, d.name
                  FROM board a
                  LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
@@ -306,11 +309,15 @@ exports.GetEdit = async (req,res) => {
                  WHERE a.b_idx = ${b_idx}
                  `
 
+    const sql2 = `SELECT * FROM teamGoGetter.board WHERE b_idx = 1 AND userid = '${userid}'`
+    const [result2] = await pool.execute(sql2)
+
     let response = {
         errno:0
     }
 
     try {
+        if ( result2.length == 0 && userid != 'admin' ) throw new Error ('본인의 글만 수정할 수 있습니다.')
         const [result] = await pool.execute(sql)
         response = {
             ...response,
@@ -319,7 +326,7 @@ exports.GetEdit = async (req,res) => {
     } catch (error) {
         console.log(error.message)
         response = {
-            errno:1
+            errno:1,
         }
     }
     res.json(response)
@@ -475,7 +482,7 @@ exports.delete = async (req,res) => {
 exports.likes = async (req,res) => {
     const b_idx = 1 // req.body
 
-    // const token = req.headers.cookie
+    // const token = req.cookies.user
     const userid = 'ash991213' // decodePayload(token).userid
 
     const sql = `SELECT * FROM likes WHERE userid=? AND b_idx=?`
@@ -529,7 +536,7 @@ exports.likes = async (req,res) => {
 exports.dislikes = async (req,res) => {
     const b_idx = 1 // req.body
 
-    // const token = req.headers.cookie
+    // const token = req.cookies.user
     const userid = 'ash991213' // decodePayload(token).userid
 
     const sql = `SELECT * FROM likes WHERE userid=? AND b_idx=?`
