@@ -32,6 +32,10 @@ exports.mainwrite = async (req,res) => {
         const reply_count = result3.reply_count + 1
         await pool.execute(`UPDATE board SET reply_count = ${reply_count} WHERE b_idx = ${b_idx}`)
 
+        const [[result4]] = await pool.execute(`SELECT * FROM point WHERE userid = ${userid}`)
+        const r_point = result4.r_point + 10
+        await pool.execute(`UPDATE point SET r_point = ${r_point} WHERE userid = ${userid}`)
+
         response = {
             ...response,
             result:{
@@ -75,6 +79,10 @@ exports.subwrite = async (req,res) => {
 
         const prepare = [userid,b_idx,content,2,seq,groupNum]
         const [result2] = await pool.execute(sql,prepare)
+
+        const [[result3]] = await pool.execute(`SELECT * FROM point WHERE userid = ${userid}`)
+        const r_point = result3.r_point + 10
+        await pool.execute(`UPDATE point SET r_point = ${r_point} WHERE userid = ${userid}`)
     
         response = {
             ...response,

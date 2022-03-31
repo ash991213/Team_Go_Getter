@@ -80,8 +80,8 @@ exports.PostWrite = async (req,res) => {
 
         // 게시글 작성 point 추가
         const [[result4]] = await pool.execute(`SELECT * FROM point WHERE userid = ${userid}`)
-        const b_point = result.b_point + 10
-        await pool.execute(`UPDATE point SET b_point = ${b_point}`)
+        const b_point = result4.b_point + 10
+        await pool.execute(`UPDATE point SET b_point = ${b_point} WHERE userid = ${userid}`)
 
         response = {
             ...response,
