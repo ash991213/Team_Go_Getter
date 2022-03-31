@@ -235,17 +235,16 @@ exports.subList = async (req,res) => {
 }
 
 exports.view = async (req,res) => {
-    const b_idx = 3 // req.query
+    const b_idx = 1 // req.query
 
     let cookies = req.cookies.visit
-    
-    // console.log(req.cookies)
 
-    const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.image, d.name
+    const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.image, d.name, e.username, e.gender, e.email
                  FROM board a
                  LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
                  LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
                  LEFT OUTER JOIN hashtag AS d ON c.h_idx = d.h_idx
+                 LEFT OUTER JOIN user AS e ON a.userid = e.userid
                  WHERE a.b_idx = ${b_idx}
                  `
 
@@ -257,6 +256,9 @@ exports.view = async (req,res) => {
         errno:0
     }
 
+    const [[result]] = await pool.execute(`SELECT * FROM board WHERE b_idx = ${b_idx}`)
+    const hit = result.hit + 1
+
     try {
         if ( cookies != undefined ) {
             let newCookie = cookies.split('/')
@@ -264,11 +266,13 @@ exports.view = async (req,res) => {
             function findNum(n) { if(parseInt(n) === b_idx) return true }
 
             if ( newCookie.findIndex(findNum) == -1 )
+            await pool.execute(`UPDATE board SET hit = ${hit} WHERE b_idx = ${b_idx}`)
                 cookies = cookies + '/' + b_idx
                 res.cookie('visit',cookies, {
                     expires: new Date(time)
                 })
         } else {
+            await pool.execute(`UPDATE board SET hit = ${hit} WHERE b_idx = ${b_idx}`)
             res.cookie('visit',b_idx, {
                 expires: new Date(time)
             })
