@@ -309,7 +309,7 @@ exports.GetEdit = async (req,res) => {
                  WHERE a.b_idx = ${b_idx}
                  `
 
-    const sql2 = `SELECT * FROM teamGoGetter.board WHERE b_idx = 1 AND userid = '${userid}'`
+    const sql2 = `SELECT * FROM board WHERE b_idx = ${b_idx} AND userid = '${userid}'`
     const [result2] = await pool.execute(sql2)
 
     let response = {
@@ -462,7 +462,7 @@ exports.delete = async (req,res) => {
                   WHERE b.h_idx IS NULL
                   `
 
-    const sql3 = `SELECT * FROM teamGoGetter.board WHERE b_idx = 1 AND userid = '${userid}'`
+    const sql3 = `SELECT * FROM board WHERE b_idx = ${b_idx} AND userid = '${userid}'`
     const [result3] = await pool.execute(sql3)
 
     let response = {
