@@ -445,12 +445,13 @@ exports.PostEdit = async (req,res) => {
 exports.delete = async (req,res) => {
     const b_idx = 1 //req.query
 
+    // const token = req.cookies.user
+    const userid = 'admin' // decodePayload(token).userid
+
     const sql = `DELETE a,b,c
                  FROM board AS a
-                 LEFT OUTER JOIN board_hash AS b
-                 LEFT OUTER JOIN file AS c
-                 ON a.b_idx = b.b_idx
-                 ON a.b_idx = c.b_idx
+                 LEFT OUTER JOIN board_hash AS b ON a.b_idx = b.b_idx
+                 LEFT OUTER JOIN file AS c ON a.b_idx = c.b_idx
                  WHERE a.b_idx = ${b_idx}
                  `
 
@@ -461,15 +462,19 @@ exports.delete = async (req,res) => {
                   WHERE b.h_idx IS NULL
                   `
 
+    const sql3 = `SELECT * FROM teamGoGetter.board WHERE b_idx = 1 AND userid = '${userid}'`
+    const [result3] = await pool.execute(sql3)
+
     let response = {
         errno:0
     }
 
     try {
-        await pool.execute('SET foreign_key_checks = 0')
-        await pool.execute(sql)
-        await pool.execute(sql2)
-        await pool.execute('SET foreign_key_checks = 1')
+        if ( result3.length == 0 && userid != 'admin' ) throw new Error ('본인의 글만 삭제할 수 있습니다.')
+            await pool.execute('SET foreign_key_checks = 0')
+            await pool.execute(sql)
+            await pool.execute(sql2)
+            await pool.execute('SET foreign_key_checks = 1')
     } catch (error) {
         console.log(error.message)
         response = {
