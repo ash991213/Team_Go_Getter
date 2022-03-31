@@ -137,15 +137,24 @@ exports.view = async (req,res) => {
 }
 
 exports.edit = async (req,res) => {
+    const b_idx = 5 // req.query
+
     const { r_idx,content } = req.body
 
+    // const token = req.cookies.user
+    const userid = 'admin' // decodePayload(token).userid
+     
     const sql = `UPDATE reply SET content = '${content}' WHERE r_idx = '${r_idx}'`
+
+    const sql2 = `SELECT * FROM board WHERE b_idx = ${b_idx} AND userid = '${userid}'`
+    const [result2] = await pool.execute(sql2)
 
     let response = {
         errno:0
     }
 
     try{
+        if ( result2.length == 0 && userid != 'admin' ) throw new Error ('본인의 댓글만 수정할 수 있습니다.')
         await pool.execute(sql)
     } catch (error) {
         console.log(error.message)
@@ -156,16 +165,25 @@ exports.edit = async (req,res) => {
 }
 
 exports.delete = async (req,res) => {
+    const b_idx = 5 // req.query
+
     const { r_idx,groupNum,depth } = req.body
+
+    // const token = req.cookies.user
+    const userid = 'ash991213' // decodePayload(token).userid
 
     const sql = `DELETE FROM reply WHERE groupNum = ${groupNum}`
     const sql2 = `DELETE FROM reply WHERE r_idx = ${r_idx}`
+
+    const sql3 = `SELECT * FROM board WHERE b_idx = ${b_idx} AND userid = '${userid}'`
+    const [result3] = await pool.execute(sql3)
 
     let response = {
         errno:0
     }
 
     try {
+        if ( result3.length == 0 && userid != 'admin' ) throw new Error ('본인의 댓글만 삭제할 수 있습니다.')
         if ( depth == 1 )
         await pool.execute(sql)
         else 
