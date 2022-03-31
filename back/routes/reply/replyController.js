@@ -103,8 +103,16 @@ exports.subwrite = async (req,res) => {
 exports.view = async (req,res) => {
     const b_idx = 5 // req.query
 
-    const sql = `SELECT * FROM reply WHERE depth = 1`
-    const sql2 = 'SELECT * FROM reply WHERE depth = 2'
+    const sql = `SELECT a.userid, a.content, a.groupNum, a.date, b.username, b.gender, b.email 
+                 FROM reply a
+                 LEFT OUTER JOIN user AS b ON a.userid = b.userid
+                 WHERE depth = 1 AND b_idx = ${b_idx}
+                 `
+    const sql2 = `SELECT a.userid, a.content, a.groupNum, a.seq, a.date, b.username, b.gender, b.email 
+                  FROM reply a
+                  LEFT OUTER JOIN user AS b ON a.userid = b.userid
+                  WHERE depth = 2 AND b_idx = ${b_idx}
+                  `
 
     let response = {
         errno:0
