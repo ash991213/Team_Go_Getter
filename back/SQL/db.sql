@@ -48,6 +48,7 @@ CREATE TABLE board (
     date TIMESTAMP NOT NULL,
     hit INT DEFAULT 0,
     isActive BOOLEAN NOT NULL DEFAULT 1,
+    reply_count INT DEFAULT 0,
     FOREIGN KEY (userid) REFERENCES user (userid),
     FOREIGN KEY (s_idx) REFERENCES subcategory (s_idx)
 );
