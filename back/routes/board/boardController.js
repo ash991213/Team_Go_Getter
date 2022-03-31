@@ -265,12 +265,13 @@ exports.view = async (req,res) => {
 
             function findNum(n) { if(parseInt(n) === b_idx) return true }
 
-            if ( newCookie.findIndex(findNum) == -1 )
+            if ( newCookie.findIndex(findNum) == -1 ) {
             await pool.execute(`UPDATE board SET hit = ${hit} WHERE b_idx = ${b_idx}`)
                 cookies = cookies + '/' + b_idx
                 res.cookie('visit',cookies, {
                     expires: new Date(time)
                 })
+            }
         } else {
             await pool.execute(`UPDATE board SET hit = ${hit} WHERE b_idx = ${b_idx}`)
             res.cookie('visit',b_idx, {
