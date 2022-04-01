@@ -15,5 +15,6 @@ router.post('/delete',boardController.delete);
 router.post('/likes',boardController.likes);
 router.post('/dislikes',boardController.dislikes);
 router.post('/down',boardController.down);
+router.post('/find',boardController.find);
 
 module.exports = router;

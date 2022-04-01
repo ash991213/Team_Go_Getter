@@ -24,7 +24,7 @@ exports.mainwrite = async (req,res) => {
         const [result] = await pool.execute(sql,prepare)
         const [result2] = await pool.execute(`SELECT * FROM reply WHERE depth = 1`)
 
-        const groupNum = result2[result2.length-2].groupNum+1
+        const groupNum = result2[result2.length-1].groupNum+1
         const r_idx = result.insertId
         await pool.execute(`UPDATE reply SET groupNum=${groupNum} WHERE r_idx=${r_idx}`)
 
