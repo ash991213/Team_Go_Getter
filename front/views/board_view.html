@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/css/board_view.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div class="content_wrap">
+    	<div class="wrap">
+            <h2 style="font-weight: bold; color: #fff; ">COMMUNITY</h2>
+            <table>
+                <tr>
+                    <button class="custom-btn btn-5"><a href="/sub_category" class="admin_login_button" align="center" style="color: #fff; display: block; text-decoration-line: none;">PREVIOUS</a></button>
+                    <button class="custom-btn btn-5" style="margin-left: 50px;"><a href="/" class="admin_login_button" align="center" style="color: #fff; display: block; text-decoration-line: none;">WRITING</a></button>
+                    <button class="custom-btn btn-5" style="margin-left: 50px;"><a href="/" class="admin_login_button" align="center" style="color: #fff; display: block; text-decoration-line: none;">POST SEARCH</a></button>
+                    <button class="custom-btn btn-5" style="margin-left: 50px;"><a href="/" class="admin_login_button" align="center" style="color: #fff; display: block; text-decoration-line: none;">USER SEARCH</a></button>
+                </tr>
+                <tr>
+                    <th>글번호</th>
+                    <th>글제목</th>
+                    <th>작성자</th>
+                    <th>작성날짜</th>
+                    <th>조회수</th>
+                    <th>해시태그</th>
+                </tr>
+                <c:forEach var="board" items="${list }">
+                    <tr>
+                        <td>{{board.b_idx }}</td>
+                        <td>{{board.content}}</td>
+                        <td>{{board.userid }}</td>
+                        <td>{{board.date }}</td>
+                        <td>{{board.hit }}</td>
+                        <td>{{hashtag.name}}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+    </div>
+</body>
+</html>

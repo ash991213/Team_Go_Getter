@@ -20,12 +20,9 @@ router.get('/main_category',(req,res)=>{
 router.get('/sub_category',(req,res)=>{
     res.render('sub_category.html');
 });
-<<<<<<< HEAD
 router.get('/board_view',(req,res)=>{
     res.render('board_view.html');
 });
-=======
->>>>>>> 7d926ba2c9bb3eeb1e30b532125b5ef68eb58c65
 
 //이미지 불러오는 라우터
 router.use(express.static('views'));
