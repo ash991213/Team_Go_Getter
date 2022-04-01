@@ -618,3 +618,33 @@ exports.down = async (rep,res) => {
     }
     res.json(response)
 }
+
+exports.find = async (req,res) => {
+    const {subject, content, hashtag} = req.body
+
+    const prepare = new Array(`%${subject}%`,`%${content}%`,`%${hashtag}%`)
+
+    const sql = `SELECT *
+                 FROM board a
+                 LEFT OUTER JOIN board_hash AS b ON a.b_idx = b.b_idx
+                 LEFT OUTER JOIN hashtag AS c ON b.h_idx = c.h_idx
+                 WHERE a.subject LIKE ? OR a.content LIKE ? OR c.name LIKE ?
+                 `
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [result] = await pool.execute(sql,prepare)
+        response = {
+            ...response,
+            result
+        }
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+}
