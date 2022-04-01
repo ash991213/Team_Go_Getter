@@ -280,7 +280,7 @@ exports.view = async (req,res) => {
                     expires: new Date(time)
                 })
             }
-            
+
         } else {
             await pool.execute(`UPDATE board SET hit = hit+1 WHERE b_idx = ${b_idx}`)
             res.cookie('visit',b_idx, {
@@ -309,29 +309,45 @@ exports.view = async (req,res) => {
 }
 
 exports.GetEdit = async (req,res) => {
-    const b_idx = 1 // req.query
+    const b_idx = 3 // req.query
 
     // const token = req.cookies.user
     const userid = 'admin' // decodePayload(token).userid
 
-    const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.image, d.name
+    // 게시글 내용
+    const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.username, b.gender, b.email
                  FROM board a
-                 LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
-                 LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
-                 LEFT OUTER JOIN hashtag AS d ON c.h_idx = d.h_idx
+                 LEFT OUTER JOIN user AS b ON a.userid = b.userid
                  WHERE a.b_idx = ${b_idx}
                  `
 
-    const sql2 = `SELECT * FROM board WHERE b_idx = ${b_idx} AND userid = '${userid}'`
-    const [result2] = await pool.execute(sql2)
+    // 이미지 파일
+    const sql2 = `SELECT image FROM file WHERE b_idx = ${b_idx}`
+
+    // 해시태그
+    const sql3 = `SELECT a.name FROM hashtag a
+                  LEFT OUTER JOIN board_hash AS b
+                  ON a.h_idx = b.h_idx
+                  WHERE b_idx = ${b_idx}`
+
+    // 본인인증
+    const sql4 = `SELECT * FROM board WHERE b_idx = ${b_idx} AND userid = '${userid}'`
+
+    const [result4] = await pool.execute(sql4)
 
     let response = {
         errno:0
     }
 
     try {
-        if ( result2.length == 0 && userid != 'admin' ) throw new Error ('본인의 글만 수정할 수 있습니다.')
-        const [result] = await pool.execute(sql)
+        if ( result4.length == 0 && userid != 'admin' ) throw new Error ('본인의 글만 수정할 수 있습니다.')
+        
+        const [board] = await pool.execute(sql)
+        const [image] = await pool.execute(sql2)
+        const [hashtag] = await pool.execute(sql3)
+
+        const result = { board, image, hashtag }
+
         response = {
             ...response,
             result
