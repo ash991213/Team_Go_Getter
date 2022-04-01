@@ -26,10 +26,11 @@ exports.GetWrite = async (req,res) => {
 exports.PostWrite = async (req,res) => {
     const { subject,content,subcategory } = req.body
 
-    const token = req.cookies.user
-    const userid = decodePayload(token).userid
+    // const token = req.cookies.user
+    const userid = 'ash991213' // decodePayload(token).userid
 
-    const files = new Array()
+    const files = req.files
+    const filename = new Array()
     if ( req.files.upload1 != undefined ) {filename.push(req.files.upload1[0].filename)}
     if ( req.files.upload2 != undefined ) {filename.push(req.files.upload2[0].filename)}
     if ( req.files.upload3 != undefined ) {filename.push(req.files.upload3[0].filename)}
@@ -37,9 +38,12 @@ exports.PostWrite = async (req,res) => {
     if ( req.files.upload5 != undefined ) {filename.push(req.files.upload5[0].filename)}
 
     const hashtag = req.body
+
+    const [[result]] = `SELECT * FROM subcategory WHERE name = ${subcategory}`
+    const s_idx = result.s_idx 
     
-    const sql = `INSERT INTO board(userid,subject,content,date,subcategory) VALUES (?,?,?,CURRENT_TIMESTAMP,?)`
-    const prepare = [userid,subject,content,subcategory]
+    const sql = `INSERT INTO board(userid,subject,content,date,s_idx) VALUES (?,?,?,CURRENT_TIMESTAMP,?)`
+    const prepare = [userid,subject,content,s_idx] // s_idx
 
     let response = {
         errno:0
@@ -53,7 +57,6 @@ exports.PostWrite = async (req,res) => {
         if ( files != [] )
         files.forEach( async v => {
             const sql2 = `INSERT INTO file(image,b_idx) VALUES ('${v}',${b_idx})`
-            await pool.execute(sql2)
         });
 
         // 해시태그 있으면 추가
@@ -235,29 +238,34 @@ exports.subList = async (req,res) => {
 }
 
 exports.view = async (req,res) => {
-    const b_idx = 1 // req.query
+    const b_idx = 3 // req.query
 
-    let cookies = req.cookies.visit
-
-    const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.image, d.name, e.username, e.gender, e.email
+    // 게시글 내용
+    const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.username, b.gender, b.email
                  FROM board a
-                 LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
-                 LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
-                 LEFT OUTER JOIN hashtag AS d ON c.h_idx = d.h_idx
-                 LEFT OUTER JOIN user AS e ON a.userid = e.userid
+                 LEFT OUTER JOIN user AS b ON a.userid = b.userid
                  WHERE a.b_idx = ${b_idx}
                  `
 
-    const date = new Date()
-    const day = new Date(date.setDate(date.getDate()+1))
-    const time = day.setHours(0,0,0,0)
+    // 이미지 파일
+    const sql2 = `SELECT image FROM file WHERE b_idx = ${b_idx}`
+
+    // 해시태그
+    const sql3 = `SELECT a.name FROM hashtag a
+                  LEFT OUTER JOIN board_hash AS b
+                  ON a.h_idx = b.h_idx
+                  WHERE b_idx = ${b_idx}`
+
+    let cookies = req.cookies.visit
 
     let response = {
         errno:0
     }
 
-    const [[result]] = await pool.execute(`SELECT * FROM board WHERE b_idx = ${b_idx}`)
-    const hit = result.hit + 1
+    // 쿠키 만료기간 설정
+    const date = new Date()
+    const day = new Date(date.setDate(date.getDate()+1))
+    const time = day.setHours(0,0,0,0)
 
     try {
         if ( cookies != undefined ) {
@@ -266,20 +274,25 @@ exports.view = async (req,res) => {
             function findNum(n) { if(parseInt(n) === b_idx) return true }
 
             if ( newCookie.findIndex(findNum) == -1 ) {
-            await pool.execute(`UPDATE board SET hit = ${hit} WHERE b_idx = ${b_idx}`)
+            await pool.execute(`UPDATE board SET hit = hit+1 WHERE b_idx = ${b_idx}`)
                 cookies = cookies + '/' + b_idx
                 res.cookie('visit',cookies, {
                     expires: new Date(time)
                 })
             }
+            
         } else {
-            await pool.execute(`UPDATE board SET hit = ${hit} WHERE b_idx = ${b_idx}`)
+            await pool.execute(`UPDATE board SET hit = hit+1 WHERE b_idx = ${b_idx}`)
             res.cookie('visit',b_idx, {
                 expires: new Date(time)
             })
         }
 
-        const [result] = await pool.execute(sql)
+        const [board] = await pool.execute(sql)
+        const [image] = await pool.execute(sql2)
+        const [hashtag] = await pool.execute(sql3)
+
+        const result = {board,image,hashtag}
 
         response = {
             ...response,
