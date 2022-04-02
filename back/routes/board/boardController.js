@@ -111,10 +111,31 @@ exports.list = async (req,res) => {
     const userid = 'admin' // decodePayload(token).userid
 
     // 전체 게시글
-    const sql = 'SELECT * FROM board'
+    const sql = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
+                 GROUP_CONCAT(DISTINCT b.image separator'/'),
+                 GROUP_CONCAT(DISTINCT d.name separator'/')
+                 FROM board AS a 
+                 JOIN file AS b ON a.b_idx = b.b_idx
+                 JOIN board_hash AS c ON a.b_idx = c.b_idx
+                 JOIN hashtag AS d ON c.h_idx = d.h_idx
+                 JOIN subcategory AS e ON a.s_idx = e.s_idx
+                 JOIN maincategory AS f ON e.m_idx = f.m_idx
+                 GROUP BY a.b_idx
+                 `
 
     // 글보기 가능한 게시글
-    const sql2 = 'SELECT * FROM board WHERE isActive = 1'
+    const sql2 = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
+                  GROUP_CONCAT(DISTINCT b.image separator'/'),
+                  GROUP_CONCAT(DISTINCT d.name separator'/')
+                  FROM board AS a 
+                  JOIN file AS b ON a.b_idx = b.b_idx
+                  JOIN board_hash AS c ON a.b_idx = c.b_idx
+                  JOIN hashtag AS d ON c.h_idx = d.h_idx
+                  JOIN subcategory AS e ON a.s_idx = e.s_idx
+                  JOIN maincategory AS f ON e.m_idx = f.m_idx
+                  WHERE a.isActive = 1
+                  GROUP BY a.b_idx
+                  `
 
     let response = {
         errno:0
@@ -150,24 +171,32 @@ exports.mainList = async (req,res) => {
     const userid = 'admin' // decodePayload(token).userid
 
     // 메인 카테고리의 모든 게시글
-    const sql = `SELECT a.b_idx, a.userid, a.subject, a.date, a.hit, a.s_idx, a.reply_count b.image, d.name, e.s_name, f.m_name
-                 FROM board a
-                 LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
-                 LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
-                 LEFT OUTER JOIN hashtag AS d ON c.h_idx = d.h_idx
-                 LEFT OUTER JOIN subcategory AS e ON a.s_idx = e.s_idx
-                 LEFT OUTER JOIN maincategory AS f ON e.m_idx = f.m_idx
-                 WHERE f.m_idx = ${m_idx}`
+    const sql = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
+                 GROUP_CONCAT(DISTINCT b.image separator'/'),
+                 GROUP_CONCAT(DISTINCT d.name separator'/')
+                 FROM board AS a 
+                 JOIN file AS b ON a.b_idx = b.b_idx
+                 JOIN board_hash AS c ON a.b_idx = c.b_idx
+                 JOIN hashtag AS d ON c.h_idx = d.h_idx
+                 JOIN subcategory AS e ON a.s_idx = e.s_idx
+                 JOIN maincategory AS f ON e.m_idx = f.m_idx
+                 WHERE f.m_idx = ${m_idx} 
+                 GROUP BY a.b_idx
+                 `
 
     // 메인 카테고리의 글보기 가능한 게시글
-    const sql2 = `SELECT a.b_idx, a.userid, a.subject, a.date, a.hit, a.s_idx, a.reply_count, b.image, d.name, e.s_name, f.m_name
-                 FROM board a
-                 LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
-                 LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
-                 LEFT OUTER JOIN hashtag AS d ON c.h_idx = d.h_idx
-                 LEFT OUTER JOIN subcategory AS e ON a.s_idx = e.s_idx
-                 LEFT OUTER JOIN maincategory AS f ON e.m_idx = f.m_idx
-                 WHERE f.m_idx = ${m_idx} AND isActive = 1`
+    const sql2 = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
+                  GROUP_CONCAT(DISTINCT b.image separator'/'),
+                  GROUP_CONCAT(DISTINCT d.name separator'/')
+                  FROM board AS a 
+                  JOIN file AS b ON a.b_idx = b.b_idx
+                  JOIN board_hash AS c ON a.b_idx = c.b_idx
+                  JOIN hashtag AS d ON c.h_idx = d.h_idx
+                  JOIN subcategory AS e ON a.s_idx = e.s_idx
+                  JOIN maincategory AS f ON e.m_idx = f.m_idx
+                  WHERE f.m_idx = ${m_idx} AND a.isActive = 1
+                  GROUP BY a.b_idx
+                  `
     
     let response = {
         errno:0
@@ -203,22 +232,32 @@ exports.subList = async (req,res) => {
     const userid = 'admin' // decodePayload(token).userid
 
     // 서브 카테고리의 모든 게시글
-    const sql = `SELECT a.b_idx, a.userid, a.subject, a.date, a.hit, a.s_idx, a.reply_count, b.image, d.name, e.s_name
-                 FROM board a
-                 LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
-                 LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
-                 LEFT OUTER JOIN hashtag AS d ON c.h_idx = d.h_idx
-                 LEFT OUTER JOIN subcategory AS e ON a.s_idx = e.s_idx
-                 WHERE a.s_idx = ${s_idx}`
+    const sql = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
+                 GROUP_CONCAT(DISTINCT b.image separator'/'),
+                 GROUP_CONCAT(DISTINCT d.name separator'/')
+                 FROM board AS a 
+                 JOIN file AS b ON a.b_idx = b.b_idx
+                 JOIN board_hash AS c ON a.b_idx = c.b_idx
+                 JOIN hashtag AS d ON c.h_idx = d.h_idx
+                 JOIN subcategory AS e ON a.s_idx = e.s_idx
+                 JOIN maincategory AS f ON e.m_idx = f.m_idx
+                 WHERE a.s_idx = ${s_idx}
+                 GROUP BY a.b_idx
+                 `
 
     // 서브 카테고리의 글보기 가능한 게시글
-    const sql2 = `SELECT a.b_idx, a.userid, a.subject, a.date, a.hit, a.s_idx, a.reply_count, b.image, d.name, e.s_name
-                  FROM board a
-                  LEFT OUTER JOIN file AS b ON a.b_idx = b.b_idx
-                  LEFT OUTER JOIN board_hash AS c ON a.b_idx = c.b_idx
-                  LEFT OUTER JOIN hashtag AS d ON c.h_idx = d.h_idx
-                  LEFT OUTER JOIN subcategory AS e ON a.s_idx = e.s_idx
-                  WHERE a.s_idx = ${s_idx} AND a.isActive = 1`
+    const sql2 = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
+                  GROUP_CONCAT(DISTINCT b.image separator'/'),
+                  GROUP_CONCAT(DISTINCT d.name separator'/')
+                  FROM board AS a 
+                  JOIN file AS b ON a.b_idx = b.b_idx
+                  JOIN board_hash AS c ON a.b_idx = c.b_idx
+                  JOIN hashtag AS d ON c.h_idx = d.h_idx
+                  JOIN subcategory AS e ON a.s_idx = e.s_idx
+                  JOIN maincategory AS f ON e.m_idx = f.m_idx
+                  WHERE a.s_idx = ${s_idx} AND a.isActive = 1
+                  GROUP BY a.b_idx
+                  `
 
     let response = {
         errno:0
@@ -675,17 +714,22 @@ exports.down = async (rep,res) => {
     res.json(response)
 }
 
-// 수정해야됌
 exports.find = async (req,res) => {
     const {subject, content, hashtag} = req.body
 
     const prepare = new Array(`%${subject}%`,`%${content}%`,`%${hashtag}%`)
 
-    const sql = `SELECT *
-                 FROM board a
-                 LEFT OUTER JOIN board_hash AS b ON a.b_idx = b.b_idx
-                 LEFT OUTER JOIN hashtag AS c ON b.h_idx = c.h_idx
-                 WHERE a.subject LIKE ? OR a.content LIKE ? OR c.name LIKE ?
+    const sql = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
+                 GROUP_CONCAT(DISTINCT b.image separator'/'),
+                 GROUP_CONCAT(DISTINCT d.name separator'/')
+                 FROM board AS a 
+                 JOIN file AS b ON a.b_idx = b.b_idx
+                 JOIN board_hash AS c ON a.b_idx = c.b_idx
+                 JOIN hashtag AS d ON c.h_idx = d.h_idx
+                 JOIN subcategory AS e ON a.s_idx = e.s_idx
+                 JOIN maincategory AS f ON e.m_idx = f.m_idx
+                 WHERE a.subject LIKE ? OR a.content LIKE ? OR d.name LIKE ? AND a.isActive = 1
+                 GROUP BY a.b_idx
                  `
     let response = {
         errno:0
