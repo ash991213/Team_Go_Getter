@@ -143,6 +143,83 @@ exports.loginpost = async (req,res) => {
     res.json(response)
 };
 
+exports.getEdit = async (req,res) => {
+    const token = req.cookies.user
+    const userid = decodePayload(token).userid
+
+    // 본인 프로필
+    const sql = `SELECT * FROM user a
+                 JOIN intro AS b ON a.userid = b.userid
+                 JOIN point AS c ON a.userid = c.userid
+                 WHERE a.userid = userid`
+    // 본인이 쓴 글
+    const sql2 = `SELECT * FROM board WHERE userid = '${userid}'`
+    // 본인이 쓴 댓글
+    const sql3 = `SELECT * FROM reply WHERE userid = '${userid}'`
+    // 본인이 좋아요 누른 글
+    const sql4 = `SELECT * FROM likes a
+                  JOIN board as b ON a.b_idx = b.b_idx
+                  WHERE a.userid = '${userid}' AND a.like_num = 1`
+    // 본인이 좋아요 누른 댓글
+    const sql5 = `SELECT * FROM likes a
+                  JOIN reply as b ON a.r_idx = b.r_idx
+                  WHERE a.userid = '${userid}' AND a.like_num = 1`
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [user] = await pool.execute(sql)
+        const [board] = await pool.execute(sql2)
+        const [reply] = await pool.execute(sql3)
+        const [likes_board] = await pool.execute(sql4)
+        const [likes_reply] = await pool.execute(sql5)
+
+        const result = { user,board,reply,likes_board,likes_reply }
+        response = {
+            ...response,
+            result
+        }
+
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+}
+
+exports.postEdit = async (req,res) => {
+    const token = req.cookies.user
+    const userid1 = decodePayload(token).userid
+
+    const { userid,userpw,username,nickname,adress,mobile,tel,email } = req.body
+
+    const sql = `UPDATE user SET userpw = ?, username = ?, nickname = ?, adress = ?, mobile = ?, tel = ?, email = ? WHERE userid = '${userid}'`
+    const sql2 = `UPDATE user SET userpw = ?, username = ?, nickname = ?, adress = ?, mobile = ?, email = ? WHERE userid = '${userid}'`
+
+    const prepare = [userpw,username,nickname,adress,mobile,tel,email]
+    const prepare2 = [userpw,username,nickname,adress,mobile,email]
+
+    let response = {
+        errno:0
+    }
+
+    try { 
+        if ( tel != '')
+        await pool.execute(sql,prepare)
+        else
+        await pool.execute(sql2,prepare2)
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+}
+
 exports.logout = async (req,res) => {
     
     let response = {
