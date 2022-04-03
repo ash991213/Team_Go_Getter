@@ -3,6 +3,7 @@ const { application, response } = require("express");
 const { pool } = require('../../models/db');
 const cookieParser = require('cookie-parser')
 const { makeToken } = require('../../utils/jwt.js');
+const { decodePayload } = require('../../utils/jwt.js');
 
 const secretKey = process.env.SECRET_KEY; // salt
 const algorithm = process.env.JWT_ALG; // 사용 알고리즘
@@ -45,7 +46,7 @@ exports.joinpost  = async (req,res)=>{
         if ( intro != '' ) {
             await pool.execute(sql2);
         }
-        
+
         await pool.execute(sql3)
         response = {
             ...response,
@@ -142,7 +143,7 @@ exports.loginpost = async (req,res) => {
     res.json(response)
 };
 
-exports.logout = async (res,res) => {
+exports.logout = async (req,res) => {
     
     let response = {
         errno:0
@@ -157,4 +158,24 @@ exports.logout = async (res,res) => {
         }
     }
     res.json(response)
+}
+
+exports.quit = async (req,res) => {
+    const token = req.cookies.user
+    const userid = decodePayload(token).userid
+
+    const sql = `DELETE FROM user WHERE userid = ${userid}`
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        await pool.execute(sql)
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
 }
