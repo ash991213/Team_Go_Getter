@@ -52,3 +52,21 @@ exports.login = async (req,res) => {
     }
     res.json(response)
 }
+
+// 관리자 로그아웃
+exports.logout = async (req,res) => {
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        res.clearCookie('admin')
+    } catch(error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+}
