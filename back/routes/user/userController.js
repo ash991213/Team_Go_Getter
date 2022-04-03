@@ -33,15 +33,20 @@ exports.joinpost  = async (req,res)=>{
     const sql2 = `INSERT INTO intro(userid,content)
                   VALUES ('${userid}','${intro}')`
 
+    const sql3 = `INSER INTO point (userid) VALUES ('${userid}')`
+
     let response = {
         errno:0
     }
 
     try {
         const [result] = await pool.execute(sql,prepare);
+
         if ( intro != '' ) {
-            const [result2] = await pool.execute(sql2);
+            await pool.execute(sql2);
         }
+        
+        await pool.execute(sql3)
         response = {
             ...response,
             result:{
