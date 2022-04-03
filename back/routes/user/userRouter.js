@@ -12,5 +12,6 @@ router.post('/quit',userController.logout)
 router.post('/list',userController.list)
 router.post('/find',userController.find)
 router.post('/data',userController.data)
+router.post('/point',userController.point)
 
 module.exports = router;

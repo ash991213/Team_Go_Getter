@@ -192,9 +192,6 @@ exports.getEdit = async (req,res) => {
 }
 
 exports.postEdit = async (req,res) => {
-    const token = req.cookies.user
-    const userid1 = decodePayload(token).userid
-
     const { userid,userpw,username,nickname,adress,mobile,tel,email } = req.body
 
     const sql = `UPDATE user SET userpw = ?, username = ?, nickname = ?, adress = ?, mobile = ?, tel = ?, email = ? WHERE userid = '${userid}'`
@@ -345,6 +342,40 @@ exports.data = async (req,res) => {
             result
         }
 
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+}
+
+exports.point = async (req,res) => {
+    const sql = `SELECT a.userid, b.b_point FROM user a
+                 JOIN point AS b ON a.userid = b.userid
+                 ORDER BY b.b_point ASC
+                 LIMIT 10`
+
+    const sql2 = `SELECT a.userid, b.r_point FROM user a
+                  JOIN point AS b ON a.userid = b.userid
+                  ORDER BY b.r_point ASC
+                  LIMIT 10`
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [board] = await pool.execute(sql)
+        const [reply] = await pool.execute(sql2)
+
+        const result = { board,reply }
+
+        response = {
+            ...response,
+            result
+        }
     } catch (error) {
         console.log(error.message)
         response = {
