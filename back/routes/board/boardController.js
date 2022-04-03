@@ -121,6 +121,7 @@ exports.list = async (req,res) => {
                  JOIN subcategory AS e ON a.s_idx = e.s_idx
                  JOIN maincategory AS f ON e.m_idx = f.m_idx
                  GROUP BY a.b_idx
+                 ORDER BY userid = 'admin' DESC, b_idx ASC;
                  `
 
     // 글보기 가능한 게시글
@@ -135,6 +136,7 @@ exports.list = async (req,res) => {
                   JOIN maincategory AS f ON e.m_idx = f.m_idx
                   WHERE a.isActive = 1
                   GROUP BY a.b_idx
+                  ORDER BY userid = 'admin' DESC, b_idx ASC;
                   `
 
     let response = {
@@ -182,6 +184,7 @@ exports.mainList = async (req,res) => {
                  JOIN maincategory AS f ON e.m_idx = f.m_idx
                  WHERE f.m_idx = ${m_idx} 
                  GROUP BY a.b_idx
+                 ORDER BY userid = 'admin' DESC, b_idx ASC;
                  `
 
     // 메인 카테고리의 글보기 가능한 게시글
@@ -196,6 +199,7 @@ exports.mainList = async (req,res) => {
                   JOIN maincategory AS f ON e.m_idx = f.m_idx
                   WHERE f.m_idx = ${m_idx} AND a.isActive = 1
                   GROUP BY a.b_idx
+                  ORDER BY userid = 'admin' DESC, b_idx ASC;
                   `
     
     let response = {
@@ -243,6 +247,7 @@ exports.subList = async (req,res) => {
                  JOIN maincategory AS f ON e.m_idx = f.m_idx
                  WHERE a.s_idx = ${s_idx}
                  GROUP BY a.b_idx
+                 ORDER BY userid = 'admin' DESC, b_idx ASC;
                  `
 
     // 서브 카테고리의 글보기 가능한 게시글
@@ -257,6 +262,7 @@ exports.subList = async (req,res) => {
                   JOIN maincategory AS f ON e.m_idx = f.m_idx
                   WHERE a.s_idx = ${s_idx} AND a.isActive = 1
                   GROUP BY a.b_idx
+                  ORDER BY userid = 'admin' DESC, b_idx ASC;
                   `
 
     let response = {
