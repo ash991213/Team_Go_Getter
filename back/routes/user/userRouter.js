@@ -9,5 +9,8 @@ router.get('/edit',userController.getEdit)
 router.post('/edit',userController.postEdit)
 router.post('/logout',userController.logout)
 router.post('/quit',userController.logout)
+router.post('/list',userController.list)
+router.post('/find',userController.find)
+router.post('/data',userController.data)
 
 module.exports = router;
