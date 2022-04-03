@@ -187,3 +187,75 @@ exports.subDelete = async (req,res) => {
     }
     res.json(response)
 }
+
+exports.getUserEdit = async (req,res) => {
+    const { userid } = req.body
+
+    // 본인 프로필
+    const sql = `SELECT * FROM user a
+                 JOIN intro AS b ON a.userid = b.userid
+                 JOIN point AS c ON a.userid = c.userid
+                 WHERE a.userid = userid`
+    // 본인이 쓴 글
+    const sql2 = `SELECT * FROM board WHERE userid = '${userid}'`
+    // 본인이 쓴 댓글
+    const sql3 = `SELECT * FROM reply WHERE userid = '${userid}'`
+    // 본인이 좋아요 누른 글
+    const sql4 = `SELECT * FROM likes a
+                  JOIN board as b ON a.b_idx = b.b_idx
+                  WHERE a.userid = '${userid}' AND a.like_num = 1`
+    // 본인이 좋아요 누른 댓글
+    const sql5 = `SELECT * FROM likes a
+                  JOIN reply as b ON a.r_idx = b.r_idx
+                  WHERE a.userid = '${userid}' AND a.like_num = 1`
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        const [user] = await pool.execute(sql)
+        const [board] = await pool.execute(sql2)
+        const [reply] = await pool.execute(sql3)
+        const [likes_board] = await pool.execute(sql4)
+        const [likes_reply] = await pool.execute(sql5)
+
+        const result = { user,board,reply,likes_board,likes_reply }
+        response = {
+            ...response,
+            result
+        }
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+}
+
+exports.postUserEdit = async (req,res) => {
+    const { userid,userpw,username,nickname,adress,date,mobile,tel,email,intro,isActive,level } = req.body
+
+    const sql = `UPDATE user SET userpw = ?, username = ?, nickname = ?, adress = ?, date = ?, mobile = ?, tel = ?, email = ?,
+                 isActive = ?, level = ? WHERE userid = ${userid}`
+
+    const prepare = [userpw,username,nickname,adress,date,mobile,tel,email,isActive,level]
+
+    const sql2 = `UPDATE intro SET content = ${intro} WHERE userid = ${userid}`
+
+    let response = {
+        errno:0
+    }
+
+    try {
+        await pool.execute(sql,prepare)
+        await pool.execute(sql2)
+    } catch (error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+}
