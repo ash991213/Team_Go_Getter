@@ -198,7 +198,7 @@ exports.delete = async (req,res) => {
 }
 
 exports.likes = async (req,res) => {
-    const r_idx = 1 // req.body
+    const r_idx = 5 // req.body
 
     // const token = req.headers.cookie
     const userid = 'ash991213' // decodePayload(token).userid
@@ -248,6 +248,7 @@ exports.likes = async (req,res) => {
             errno:1
         }
     }
+    res.json(response)
 }
 
 exports.dislikes = async (req,res) => {
@@ -301,4 +302,5 @@ exports.dislikes = async (req,res) => {
             errno:1
         }
     }
+    res.json(response)
 }
