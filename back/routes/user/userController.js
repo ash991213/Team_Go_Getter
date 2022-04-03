@@ -136,4 +136,20 @@ exports.loginpost = async (req,res) => {
     };
     res.json(response)
 };
-// exp
+
+exports.logout = async (res,res) => {
+    
+    let response = {
+        errno:0
+    }
+
+    try {
+        res.clearCookie('user')
+    } catch(error) {
+        console.log(error.message)
+        response = {
+            errno:1
+        }
+    }
+    res.json(response)
+}
