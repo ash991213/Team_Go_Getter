@@ -20,7 +20,7 @@ app.use(express.json());
 
 const maxAge = 6*600000
 let sessionObj = {
-    secret: "kim",
+    secret: "kim1",
     resave : false,
     saveUninitialized: true,
     store: new Memorystore({ checkPeriod: maxAge}),

@@ -18,13 +18,13 @@
                 <source src="./KakaoTalk_20220324_090914533 (online-video-cutter.com).mp4" type="video/mp4">
             </video>
             <div class="main">
-                {% if user %}
+                {% if response %}
                 <p class="sign" align="center">{{username}}, Welcome!</p>
                 {% else %}
                 <p class="sign" align="center">SIGN IN</p>
                 {% endif %}
                 <form class="form1" id="login_frm">
-                    {% if user %}
+                    {% if response %}
                     <a class="submit" align="center">profile</a>
                     {% else %}
                     <input id="login_userid" class="un" type="text" align="center" placeholder="Username" style="color: lightgray; " autocomplete="off">

@@ -1,5 +1,5 @@
 const express = require('express')
-const userRouter = require('./user/userRorter.js');
+const userRouter = require('./user/userRouter.js');
 const boardRouter = require('./board/boardRouter.js');
 const adminRouter = require('./admin/adminRouter.js');
 const replyRouter = require('./reply/replyRouter.js');
@@ -10,24 +10,6 @@ router.use('/user',userRouter);
 router.use('/board',boardRouter);
 router.use('/admin',adminRouter);
 router.use('/reply',replyRouter);
-
-router.get('/',(req,res)=>{
-    const {user} = req.session
-    res.render('index',{user});
-});
-
-router.get('/main_category',(req,res)=>{
-    res.render('main_category.html');
-});
-router.get('/sub_category',(req,res)=>{
-    res.render('sub_category.html');
-});
-router.get('/board_view',(req,res)=>{
-    res.render('board_view.html');
-});
-router.get('#join_frm',(req,res)=>{
-    res.render('index.html');
-});
 
 //이미지 불러오는 라우터
 router.use(express.static('views'));
