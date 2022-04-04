@@ -225,6 +225,9 @@ html.open {
      7px 7px 20px 0px rgba(0,0,0,.1),
      4px 4px 5px 0px rgba(0,0,0,.1);
     outline: none;
+    text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+    color: white;
+    text-decoration: none
 }
   
   /* 버튼3 */

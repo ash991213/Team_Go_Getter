@@ -23,6 +23,9 @@ router.get('/sub_category',(req,res)=>{
 router.get('/board_view',(req,res)=>{
     res.render('board_view.html');
 });
+router.get('#join_frm',(req,res)=>{
+    res.render('index.html');
+});
 
 //이미지 불러오는 라우터
 router.use(express.static('views'));
