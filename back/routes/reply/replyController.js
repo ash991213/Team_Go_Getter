@@ -24,13 +24,17 @@ exports.mainwrite = async (req,res) => {
         const [result] = await pool.execute(sql,prepare)
         const [result2] = await pool.execute(`SELECT * FROM reply WHERE depth = 1`)
 
-        const groupNum = result2[result2.length-2].groupNum+1
+        const groupNum = result2[result2.length-1].groupNum+1
         const r_idx = result.insertId
         await pool.execute(`UPDATE reply SET groupNum=${groupNum} WHERE r_idx=${r_idx}`)
 
         const [[result3]] = await pool.execute(`SELECT * FROM board WHERE b_idx = ${b_idx}`)
         const reply_count = result3.reply_count + 1
         await pool.execute(`UPDATE board SET reply_count = ${reply_count} WHERE b_idx = ${b_idx}`)
+
+        const [[result4]] = await pool.execute(`SELECT * FROM point WHERE userid = ${userid}`)
+        const r_point = result4.r_point + 10
+        await pool.execute(`UPDATE point SET r_point = ${r_point} WHERE userid = ${userid}`)
 
         response = {
             ...response,
@@ -75,6 +79,10 @@ exports.subwrite = async (req,res) => {
 
         const prepare = [userid,b_idx,content,2,seq,groupNum]
         const [result2] = await pool.execute(sql,prepare)
+
+        const [[result3]] = await pool.execute(`SELECT * FROM point WHERE userid = ${userid}`)
+        const r_point = result3.r_point + 10
+        await pool.execute(`UPDATE point SET r_point = ${r_point} WHERE userid = ${userid}`)
     
         response = {
             ...response,
@@ -95,8 +103,16 @@ exports.subwrite = async (req,res) => {
 exports.view = async (req,res) => {
     const b_idx = 5 // req.query
 
-    const sql = `SELECT * FROM reply WHERE depth = 1`
-    const sql2 = 'SELECT * FROM reply WHERE depth = 2'
+    const sql = `SELECT a.userid, a.content, a.groupNum, a.date, b.username, b.gender, b.email 
+                 FROM reply a
+                 LEFT OUTER JOIN user AS b ON a.userid = b.userid
+                 WHERE depth = 1 AND b_idx = ${b_idx}
+                 `
+    const sql2 = `SELECT a.userid, a.content, a.groupNum, a.seq, a.date, b.username, b.gender, b.email 
+                  FROM reply a
+                  LEFT OUTER JOIN user AS b ON a.userid = b.userid
+                  WHERE depth = 2 AND b_idx = ${b_idx}
+                  `
 
     let response = {
         errno:0
@@ -121,15 +137,24 @@ exports.view = async (req,res) => {
 }
 
 exports.edit = async (req,res) => {
+    const b_idx = 5 // req.query
+
     const { r_idx,content } = req.body
 
+    // const token = req.cookies.user
+    const userid = 'admin' // decodePayload(token).userid
+     
     const sql = `UPDATE reply SET content = '${content}' WHERE r_idx = '${r_idx}'`
+
+    const sql2 = `SELECT * FROM board WHERE b_idx = ${b_idx} AND userid = '${userid}'`
+    const [result2] = await pool.execute(sql2)
 
     let response = {
         errno:0
     }
 
     try{
+        if ( result2.length == 0 && userid != 'admin' ) throw new Error ('본인의 댓글만 수정할 수 있습니다.')
         await pool.execute(sql)
     } catch (error) {
         console.log(error.message)
@@ -140,16 +165,25 @@ exports.edit = async (req,res) => {
 }
 
 exports.delete = async (req,res) => {
+    const b_idx = 5 // req.query
+
     const { r_idx,groupNum,depth } = req.body
+
+    // const token = req.cookies.user
+    const userid = 'ash991213' // decodePayload(token).userid
 
     const sql = `DELETE FROM reply WHERE groupNum = ${groupNum}`
     const sql2 = `DELETE FROM reply WHERE r_idx = ${r_idx}`
+
+    const sql3 = `SELECT * FROM board WHERE b_idx = ${b_idx} AND userid = '${userid}'`
+    const [result3] = await pool.execute(sql3)
 
     let response = {
         errno:0
     }
 
     try {
+        if ( result3.length == 0 && userid != 'admin' ) throw new Error ('본인의 댓글만 삭제할 수 있습니다.')
         if ( depth == 1 )
         await pool.execute(sql)
         else 
@@ -164,7 +198,7 @@ exports.delete = async (req,res) => {
 }
 
 exports.likes = async (req,res) => {
-    const r_idx = 1 // req.body
+    const r_idx = 5 // req.body
 
     // const token = req.headers.cookie
     const userid = 'ash991213' // decodePayload(token).userid
@@ -214,6 +248,7 @@ exports.likes = async (req,res) => {
             errno:1
         }
     }
+    res.json(response)
 }
 
 exports.dislikes = async (req,res) => {
@@ -267,4 +302,5 @@ exports.dislikes = async (req,res) => {
             errno:1
         }
     }
+    res.json(response)
 }
