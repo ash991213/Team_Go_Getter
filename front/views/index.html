@@ -18,20 +18,20 @@
                 <source src="./KakaoTalk_20220324_090914533 (online-video-cutter.com).mp4" type="video/mp4">
             </video>
             <div class="main">
-                <!-- if user -->
+                {% if user %}
+                <p class="sign" align="center">{{username}}, Welcome!</p>
+                {% else %}
                 <p class="sign" align="center">SIGN IN</p>
-                <!-- else -->
-                <!-- <p class="sign" align="center">{{username}}, Welcome!</p> -->
-                <!-- endif -->
+                {% endif %}
                 <form class="form1" id="login_frm">
-                    <!-- if user -->
+                    {% if user %}
+                    <a class="submit" align="center">profile</a>
+                    {% else %}
                     <input id="login_userid" class="un" type="text" align="center" placeholder="Username" style="color: lightgray; " autocomplete="off">
                     <input id="login_userpw" class="pass" type="password" align="center" placeholder="Password" style="color: lightgray;">
                     <input class="custom-btn btn-5" type="submit" placeholder="LOGIN">
                     <button class="custom-btn btn-5"><a href="#pop_info_1" class="btn_open" align="center">REGISTER</a></button>
-                <!-- else -->
-                    <!-- <a class="submit" align="center">profile</a> -->
-                <!-- endif -->
+                    {% endif %}
                 <div class="kakao_login">
                     <a href="/" ><img src="./kakao_login_medium_narrow (1).png"> </a>
                 </div>
@@ -119,29 +119,6 @@
     </div> 
     
     <div class="section" style="font-size: 32px; text-align: center; background-color: black;">
-        
-        <!-- admin 로그인 화면 -->
-
-        <div class="admin_back">
-            <div class="admin_main">
-                <div class="admin_login_con">
-                    <form id="login-form" method="post">
-
-                        <label class="legend">ID</label>
-      
-                        <input name="userid" type="text">
-      
-      
-      
-                        <label class="legend">password</label> 
-      
-                        <input name="passwprd" type="password"> 
-      
-                        <button class="custom-btn btn-5"><a href="/" class="admin_login_button" align="center">admin login</a></button>
-               </form>
-                </div>
-            </div>
-        </div>
 
         <!-- admin 로그인 후 화면 -->
 
@@ -164,6 +141,28 @@
                 </div>
             </div>
         </div> -->
+
+        <!-- admin 로그인 화면 -->
+        <div class="admin_back">
+            <div class="admin_main">
+                <div class="admin_login_con">
+                    <form id="login-form" method="post">
+
+                        <label class="legend">ID</label>
+      
+                        <input name="userid" type="text">
+      
+      
+      
+                        <label class="legend">password</label> 
+      
+                        <input name="passwprd" type="password"> 
+      
+                        <button class="custom-btn btn-5"><a href="/" class="admin_login_button" align="center">admin login</a></button>
+               </form>
+                </div>
+            </div>
+        </div>
 
     </div>
 

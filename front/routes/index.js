@@ -12,8 +12,10 @@ router.use('/admin',adminRouter);
 router.use('/reply',replyRouter);
 
 router.get('/',(req,res)=>{
-    res.render('index.html');
+    const {user} = req.session
+    res.render('index',{user});
 });
+
 router.get('/main_category',(req,res)=>{
     res.render('main_category.html');
 });
@@ -29,5 +31,5 @@ router.get('#join_frm',(req,res)=>{
 
 //이미지 불러오는 라우터
 router.use(express.static('views'));
-
+router.use('/user',userRouter)
 module.exports = router;

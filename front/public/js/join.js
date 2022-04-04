@@ -20,7 +20,7 @@ join_Frm.addEventListener('submit', async (e)=>{
       'Content-type':'application/json',
       withCredentials:true,
     })
-    if (response.data.errno !== 0) throw new Error('Error')
+    if (response.data.errno === 0) throw new Error('Error')
     location.href = 'http://localhost:3000'
   } catch (e) {
     alert('회원가입 실패.')
