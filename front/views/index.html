@@ -31,6 +31,7 @@
                     <input id="login_userpw" class="pass" type="password" align="center" placeholder="Password" style="color: lightgray;">
                     <input class="custom-btn btn-5" type="submit" placeholder="LOGIN">
                     <button class="custom-btn btn-5"><a href="#pop_info_1" class="btn_open" align="center">REGISTER</a></button>
+                    <button class="custom-btn btn-5"><a href="#pop_info_2" class="btn_open" align="center">PROFILE</a></button>
                     {% endif %}
                 <div class="kakao_login">
                     <a href="/" ><img src="./kakao_login_medium_narrow (1).png"> </a>
@@ -85,11 +86,24 @@
                     </script>
                 </form> 
                 <!-- 프로필 페이지 팝업 -->
-                <form id="join_frm" action="http://localhost:4000/user/join" method="post">
-                    <div id="pop_info_1" class="pop_wrap" style="display: none;">
-                        <div class="pop_inner"> 
-                        
-                            <input id="submit_frm" class="custom-btn btn-5" type="submit">
+                <!-- nunjucks작업을 해야함 -->
+                <form id="profile_frm" action="http://localhost:4000/user/profile" method="post">
+                    <div id="pop_info_2" class="pop_wrap" style="display: none;">
+                        <div class="pop_inner_profile"> 
+                            <p class="sign" align="center">PROFILE</p>
+                            <p class="reg_userid" type="text" align="center" style="color: lightgray;">{{ UserID }}</p>
+                            <p class="reg_userpw" type="text" align="center" style="color: lightgray;">{{ UserPW}}</p>
+                            <p class="reg_username" type="text" align="center" style="color: lightgray;">{{ Username}}</p>
+                            <p class="reg_nickname" type="text" align="center" style="color: lightgray;">{{ Nickname }}</p>
+                            <p class="reg_birthdate" type="date" align="center" style="color: lightgray">{{ Birthdate }}</p>
+                            <p class="reg_adress" type="text" align="center"  style="color: lightgray;">{{ Adress }}</p>
+                            <p class="reg_gender" type="radio" align="center" style="color:lightgray;">{{ gender }}</p>
+                            <p class="reg_mobile" type="text" align="center"  style="color: lightgray;">{{ Mobile }}</p>
+                            <p class="reg_tel" type="text" align="center"  style="color: lightgray;">{{ Tel }}</p>
+                            <p class="reg_email" type="text" align="center"  style="color: lightgray;">{{ Email }}</p>
+                            <p class="reg_intro" type="text" align="center"  style="color: lightgray; height: 200px;">{{ intro }}</p>
+                            <input id="edit_frm" class="custom-btn btn-5" type="submit" style="width: 100%; margin-bottom: 10px;" placeholder="회원정보 수정">
+                            <input id="edit_frm" class="custom-btn btn-5" type="submit">
                             <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
                         </div>
                     </div>
