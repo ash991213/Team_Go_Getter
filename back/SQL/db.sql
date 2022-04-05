@@ -104,3 +104,18 @@ CREATE TABLE board_hash (
     FOREIGN KEY (h_idx) REFERENCES hashtag (h_idx),
     FOREIGN KEY (b_idx) REFERENCES board (b_idx)
 );
+
+CREATE TABLE chatroom (
+    cr_idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(64) NOT NULL
+);
+
+CREATE TABLE chat (
+    idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    userid VARCHAR(32) NOT NULL,
+    cr_idx INT NOT NULL,
+    content TEXT NOT NULL,
+    date TIMESTAMP NOT NULL,
+    FOREIGN KEY (userid) REFERENCES user (userid),
+    FOREIGN KEY (cr_idx) REFERENCES chatroom (cr_idx)
+);
