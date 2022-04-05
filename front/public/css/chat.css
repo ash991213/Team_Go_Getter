@@ -90,7 +90,8 @@ html, body {
 }
 
 .profile .user {
-    font-size: 10px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
     margin-bottom: 0.3rem;
 }
 

@@ -6,14 +6,20 @@ socket.on('connect',() => {
     console.log('클라이언트 웹 소켓 connect')
 })
 
+// 방입장 요청
 const cr_idx = window.location.hash.split('#')[1]
 socket.emit('title', cr_idx)
 
-const nickname = document.querySelector('#nickname')
 const chatList = document.querySelector('.chatting-list')
 const chatInput = document.querySelector('.chatting-input')
 const sendButton = document.querySelector('.send-button')
 const displayContainer = document.querySelector('.display-container')
+const title = document.querySelector('.title')
+
+// 방제목 가져오기
+socket.on('title',(data) => {
+    title.textContent = data.title
+})
 
 // 메시지 보내는 함수
 function send(){
@@ -34,27 +40,31 @@ chatInput.addEventListener('keypress', (e) => {
 
 // 채팅 내용을 화면에 보여줌
 socket.on('chatting', (data)=> {
-    const { msg, time } = data
-    const item = new LiModel( msg, time);
+    const { msg, time, userid } = data
+    const item = new LiModel( msg, time, userid);
     item.makeLi()
     displayContainer.scrollTo(0,displayContainer.scrollHeight)
 })
 
 // li 만드는 함수
-function LiModel (msg,time) {
+function LiModel (msg,time,userid) {
     this.msg = msg;
     this.time = time;
+    this.userid = userid;
 
-    this.makeLi = () => {
+    this.makeLi = async () => {
         const li = document.createElement('li')
-        // li.classList.add(nickname.value === this.name ? 'sent':'received')
         const dom = `<span class='profile'>
-                     <span class='user'>유저 아이디 가져와야 함</span>
+                     <span class='user'>${this.userid}</span>
                      <img class='image' src='https://placeimg.com/50/50/any' alt='any'></span>
                      <span class='message'>${this.msg}</span>
                      <span class='time'>${this.time}</span>`;
         
         li.innerHTML = dom;
+
         chatList.appendChild(li)
+
+        const user = document.querySelector('.user')
+        li.classList.add(user.textContent === this.userid ? 'sent':'received')
     }
 }

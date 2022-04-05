@@ -13,7 +13,10 @@ const issuer = process.env.JWT_ISSUER; // 토큰 발급자
 
 //회원가입
 exports.joinpost  = async (req,res)=>{
+    console.log(req.body);
+    
     const { userid,userpw,username,nickname,birthdate,adress,gender,mobile,tel,email,intro } = req.body;
+    console.log(userid,userpw,username,nickname,birthdate,adress,gender,mobile,tel,email,intro);
     const sql = `INSERT INTO user(
                     userid,
                     userpw,
@@ -34,7 +37,7 @@ exports.joinpost  = async (req,res)=>{
     const sql2 = `INSERT INTO intro(userid,content)
                   VALUES ('${userid}','${intro}')`
 
-    const sql3 = `INSER INTO point (userid) VALUES ('${userid}')`
+    const sql3 = `INSERT INTO point (userid) VALUES ('${userid}')`
 
     let response = {
         errno:0
@@ -59,6 +62,7 @@ exports.joinpost  = async (req,res)=>{
         console.log(e.message)
         response = {
             errno:1
+            // 실패
         }
     }
     res.json(response)

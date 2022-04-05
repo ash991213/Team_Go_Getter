@@ -8,30 +8,31 @@
 </head>
     <link href="/css/index.css" type="text/css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-<body>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <body>
     
     <div class="section" style="color: white; font-size: 32px; text-align: center; background-color: black;">
         <div class="container">
             
-            <video class="main_video" autoplay loop muted poster="aaa" preload="bbb" width="100%">
+            <video class="main_video" autoplay loop muted preload="bbb" width="100%">
                 <source src="./KakaoTalk_20220324_090914533 (online-video-cutter.com).mp4" type="video/mp4">
             </video>
             <div class="main">
-                <!-- if user -->
+                {% if response %}
+                <p class="sign" align="center">{{username}}, Welcome!</p>
+                {% else %}
                 <p class="sign" align="center">SIGN IN</p>
-                <!-- else -->
-                <!-- <p class="sign" align="center">{{username}}, Welcome!</p> -->
-                <!-- endif -->
-                <form class="form1">
-                    <!-- if user -->
-                    <input class="un" type="text" align="center" placeholder="Username">
-                    <input class="pass" type="password" align="center" placeholder="Password">
-                    <button class="custom-btn btn-5"><a href="/user/login" align="center">LOGIN</a></button>
+                {% endif %}
+                <form class="form1" id="login_frm">
+                    {% if response %}
+                    <a class="submit" align="center">profile</a>
+                    {% else %}
+                    <input id="login_userid" class="un" type="text" align="center" placeholder="Username" style="color: lightgray; " autocomplete="off">
+                    <input id="login_userpw" class="pass" type="password" align="center" placeholder="Password" style="color: lightgray;">
+                    <input class="custom-btn btn-5" type="submit" placeholder="LOGIN">
                     <button class="custom-btn btn-5"><a href="#pop_info_1" class="btn_open" align="center">REGISTER</a></button>
-                <!-- else -->
-                    <!-- <a class="submit" align="center">profile</a> -->
-                <!-- endif -->
+                    <button class="custom-btn btn-5"><a href="#pop_info_2" class="btn_open" align="center">PROFILE</a></button>
+                    {% endif %}
                 <div class="kakao_login">
                     <a href="/" ><img src="./kakao_login_medium_narrow (1).png"> </a>
                 </div>
@@ -41,50 +42,85 @@
                 <div class="naver_login">
                     <a href="/" ><img src="./btnG_official.png" width="185" height="40"> </a>
                 </div>
-
-                <!-- 버튼 클릭 팝업 -->
-                
-                <div id="pop_info_1" class="pop_wrap" style="display:none;">
-                    <div class="pop_inner">
-                        <p class="sign" align="center">REGISTER</p>
-                        <input class="reg_userid" type="text" align="center" placeholder="UserID">
-                        <input class="reg_userpw" type="text" align="center" placeholder="UserPW">
-                        <input class="reg_username" type="text" align="center" placeholder="Username">
-                        <input class="reg_nickname" type="text" align="center" placeholder="Nickname">
-                        <input class="reg_birthdate" type="date" align="center" placeholder="Birthdate" style="color: rgb(70, 70, 70)">
-                        <input class="reg_adress" type="text" align="center" placeholder="Adress">
-                        <input class="reg_gender" type="text" align="center" placeholder="Gender">
-                        <input class="reg_mobile" type="text" align="center" placeholder="Mobile">
-                        <input class="reg_tel" type="text" align="center" placeholder="Tel">
-                        <input class="reg_email" type="text" align="center" placeholder="Email">
-                        <!-- register 라우터에 연결 해야함 -->
-                        <button class="custom-btn btn-5"><a href="/user/login" align="center">SUBMIT</a></button>
-                        <button class="btn_close custom-btn btn-5"><a href="/" align="center">CLOSE</a></button>
-                        
+                </form>   
+                 <!-- 버튼 클릭 팝업 -->
+                 <form id="join_frm" action="http://localhost:4000/user/join" method="post">
+                    <div id="pop_info_1" class="pop_wrap" style="display: none;">
+                        <div class="pop_inner">
+                            <p class="sign" align="center">REGISTER</p>
+                            <input class="reg_userid" type="text" align="center" placeholder="UserID" style="color: lightgray; width: 70%;">
+                            <!-- 회원가입 중복체크 버튼 -->
+                            <input id="idcheck" class="custom-btn btn-5" type="submit" style="width: 20%;" placeholder="중복체크">
+                            <input class="reg_userpw" type="text" align="center" placeholder="UserPW" style="color: lightgray;">
+                            <input class="reg_username" type="text" align="center" placeholder="Username" style="color: lightgray;">
+                            <input class="reg_nickname" type="text" align="center" placeholder="Nickname" style="color: lightgray;">
+                            <input class="reg_birthdate" type="date" align="center" placeholder="Birthdate" style="color: rgb(70, 70, 70)">
+                            <input class="reg_adress" type="text" align="center" placeholder="Adress" style="color: lightgray;">
+                            <!-- 회원가입 성별 라디오 버튼 -->
+                            <p style="color: #362C2C; font-weight: bold;">gender</p>
+                            <label style="display: flex; height: 40px;">
+                                <input class="reg_gender" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 35%; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">man</p>
+                                <input class="reg_gender" type="radio" align="center" style="color: lightgray;width: 20px; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">woman</p>
+                            </label>
+                            <input class="reg_mobile" type="text" align="center" placeholder="Mobile" style="color: lightgray;">
+                            <input class="reg_tel" type="text" align="center" placeholder="Tel" style="color: lightgray;">
+                            <input class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">
+                            <input class="reg_intro" type="text" align="center" placeholder="intro" style="color: lightgray; height: 200px;">
+                            <input id="submit_frm" class="custom-btn btn-5" type="submit">
+                            <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
+                        </div>
                     </div>
-                </div>
 
-                <script>
-                    var target = document.querySelectorAll('.btn_open');
-                    var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-                    var targetID;
-
-                    // 팝업 열기
-                    for(var i = 0; i < target.length; i++){
-                    target[i].addEventListener('click', function(){
-                        targetID = this.getAttribute('href');
-                        document.querySelector(targetID).style.display = 'block';
-                        });
-                    }
-
-                    // // 팝업 닫기
-                    // for(var j = 0; j < target.length; j++){
-                    //     btnPopClose[j].addEventListener('click', function(){
-                    //     this.parentNode.parentNode.style.display = 'none';
-                    //     });
-                    // }
-                </script>
-                </form>         
+                    <script>
+                        var target = document.querySelectorAll('.btn_open');
+                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+                        var targetID;
+    
+                        // 팝업 열기
+                        for(var i = 0; i < target.length; i++){
+                        target[i].addEventListener('click', function(){
+                            targetID = this.getAttribute('href');
+                            document.querySelector(targetID).style.display = 'block';
+                            });
+                        }
+                    </script>
+                </form> 
+                <!-- 프로필 페이지 팝업 -->
+                <!-- nunjucks작업을 해야함 -->
+                <form id="profile_frm" action="http://localhost:4000/user/profile" method="post">
+                    <div id="pop_info_2" class="pop_wrap" style="display: none;">
+                        <div class="pop_inner_profile"> 
+                            <p class="sign" align="center">PROFILE</p>
+                            <p class="reg_userid" type="text" align="center" style="color: lightgray;">{{ UserID }}</p>
+                            <p class="reg_userpw" type="text" align="center" style="color: lightgray;">{{ UserPW}}</p>
+                            <p class="reg_username" type="text" align="center" style="color: lightgray;">{{ Username}}</p>
+                            <p class="reg_nickname" type="text" align="center" style="color: lightgray;">{{ Nickname }}</p>
+                            <p class="reg_birthdate" type="date" align="center" style="color: lightgray">{{ Birthdate }}</p>
+                            <p class="reg_adress" type="text" align="center"  style="color: lightgray;">{{ Adress }}</p>
+                            <p class="reg_gender" type="radio" align="center" style="color:lightgray;">{{ gender }}</p>
+                            <p class="reg_mobile" type="text" align="center"  style="color: lightgray;">{{ Mobile }}</p>
+                            <p class="reg_tel" type="text" align="center"  style="color: lightgray;">{{ Tel }}</p>
+                            <p class="reg_email" type="text" align="center"  style="color: lightgray;">{{ Email }}</p>
+                            <p class="reg_intro" type="text" align="center"  style="color: lightgray; height: 200px;">{{ intro }}</p>
+                            <input id="edit_frm" class="custom-btn btn-5" type="submit" style="width: 100%; margin-bottom: 10px;" placeholder="회원정보 수정">
+                            <input id="edit_frm" class="custom-btn btn-5" type="submit">
+                            <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
+                        </div>
+                    </div>
+                    <script>
+                        var target = document.querySelectorAll('.btn_open');
+                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+                        var targetID;
+    
+                        // 팝업 열기
+                        for(var i = 0; i < target.length; i++){
+                        target[i].addEventListener('click', function(){
+                            targetID = this.getAttribute('href');
+                            document.querySelector(targetID).style.display = 'block';
+                            });
+                        }
+                    </script>
+                </form> 
             </div>
         </div>
     </div>
@@ -129,9 +165,30 @@
     </div> 
     
     <div class="section" style="font-size: 32px; text-align: center; background-color: black;">
-        
-        <!-- admin 로그인 화면 -->
 
+        <!-- admin 로그인 후 화면 -->
+
+         <!-- <div class="admin_back">
+            <div class="admin_main">
+                <div class="admin_con1">
+                    <div class="admin_span_box">
+                        <span class="admin_span">회원 리스트</span>
+                    </div>
+                </div>
+                <div class="admin_con2">
+                    <div class="admin_span_box">
+                        <span class="admin_span">회원 정보 수정</span>
+                    </div>
+                </div>
+                <div class="admin_con3">
+                    <div class="admin_span_box">
+                        <span class="admin_span">카테고리 설정</span>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- admin 로그인 화면 -->
         <div class="admin_back">
             <div class="admin_main">
                 <div class="admin_login_con">
@@ -152,28 +209,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- admin 로그인 후 화면 -->
-
-        <!-- <div class="admin_back">
-            <div class="admin_main">
-                <div class="admin_con1">
-                    <div class="admin_span_box">
-                        <span class="admin_span">회원 리스트</span>
-                    </div>
-                </div>
-                <div class="admin_con2">
-                    <div class="admin_span_box">
-                        <span class="admin_span">회원 정보 수정</span>
-                    </div>
-                </div>
-                <div class="admin_con3">
-                    <div class="admin_span_box">
-                        <span class="admin_span">카테고리 설정</span>
-                    </div>
-                </div>
-            </div>
-        </div> -->
 
     </div>
 
@@ -226,6 +261,8 @@
     }
     
     </script>
-
+    <script type="text/javascript" src="/js/join.js"></script>
+    <script type="text/javascript" src="/js/login.js"></script>
+    <script type="text/javascript" src="/js/idcheck.js"></script>
 </body>
 </html>
