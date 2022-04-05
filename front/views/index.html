@@ -70,19 +70,6 @@
                             <button class="btn_close custom-btn btn-5"><a href="/" align="center">CLOSE</a></button>
                         </div>
                     </div>
-                    <script>
-                        var target = document.querySelectorAll('.btn_open');
-                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-                        var targetID;
-    
-                        // 팝업 열기
-                        for(var i = 0; i < target.length; i++){
-                        target[i].addEventListener('click', function(){
-                            targetID = this.getAttribute('href');
-                            document.querySelector(targetID).style.display = 'block';
-                            });
-                        }
-                    </script>
                 </form> 
                 <!-- 프로필 페이지 팝업 -->
                 <!-- nunjucks작업을 하고 로그인 후!로 빼버려야함 -->
@@ -110,19 +97,6 @@
                             <button class="btn_close custom-btn btn-5"><a href="/" align="center">CLOSE</a></button>
                         </div>
                     </div>
-                    <script>
-                        var target = document.querySelectorAll('.btn_open');
-                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-                        var targetID;
-    
-                        // 팝업 열기
-                        for(var i = 0; i < target.length; i++){
-                        target[i].addEventListener('click', function(){
-                            targetID = this.getAttribute('href');
-                            document.querySelector(targetID).style.display = 'block';
-                            });
-                        }
-                    </script>
                 </form> 
                 <!-- 프로필 수정 팝업 -->
                 <form id="edit_frm" action="http://localhost:4000/user/edit" method="post">
@@ -149,19 +123,6 @@
                             <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
                         </div>
                     </div>
-                    <script>
-                        var target = document.querySelectorAll('.btn_open');
-                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-                        var targetID;
-    
-                        // 팝업 열기
-                        for(var i = 0; i < target.length; i++){
-                        target[i].addEventListener('click', function(){
-                            targetID = this.getAttribute('href');
-                            document.querySelector(targetID).style.display = 'block';
-                            });
-                        }
-                    </script>
                 </form> 
                 <!-- 사용자 활동 모아 보기 -->
                 <!-- <form id="See_All_frm" action=" " method="post"> -->
@@ -228,25 +189,9 @@
                                     </tr>
                                 </div>
                             </table>
-
-
-
                             <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
                         </div>
                     </div>
-                    <script>
-                        var target = document.querySelectorAll('.btn_open');
-                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-                        var targetID;
-    
-                        // 팝업 열기
-                        for(var i = 0; i < target.length; i++){
-                        target[i].addEventListener('click', function(){
-                            targetID = this.getAttribute('href');
-                            document.querySelector(targetID).style.display = 'block';
-                            });
-                        }
-                    </script>
                 <!-- </form>  -->
             </div>
         </div>
@@ -262,7 +207,6 @@
                     </div>
                     <div class="button_con2">
                         <button class="custom-btn btn-7">
-                            <!-- 채팅방 라우터 적어야함 -->
                             <a href="/chat/list" align="center"><span class="munu_button">CHAT</span></a>
                         </button>
                     </div>
@@ -282,22 +226,22 @@
                             </div>                        
                         </div>
                     </div>
-                    <div class="stat_1">
-                        <div class="stat_top">
-                            <div class="stat_menu1">
-                                안녕
-                            </div>
-                            <div class="stat_munu2">
-                                아나녕
-                            </div>
-                        </div>
-                    </div>
-                    <div class="stat_2">
+                    <div class="stat_1" style="margin-left: 40%;">
                         <div class="stat_top">
                             <div class="stat_menu1">
                                 userid
                             </div>
-                            <div class="stat_munu2">
+                            <div class="stat_munu2" style="margin-left: 40px;">
+                                ranking
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat_2" style="margin-left: 60%;">
+                        <div class="stat_top">
+                            <div class="stat_menu1">
+                                userid
+                            </div>
+                            <div class="stat_munu2"style="margin-left: 40px;">
                                 ranking
                             </div>
                         </div>
@@ -356,8 +300,6 @@
     </div>
 
     <script>
-
-    
     //스크롤 화면 이동 이벤트
         window.onload = function(){
 
@@ -403,6 +345,20 @@
         });
     }
     
+    </script>
+
+    <script>
+        var target = document.querySelectorAll('.btn_open');
+        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+        var targetID;
+
+        // 팝업 열기
+        for(var i = 0; i < target.length; i++){
+        target[i].addEventListener('click', function(){
+            targetID = this.getAttribute('href');
+            document.querySelector(targetID).style.display = 'block';
+            });
+        }
     </script>
     <script type="text/javascript" src="/js/join.js"></script>
     <script type="text/javascript" src="/js/login.js"></script>
