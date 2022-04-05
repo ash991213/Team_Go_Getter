@@ -50,7 +50,7 @@
                             <p class="sign" align="center">REGISTER</p>
                             <input class="reg_userid" type="text" align="center" placeholder="UserID" style="color: lightgray; width: 70%;">
                             <!-- 회원가입 중복체크 버튼 -->
-                            <input id="idcheck" class="custom-btn btn-5" type="click" style="width: 20%;" placeholder="중복체크">
+                            <button id="idcheck" class="custom-btn btn-5" type="click" style="width: 20%;">중복체크</button>
                             <input class="reg_userpw" type="text" align="center" placeholder="UserPW" style="color: lightgray;">
                             <input class="reg_username" type="text" align="center" placeholder="Username" style="color: lightgray;">
                             <input class="reg_nickname" type="text" align="center" placeholder="Nickname" style="color: lightgray;">
@@ -67,7 +67,7 @@
                             <input class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">
                             <input class="reg_intro" type="text" align="center" placeholder="intro" style="color: lightgray; height: 200px;">
                             <input id="submit_frm" class="custom-btn btn-5" type="submit">
-                            <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
+                            <button class="btn_close custom-btn btn-5"><a href="/" align="center">CLOSE</a></button>
                         </div>
                     </div>
                     <script>
@@ -102,11 +102,12 @@
                             <p class="reg_email" type="text" align="center"  style="color: lightgray;">{{ Email }}</p>
                             <p class="reg_intro" type="text" align="center"  style="color: lightgray; height: 200px;">{{ intro }}</p>
                             <!-- 프로필 수정 페이지 이동 버튼 -->
-                            <button class="custom-btn btn-5"><a href="#pop_info_3" align=s"center">EDIT</a></button>
+                            <button class="custom-btn btn-5"><a href="#pop_info_3" align="center" class="btn_open">EDIT</a></button>
+                            <button class="custom-btn btn-5"><a href="#pop_info_4" align="center" class="btn_open">SEE ALL</a></button>
                             <!-- 회원탈퇴 > ? action 수정 필요 -->
                             <button id="quit_frm" class="custom-btn btn-5" type="submit" style="width: 40%; margin-bottom: 10px;">회원 탈퇴</button>
 
-                            <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
+                            <button class="btn_close custom-btn btn-5"><a href="/" align="center">CLOSE</a></button>
                         </div>
                     </div>
                     <script>
@@ -124,7 +125,7 @@
                     </script>
                 </form> 
                 <!-- 프로필 수정 팝업 -->
-                <form id="eidt_frm" action="http://localhost:4000/user/edit" method="post">
+                <form id="edit_frm" action="http://localhost:4000/user/edit" method="post">
                     <div id="pop_info_3" class="pop_wrap" style="display: none;">
                         <div class="pop_inner">
                             <p class="sign" align="center">EDIT</p>
@@ -144,7 +145,7 @@
                             <input class="reg_tel" type="text" align="center" placeholder="Tel" style="color: lightgray;">
                             <input class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">
                             <input class="reg_intro" type="text" align="center" placeholder="intro" style="color: lightgray; height: 200px;">
-                            <input id="edit_frm" class="custom-btn btn-5" type="submit">
+                            <button id="edit_frm" class="custom-btn btn-5" type="submit" ><a href="/" align="center" class="btn_open">SUBMIT</a></button>
                             <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
                         </div>
                     </div>
@@ -162,6 +163,91 @@
                         }
                     </script>
                 </form> 
+                <!-- 사용자 활동 모아 보기 -->
+                <!-- <form id="See_All_frm" action=" " method="post"> -->
+                    <div id="pop_info_4" class="pop_wrap" style="display: none;">
+                        <div class="pop_inner_edit" style=" width: 80%;"> 
+                            <p class="sign" align="center">SEE ALL</p>
+                            <table style="display: flex;">
+                                <!-- <c:forEach var="board" items="${list }">
+                                    <tr>
+                                        <td>{{board.b_idx }}</td>
+                                        <td>{{board.subject}}</td>
+                                        <td>{{board.content}}</td>
+                                        <td>{{board.userid }}</td>
+                                        <td>{{board.date }}</td>
+                                        <td>{{board.hit }}</td>
+                                        <td>{{hashtag.name}}</td>
+                                    </tr>
+                                </c:forEach> -->
+                                <div class="SA_con1" style="float: left;">
+                                    <tr>
+                                        <td><p>자신의 게시물</p></td>
+                                        <tr >
+                                            <c:forEach var="board" items="${list }">
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                            </c:forEach>
+                                        </tr>
+                                    </tr>
+                                </div>
+                                <div class="SA_con1" style="float: left;">
+                                    <tr>
+                                        <td><p>좋아요한 게시물</p></td>
+                                        <tr >
+                                            <c:forEach var="board" items="${list }">
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                            </c:forEach>
+                                        </tr>
+                                    </tr>
+                                </div>
+                                <div class="SA_con1">
+                                    <tr>
+                                        <td><p>자신의 댓글</p></td>
+                                        <tr >
+                                            <c:forEach var="board" items="${list }">
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                            </c:forEach>
+                                        </tr>
+                                    </tr>
+                                </div>
+                                <div class="SA_con1" style="float: left;">
+                                    <tr>
+                                        <td><p>좋아요한 댓글</p></td>
+                                        <tr >
+                                            <c:forEach var="board" items="${list }">
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                            </c:forEach>
+                                        </tr>
+                                    </tr>
+                                </div>
+                            </table>
+
+
+
+                            <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
+                        </div>
+                    </div>
+                    <script>
+                        var target = document.querySelectorAll('.btn_open');
+                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+                        var targetID;
+    
+                        // 팝업 열기
+                        for(var i = 0; i < target.length; i++){
+                        target[i].addEventListener('click', function(){
+                            targetID = this.getAttribute('href');
+                            document.querySelector(targetID).style.display = 'block';
+                            });
+                        }
+                    </script>
+                <!-- </form>  -->
             </div>
         </div>
     </div>

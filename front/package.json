@@ -21,6 +21,7 @@
     "mvc": "^1.0.0",
     "nodemon": "^2.0.15",
     "nunjucks": "^3.2.3",
+    "socket.io": "^4.4.1",
     "session": "^0.1.0",
     "vid-streamer": "^1.0.0",
     "ws": "^8.5.0"
