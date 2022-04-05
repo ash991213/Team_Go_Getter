@@ -154,19 +154,17 @@ exports.getEdit = async (req,res) => {
     }
 
     try {
-        const [user] = await pool.execute(sql)
+        const [[user]] = await pool.execute(sql)
         const [board] = await pool.execute(sql2)
         const [reply] = await pool.execute(sql3)
         const [likes_board] = await pool.execute(sql4)
         const [likes_reply] = await pool.execute(sql5)
 
         const result = { user,board,reply,likes_board,likes_reply }
-        console.log(result)
         response = {
             ...response,
             result
         }
-
     } catch (error) {
         console.log(error.message)
         response = {
