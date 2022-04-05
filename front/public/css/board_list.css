@@ -3,14 +3,11 @@ body{background:black; overflow:hidden}
 *{margin:0; padding:0;}
 .wrap
 {
-    
     width: 80%;
     margin: 0 auto;
 }
 .content_wrap {
-    position: absolute;
-    margin-top: 5%;
-    margin-left: 5%;
+    margin:50px auto 0 auto;
     width:90%;
     height: 80%;
     border-radius: 50px 50px;
@@ -136,7 +133,6 @@ tr {
 .pop_wrap{z-index: 10;position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.7); font-size:0; text-align:center;}
 .pop_wrap:after{display:inline-block; height:100%; vertical-align:middle; content:'';}
 .pop_wrap .pop_inner{
-    margin-right: 50px;
     display:inline-block;
     padding:20px 30px; 
     background:#fff; 
@@ -154,8 +150,8 @@ tr {
 }
 /* 양식 css */
 
-.write_subject,.write_content,.write_hashtag,.search,.write_subject{
-    float: left;
+.write_subject,.write_content,.write_hashtag,.search{
+    
     margin-bottom: 15px;
     width: 90%;
     color: rgb(38, 50, 56);
@@ -173,57 +169,7 @@ tr {
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
 }
-.write_subject:focus,.write_content:focus,.write_hashtag:focus,.search:focus,.write_subject:focus{
+.write_subject:focus,.write_content:focus,.write_hashtag:focus,.search:focus{
     border: 2px solid rgb(41, 189, 235) !important;
     transition-duration: 0.8s;
 }
-.img_con{
-    position: absolute;
-    width: 50%;
-    float: left;
-    height: 80vh;
-    border-right: solid 3px rgb(58, 58, 58);
-}
-.user_img{
-    position: absolute;
-    width: 60%;
-    height: 60%;
-    margin-top: 20%;
-    margin-left: 20%;
-    border: solid 3px rgb(58, 58, 58);
-    border-radius: 10px 10px;
-    background-color: #fff;
-    box-shadow: 0px 0px 35px 2px rgb(41, 189, 235);
-}
-.content_con{
-    position: absolute;
-    margin-left: 50%;
-    width: 50%;
-    float: left;
-    height: 80vh;
-}
-.content{
-    margin-top: 10vh;
-    position: relative;
-    top:0; 
-    left:0; 
-    right:0; 
-    bottom:0; 
-    font-size:0; 
-    text-align:center;
-}
-.write_hashtag{
-    position: relative;
-    text-align: left;
-    max-width: 20px;
-    max-height: 20px;
-    float: left;
-}
-.hashtag_con{
-    display: flex;
-    width: 80px;
-    max-width: 50%;
-    max-height: 30%;
-    text-align: center;
-}
-p{position: relative;}

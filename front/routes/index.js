@@ -25,11 +25,14 @@ router.get('/main_category',(req,res)=>{
 router.get('/sub_category',(req,res)=>{
     res.render('sub_category.html');
 });
-router.get('/board_view',(req,res)=>{
-    res.render('board_view.html');
+router.get('/board_list',(req,res)=>{
+    res.render('board_list.html');
 });
 router.get('#join_frm',(req,res)=>{
     res.render('index.html');
+});
+router.get('/board_view',(req,res)=>{
+    res.render('board_view.html')
 });
 
 
