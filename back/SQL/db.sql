@@ -5,15 +5,15 @@ USE teamGoGetter;
 CREATE TABLE user (
     idx INT AUTO_INCREMENT,
     userid VARCHAR(32) NOT NULL,
-    userpw VARCHAR(32) NOT NULL,
-    username VARCHAR(32) NOT NULL,
-    nickname VARCHAR(32) NOT NULL,
-    birthdate TIMESTAMP NOT NULL,
-    adress VARCHAR(64) NOT NULL,
-    gender CHAR(4) NOT NULL,
-    mobile CHAR(32) NOT NULL,
-    tel CHAR(32),
-    email VARCHAR(64) NOT NULL,
+    userpw VARCHAR(32) NULL,
+    username VARCHAR(32) NULL,
+    nickname VARCHAR(32) NULL,
+    birthdate TIMESTAMP NULL,
+    adress VARCHAR(64) NULL,
+    gender CHAR(4) NULL,
+    mobile CHAR(32) NULL,
+    tel CHAR(32) NULL,
+    email VARCHAR(64) NULL,
     level INT NOT NULL DEFAULT 3,
     isActive BOOLEAN NOT NULL DEFAULT 1,
     PRIMARY KEY (idx, userid),
@@ -103,4 +103,19 @@ CREATE TABLE board_hash (
     b_idx INT NOT NULL,
     FOREIGN KEY (h_idx) REFERENCES hashtag (h_idx),
     FOREIGN KEY (b_idx) REFERENCES board (b_idx)
+);
+
+CREATE TABLE chatroom (
+    cr_idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(64) NOT NULL
+);
+
+CREATE TABLE chat (
+    idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    userid VARCHAR(32) NOT NULL,
+    cr_idx INT NOT NULL,
+    content TEXT NOT NULL,
+    date TIMESTAMP NOT NULL,
+    FOREIGN KEY (userid) REFERENCES user (userid),
+    FOREIGN KEY (cr_idx) REFERENCES chatroom (cr_idx)
 );
