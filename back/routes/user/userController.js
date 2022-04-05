@@ -67,23 +67,26 @@ exports.joinpost  = async (req,res)=>{
 
 //중복체크
 exports.idcheckpost = async (req,res) =>{
-        const {userid} = req.body;
-        console.log(userid);
+        const { userid } = req.body;
+
+        let response = {
+            errno:0
+        }
 
         try {
             const sql = `SELECT * FROM user WHERE userid = '${userid}'`
             const [result] = await pool.execute(sql);
-            console.log(result);
-            console.log(result.length);
         try {
             if (result.length === 1) throw new Error ('중복된 아이디입니다.');
-            res.send('1');
         } catch (error) {
-            res.send('2');
+            response = {
+                errno:1
+            }
         };
     } catch (error){
         console.log(error);
     };
+    res.json(response)
 };
 
 

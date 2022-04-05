@@ -29,7 +29,7 @@
                     {% else %}
                     <input id="login_userid" class="un" type="text" align="center" placeholder="Username" style="color: lightgray; " autocomplete="off">
                     <input id="login_userpw" class="pass" type="password" align="center" placeholder="Password" style="color: lightgray;">
-                    <input class="custom-btn btn-5" type="submit" placeholder="LOGIN">
+                    <button class="custom-btn btn-5" type="submit">LOGIN</button>
                     <button class="custom-btn btn-5"><a href="#pop_info_1" class="btn_open" align="center">REGISTER</a></button>
                     <button class="custom-btn btn-5"><a href="#pop_info_2" class="btn_open" align="center">PROFILE</a></button>
                     {% endif %}
@@ -43,14 +43,14 @@
                     <a href="/" ><img src="./btnG_official.png" width="185" height="40"> </a>
                 </div>
                 </form>   
-                 <!-- 버튼 클릭 팝업 -->
+                 <!-- 회원가입 팝업창 띄우기 -->
                  <form id="join_frm" action="http://localhost:4000/user/join" method="post">
                     <div id="pop_info_1" class="pop_wrap" style="display: none;">
                         <div class="pop_inner">
                             <p class="sign" align="center">REGISTER</p>
                             <input class="reg_userid" type="text" align="center" placeholder="UserID" style="color: lightgray; width: 70%;">
                             <!-- 회원가입 중복체크 버튼 -->
-                            <input id="idcheck" class="custom-btn btn-5" type="submit" style="width: 20%;" placeholder="중복체크">
+                            <button id="idcheck" class="custom-btn btn-5" type="click" style="width: 20%;">중복체크</button>
                             <input class="reg_userpw" type="text" align="center" placeholder="UserPW" style="color: lightgray;">
                             <input class="reg_username" type="text" align="center" placeholder="Username" style="color: lightgray;">
                             <input class="reg_nickname" type="text" align="center" placeholder="Nickname" style="color: lightgray;">
@@ -67,10 +67,9 @@
                             <input class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">
                             <input class="reg_intro" type="text" align="center" placeholder="intro" style="color: lightgray; height: 200px;">
                             <input id="submit_frm" class="custom-btn btn-5" type="submit">
-                            <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
+                            <button class="btn_close custom-btn btn-5"><a href="/" align="center">CLOSE</a></button>
                         </div>
                     </div>
-
                     <script>
                         var target = document.querySelectorAll('.btn_open');
                         var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
@@ -86,13 +85,12 @@
                     </script>
                 </form> 
                 <!-- 프로필 페이지 팝업 -->
-                <!-- nunjucks작업을 해야함 -->
+                <!-- nunjucks작업을 하고 로그인 후!로 빼버려야함 -->
                 <form id="profile_frm" action="http://localhost:4000/user/profile" method="post">
                     <div id="pop_info_2" class="pop_wrap" style="display: none;">
-                        <div class="pop_inner_profile"> 
+                        <div class="pop_inner_edit"> 
                             <p class="sign" align="center">PROFILE</p>
-                            <p style="color: #362C2C; text-align: center;">userid</p>
-                            <p class="reg_userid" type="text" align="center" style="color: lightgray;">{{ UserID }}</p>
+                            <p class="reg_userid" type="text" align="center" style="color: lightgray; padding-top: 3px;" >{{ UserID }}</p>
                             <p class="reg_userpw" type="text" align="center" style="color: lightgray;">{{ UserPW}}</p>
                             <p class="reg_username" type="text" align="center" style="color: lightgray;">{{ Username}}</p>
                             <p class="reg_nickname" type="text" align="center" style="color: lightgray;">{{ Nickname }}</p>
@@ -103,8 +101,51 @@
                             <p class="reg_tel" type="text" align="center"  style="color: lightgray;">{{ Tel }}</p>
                             <p class="reg_email" type="text" align="center"  style="color: lightgray;">{{ Email }}</p>
                             <p class="reg_intro" type="text" align="center"  style="color: lightgray; height: 200px;">{{ intro }}</p>
-                            <input id="edit_frm" class="custom-btn btn-5" type="submit" style="width: 100%; margin-bottom: 10px;" placeholder="회원정보 수정">
-                            <input id="edit_frm" class="custom-btn btn-5" type="submit">
+                            <!-- 프로필 수정 페이지 이동 버튼 -->
+                            <button class="custom-btn btn-5"><a href="#pop_info_3" align="center" class="btn_open">EDIT</a></button>
+                            <button class="custom-btn btn-5"><a href="#pop_info_4" align="center" class="btn_open">SEE ALL</a></button>
+                            <!-- 회원탈퇴 > ? action 수정 필요 -->
+                            <button id="quit_frm" class="custom-btn btn-5" type="submit" style="width: 40%; margin-bottom: 10px;">회원 탈퇴</button>
+
+                            <button class="btn_close custom-btn btn-5"><a href="/" align="center">CLOSE</a></button>
+                        </div>
+                    </div>
+                    <script>
+                        var target = document.querySelectorAll('.btn_open');
+                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+                        var targetID;
+    
+                        // 팝업 열기
+                        for(var i = 0; i < target.length; i++){
+                        target[i].addEventListener('click', function(){
+                            targetID = this.getAttribute('href');
+                            document.querySelector(targetID).style.display = 'block';
+                            });
+                        }
+                    </script>
+                </form> 
+                <!-- 프로필 수정 팝업 -->
+                <form id="edit_frm" action="http://localhost:4000/user/edit" method="post">
+                    <div id="pop_info_3" class="pop_wrap" style="display: none;">
+                        <div class="pop_inner">
+                            <p class="sign" align="center">EDIT</p>
+                            <input class="reg_userid" type="text" align="center" placeholder="UserID" style="color: lightgray; width: 70%;">
+                            <input id="idcheck" class="custom-btn btn-5" type="submit" style="width: 20%;" placeholder="중복체크">
+                            <input class="reg_userpw" type="text" align="center" placeholder="UserPW" style="color: lightgray;">
+                            <input class="reg_username" type="text" align="center" placeholder="Username" style="color: lightgray;">
+                            <input class="reg_nickname" type="text" align="center" placeholder="Nickname" style="color: lightgray;">
+                            <input class="reg_birthdate" type="date" align="center" placeholder="Birthdate" style="color: rgb(70, 70, 70)">
+                            <input class="reg_adress" type="text" align="center" placeholder="Adress" style="color: lightgray;">
+                            <p style="color: #362C2C; font-weight: bold;">gender</p>
+                            <label style="display: flex; height: 40px;">
+                                <input class="reg_gender" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 35%; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">man</p>
+                                <input class="reg_gender" type="radio" align="center" style="color: lightgray;width: 20px; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">woman</p>
+                            </label>
+                            <input class="reg_mobile" type="text" align="center" placeholder="Mobile" style="color: lightgray;">
+                            <input class="reg_tel" type="text" align="center" placeholder="Tel" style="color: lightgray;">
+                            <input class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">
+                            <input class="reg_intro" type="text" align="center" placeholder="intro" style="color: lightgray; height: 200px;">
+                            <button id="edit_frm" class="custom-btn btn-5" type="submit" ><a href="/" align="center" class="btn_open">SUBMIT</a></button>
                             <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
                         </div>
                     </div>
@@ -122,6 +163,91 @@
                         }
                     </script>
                 </form> 
+                <!-- 사용자 활동 모아 보기 -->
+                <!-- <form id="See_All_frm" action=" " method="post"> -->
+                    <div id="pop_info_4" class="pop_wrap" style="display: none;">
+                        <div class="pop_inner_edit" style=" width: 80%;"> 
+                            <p class="sign" align="center">SEE ALL</p>
+                            <table style="display: flex;">
+                                <!-- <c:forEach var="board" items="${list }">
+                                    <tr>
+                                        <td>{{board.b_idx }}</td>
+                                        <td>{{board.subject}}</td>
+                                        <td>{{board.content}}</td>
+                                        <td>{{board.userid }}</td>
+                                        <td>{{board.date }}</td>
+                                        <td>{{board.hit }}</td>
+                                        <td>{{hashtag.name}}</td>
+                                    </tr>
+                                </c:forEach> -->
+                                <div class="SA_con1" style="float: left;">
+                                    <tr>
+                                        <td><p>자신의 게시물</p></td>
+                                        <tr >
+                                            <c:forEach var="board" items="${list }">
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                            </c:forEach>
+                                        </tr>
+                                    </tr>
+                                </div>
+                                <div class="SA_con1" style="float: left;">
+                                    <tr>
+                                        <td><p>좋아요한 게시물</p></td>
+                                        <tr >
+                                            <c:forEach var="board" items="${list }">
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                            </c:forEach>
+                                        </tr>
+                                    </tr>
+                                </div>
+                                <div class="SA_con1">
+                                    <tr>
+                                        <td><p>자신의 댓글</p></td>
+                                        <tr >
+                                            <c:forEach var="board" items="${list }">
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                            </c:forEach>
+                                        </tr>
+                                    </tr>
+                                </div>
+                                <div class="SA_con1" style="float: left;">
+                                    <tr>
+                                        <td><p>좋아요한 댓글</p></td>
+                                        <tr >
+                                            <c:forEach var="board" items="${list }">
+                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
+                                            </c:forEach>
+                                        </tr>
+                                    </tr>
+                                </div>
+                            </table>
+
+
+
+                            <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
+                        </div>
+                    </div>
+                    <script>
+                        var target = document.querySelectorAll('.btn_open');
+                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+                        var targetID;
+    
+                        // 팝업 열기
+                        for(var i = 0; i < target.length; i++){
+                        target[i].addEventListener('click', function(){
+                            targetID = this.getAttribute('href');
+                            document.querySelector(targetID).style.display = 'block';
+                            });
+                        }
+                    </script>
+                <!-- </form>  -->
             </div>
         </div>
     </div>
@@ -265,5 +391,9 @@
     <script type="text/javascript" src="/js/join.js"></script>
     <script type="text/javascript" src="/js/login.js"></script>
     <script type="text/javascript" src="/js/idcheck.js"></script>
+    <script type="text/javascript" src="/js/profile.js"></script>
+    <script type="text/javascript" src="/js/edit.js"></script>
+    <script type="text/javascript" src="/js/quit.js"></script>
+    
 </body>
 </html>

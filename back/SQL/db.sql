@@ -8,7 +8,7 @@ CREATE TABLE user (
     userpw VARCHAR(32) NULL,
     username VARCHAR(32) NULL,
     nickname VARCHAR(32) NULL,
-    birthdate TIMESTAMP NULL,
+    birthdate VARCHAR(32) NULL,
     adress VARCHAR(64) NULL,
     gender CHAR(4) NULL,
     mobile CHAR(32) NULL,
