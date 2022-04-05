@@ -215,35 +215,70 @@
                     </div>
                 </div>
                 <div class="statistics">
-                    <!-- 유저 검색 기능 만들어야함! -->
                     <div class="USC">
                         <div class="userSearch_con">
+                            <p class="sign" align="center">USER SEARCH</p>
                             <div class="search">
-
+                                <input id="search_input" class="un" type="text" align="center" style="color: lightgray; width: 60%; " autocomplete="off">
+                                <button class="btn_close custom-btn btn-5" style="margin-top: 10px;">search</button>
                             </div>
                             <div class="user_profile">
-
+                                <div class="pop_inner_edit"> 
+                                    <p class="sign" align="center" style="font-size: 20px;">user profile</p>
+                                    <p class="reg_userid" type="text" align="center" style="color: lightgray; width: 95%;" >{{ UserID }} 더미</p>
+                                    <p class="reg_username" type="text" align="center" style="color: lightgray;width: 95%;">{{ Username}} 더미</p>
+                                    <p class="reg_nickname" type="text" align="center" style="color: lightgray;width: 95%;">{{ Nickname }} 더미</p>
+                                    <p class="reg_birthdate" type="date" align="center" style="color: lightgray;width: 95%;">{{ Birthdate }} 더미</p>
+                                    <p class="reg_adress" type="text" align="center"  style="color: lightgray;width: 95%;">{{ Adress }} 더미</p>
+                                    <p class="reg_gender" type="radio" align="center" style="color:lightgray;width: 95%;">{{ gender }} 더미</p>
+                                    <p class="reg_mobile" type="text" align="center"  style="color: lightgray;width: 95%;">{{ Mobile }} 더미</p>
+                                    <p class="reg_tel" type="text" align="center"  style="color: lightgray;width: 95%;">{{ Tel }} 더미</p>
+                                    <p class="reg_email" type="text" align="center"  style="color: lightgray;width: 95%;">{{ Email }} 더미</p>
+                                    <p class="reg_intro" type="text" align="center"  style="color: lightgray; height: 200px;width: 95%;">{{ intro }} 더미</p>
+                                </div>
                             </div>                        
                         </div>
                     </div>
-                    <div class="stat_1" style="margin-left: 40%;">
-                        <div class="stat_top">
-                            <div class="stat_menu1">
-                                userid
-                            </div>
-                            <div class="stat_munu2" style="margin-left: 40px;">
-                                ranking
-                            </div>
+                    <div class="stat_con">
+                        <div class="stat_p">
+                            <p class="sign" align="center" style="width: 200px; margin-left: 90px;">게시물 포인트 랭크</p>
+                            <p class="sign" align="center"  style="width: 200px; margin-left: 460px; margin-top: -55px;">댓글 포인트 랭크</p>
                         </div>
-                    </div>
-                    <div class="stat_2" style="margin-left: 60%;">
-                        <div class="stat_top">
-                            <div class="stat_menu1">
-                                userid
+                        <div class="stat_1" style=" overflow:scroll;">
+                            <div class="stat_top">
+                                <div class="stat_menu1">
+                                    userid
+                                </div>
+                                <div class="stat_munu2" style="margin-left: 40px;">
+                                    ranking
+                                </div>
                             </div>
-                            <div class="stat_munu2"style="margin-left: 40px;">
-                                ranking
+                            <ul class="rank_ul">
+                                <li class="rank_li">{{userid}} 이름 더미</li>
+                                <li class="rank_li">{{b_point}} 포인트 더미</li>
+                            </ul>
+                            <ul class="rank_ul">
+                                <li class="rank_li">{{userid}} 이름 더미</li>
+                                <li class="rank_li">{{b_point}} 포인트 더미</li>
+                            </ul>
+                        </div>
+                        <div class="stat_2" style="margin-left: 400px; overflow:scroll;">
+                            <div class="stat_top">
+                                <div class="stat_menu1">
+                                    userid
+                                </div>
+                                <div class="stat_munu2"style="margin-left: 40px; ">
+                                    ranking
+                                </div>
                             </div>
+                            <ul class="rank_ul">
+                                <li class="rank_li">{{userid}} 이름 더미</li>
+                                <li class="rank_li">{{b_point}} 포인트 더미</li>
+                            </ul>
+                            <ul class="rank_ul">
+                                <li class="rank_li">{{userid}} 이름 더미</li>
+                                <li class="rank_li">{{b_point}} 포인트 더미</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
