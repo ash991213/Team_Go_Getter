@@ -47,19 +47,50 @@
                     <div id="pop_info_1" class="pop_wrap" style="display: none;">
                         <div class="pop_inner">
                             <p class="sign" align="center">REGISTER</p>
-                            <input class="reg_userid" type="text" align="center" placeholder="UserID" style="color: lightgray;">
+                            <input class="reg_userid" type="text" align="center" placeholder="UserID" style="color: lightgray; width: 70%;">
+                            <!-- 회원가입 중복체크 버튼 -->
+                            <input id="idcheck" class="custom-btn btn-5" type="submit" style="width: 20%;" placeholder="중복체크">
                             <input class="reg_userpw" type="text" align="center" placeholder="UserPW" style="color: lightgray;">
                             <input class="reg_username" type="text" align="center" placeholder="Username" style="color: lightgray;">
                             <input class="reg_nickname" type="text" align="center" placeholder="Nickname" style="color: lightgray;">
                             <input class="reg_birthdate" type="date" align="center" placeholder="Birthdate" style="color: rgb(70, 70, 70)">
                             <input class="reg_adress" type="text" align="center" placeholder="Adress" style="color: lightgray;">
-                            <input class="reg_gender" type="text" align="center" placeholder="Gender" style="color: lightgray;">
+                            <!-- 회원가입 성별 라디오 버튼 -->
+                            <p style="color: #362C2C; font-weight: bold;">gender</p>
+                            <label style="display: flex; height: 40px;">
+                                <input class="reg_gender" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 35%; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">man</p>
+                                <input class="reg_gender" type="radio" align="center" style="color: lightgray;width: 20px; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">woman</p>
+                            </label>
                             <input class="reg_mobile" type="text" align="center" placeholder="Mobile" style="color: lightgray;">
                             <input class="reg_tel" type="text" align="center" placeholder="Tel" style="color: lightgray;">
                             <input class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">
                             <input class="reg_intro" type="text" align="center" placeholder="intro" style="color: lightgray; height: 200px;">
                             <input id="submit_frm" class="custom-btn btn-5" type="submit">
-                            <button class="btn_close custom-btn btn-5"><a href="/" align="center">CLOSE</a></button>
+                            <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
+                        </div>
+                    </div>
+
+                    <script>
+                        var target = document.querySelectorAll('.btn_open');
+                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+                        var targetID;
+    
+                        // 팝업 열기
+                        for(var i = 0; i < target.length; i++){
+                        target[i].addEventListener('click', function(){
+                            targetID = this.getAttribute('href');
+                            document.querySelector(targetID).style.display = 'block';
+                            });
+                        }
+                    </script>
+                </form> 
+                <!-- 프로필 페이지 팝업 -->
+                <form id="join_frm" action="http://localhost:4000/user/join" method="post">
+                    <div id="pop_info_1" class="pop_wrap" style="display: none;">
+                        <div class="pop_inner"> 
+                        
+                            <input id="submit_frm" class="custom-btn btn-5" type="submit">
+                            <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
                         </div>
                     </div>
                     <script>
@@ -75,7 +106,7 @@
                             });
                         }
                     </script>
-                </form>      
+                </form> 
             </div>
         </div>
     </div>
@@ -218,5 +249,6 @@
     </script>
     <script type="text/javascript" src="/js/join.js"></script>
     <script type="text/javascript" src="/js/login.js"></script>
+    <script type="text/javascript" src="/js/idcheck.js"></script>
 </body>
 </html>
