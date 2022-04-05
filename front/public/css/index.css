@@ -590,13 +590,18 @@ a {
     }
 }
 /* 프로필 모아보기 css */
-.See_All_td{
+.See_All_ul{
     display: block;
     border: #362C2C 2px solid; 
     border-radius: 5px;
     width: 300px;
     background-color: rgb(58, 58, 58);
 }
+
+.See_All_li{
+    
+}
+
 .See_All_td a{
     display: block;
 }
