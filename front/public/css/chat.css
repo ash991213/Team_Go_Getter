@@ -105,6 +105,7 @@ html, body {
     font-size: 12px;
     margin: 0 5px;
     flex: 7;
+    background: #ffeb33;
 }
 
 .time {

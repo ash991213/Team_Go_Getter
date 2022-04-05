@@ -14,15 +14,16 @@ module.exports = title = (io) => {
         })
 
             socket.on('chat', async (data) => {
-                const [userid,content]  = ["test1","test1"]
+                const userid  = "test1"
+                const content = data.msg
 
                 try {
                     const sql = `INSERT INTO chat (userid,cr_idx,content,date)
                                 VALUES (?,?,?,CURRENT_TIMESTAMP)` 
 
                     const prepare = [userid,cr_idx,content]
-                    const [result] = await pool.execute(sql,prepare)
-                    console.log(result)
+
+                    await pool.execute(sql,prepare)
 
                     chat.to(cr_idx).emit('chatting', {
                         msg: content,
@@ -36,17 +37,3 @@ module.exports = title = (io) => {
         })
     })
 }
-
-// io.on('connection', (socket) => {
-//     console.log('서버 웹소켓 connect')
-
-//     socket.on('chatting',(data)=>{
-//         console.log(data)
-//         const { name, msg } = data;
-//         io.emit('chatting', {
-//             name,
-//             msg,
-//             time:moment(new Date()).format('h:mm A')
-//         })
-//     })
-// })
