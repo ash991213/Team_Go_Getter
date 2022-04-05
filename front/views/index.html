@@ -31,7 +31,7 @@
                     <input id="login_userpw" class="pass" type="password" align="center" placeholder="Password" style="color: lightgray;">
                     <button class="custom-btn btn-5" type="submit">LOGIN</button>
                     <button class="custom-btn btn-5"><a href="#pop_info_1" class="btn_open" align="center">REGISTER</a></button>
-                    <button class="custom-btn btn-5"><a href="#pop_info_2" class="btn_open" align="center">PROFILE</a></button>
+                    <button id="profile_btn" class="custom-btn btn-5"><a href="#pop_info_2" class="btn_open" align="center">PROFILE</a></button>
                     {% endif %}
                 <div class="kakao_login">
                     <a href="/" ><img src="./kakao_login_medium_narrow (1).png"> </a>
@@ -90,20 +90,20 @@
                     <div id="pop_info_2" class="pop_wrap" style="display: none;">
                         <div class="pop_inner_edit"> 
                             <p class="sign" align="center">PROFILE</p>
-                            <p class="reg_userid" type="text" align="center" style="color: lightgray; padding-top: 3px;" >{{ UserID }}</p>
-                            <p class="reg_userpw" type="text" align="center" style="color: lightgray;">{{ UserPW}}</p>
-                            <p class="reg_username" type="text" align="center" style="color: lightgray;">{{ Username}}</p>
-                            <p class="reg_nickname" type="text" align="center" style="color: lightgray;">{{ Nickname }}</p>
-                            <p class="reg_birthdate" type="date" align="center" style="color: lightgray">{{ Birthdate }}</p>
-                            <p class="reg_adress" type="text" align="center"  style="color: lightgray;">{{ Adress }}</p>
-                            <p class="reg_gender" type="radio" align="center" style="color:lightgray;">{{ gender }}</p>
-                            <p class="reg_mobile" type="text" align="center"  style="color: lightgray;">{{ Mobile }}</p>
-                            <p class="reg_tel" type="text" align="center"  style="color: lightgray;">{{ Tel }}</p>
-                            <p class="reg_email" type="text" align="center"  style="color: lightgray;">{{ Email }}</p>
-                            <p class="reg_intro" type="text" align="center"  style="color: lightgray; height: 200px;">{{ intro }}</p>
+                            <p id="pro_userid" class="reg_userid" type="text" align="center" style="color: lightgray; padding-top: 3px;" ></p>
+                            <p id="pro_userpw" class="reg_userpw" type="text" align="center" style="color: lightgray;"></p>
+                            <p id="pro_username" class="reg_username" type="text" align="center" style="color: lightgray;"></p>
+                            <p id="pro_nickname" class="reg_nickname" type="text" align="center" style="color: lightgray;"></p>
+                            <p id="pro_birthdate" class="reg_birthdate" type="date" align="center" style="color: lightgray"></p>
+                            <p id="pro_adress" class="reg_adress" type="text" align="center"  style="color: lightgray;"></p>
+                            <p id="pro_gender" class="reg_gender" type="radio" align="center" style="color:lightgray;"></p>
+                            <p id="pro_mobile" class="reg_mobile" type="text" align="center"  style="color: lightgray;"></p>
+                            <p id="pro_tel" class="reg_tel" type="text" align="center"  style="color: lightgray;"></p>
+                            <p id="pro_email" class="reg_email" type="text" align="center"  style="color: lightgray;"></p>
+                            <p id="pro_intro" class="reg_intro" type="text" align="center"  style="color: lightgray; height: 200px;"></p>
                             <!-- 프로필 수정 페이지 이동 버튼 -->
                             <button class="custom-btn btn-5"><a href="#pop_info_3" align="center" class="btn_open">EDIT</a></button>
-                            <button class="custom-btn btn-5"><a href="#pop_info_4" align="center" class="btn_open">SEE ALL</a></button>
+                            <button id="SEE_ALL_btn" class="custom-btn btn-5"><a href="#pop_info_4" align="center" class="btn_open">SEE ALL</a></button>
                             <!-- 회원탈퇴 > ? action 수정 필요 -->
                             <button id="quit_frm" class="custom-btn btn-5" type="submit" style="width: 40%; margin-bottom: 10px;">회원 탈퇴</button>
 
@@ -130,7 +130,6 @@
                         <div class="pop_inner">
                             <p class="sign" align="center">EDIT</p>
                             <input class="reg_userid" type="text" align="center" placeholder="UserID" style="color: lightgray; width: 70%;">
-                            <input id="idcheck" class="custom-btn btn-5" type="submit" style="width: 20%;" placeholder="중복체크">
                             <input class="reg_userpw" type="text" align="center" placeholder="UserPW" style="color: lightgray;">
                             <input class="reg_username" type="text" align="center" placeholder="Username" style="color: lightgray;">
                             <input class="reg_nickname" type="text" align="center" placeholder="Nickname" style="color: lightgray;">
@@ -145,7 +144,7 @@
                             <input class="reg_tel" type="text" align="center" placeholder="Tel" style="color: lightgray;">
                             <input class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">
                             <input class="reg_intro" type="text" align="center" placeholder="intro" style="color: lightgray; height: 200px;">
-                            <button id="edit_frm" class="custom-btn btn-5" type="submit" ><a href="/" align="center" class="btn_open">SUBMIT</a></button>
+                            <button id="edit_frm_btn" class="custom-btn btn-5" type="submit" ><a href="/" align="center" class="btn_open">SUBMIT</a></button>
                             <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
                         </div>
                     </div>
@@ -181,51 +180,24 @@
                                     </tr>
                                 </c:forEach> -->
                                 <div class="SA_con1" style="float: left;">
-                                    <tr>
-                                        <td><p>자신의 게시물</p></td>
-                                        <tr >
-                                            <c:forEach var="board" items="${list }">
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                            </c:forEach>
-                                        </tr>
-                                    </tr>
+                                    <ul id="write_board" class="See_All_ul">
+                                        <li>테스트</li>
+                                    </ul>
                                 </div>
                                 <div class="SA_con1" style="float: left;">
-                                    <tr>
-                                        <td><p>좋아요한 게시물</p></td>
-                                        <tr >
-                                            <c:forEach var="board" items="${list }">
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                            </c:forEach>
-                                        </tr>
-                                    </tr>
-                                </div>
-                                <div class="SA_con1">
-                                    <tr>
-                                        <td><p>자신의 댓글</p></td>
-                                        <tr >
-                                            <c:forEach var="board" items="${list }">
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                            </c:forEach>
-                                        </tr>
-                                    </tr>
+                                    <ul id="like_board" class="See_All_ul">
+                                        <li>테스트</li>
+                                    </ul>
                                 </div>
                                 <div class="SA_con1" style="float: left;">
-                                    <tr>
-                                        <td><p>좋아요한 댓글</p></td>
-                                        <tr >
-                                            <c:forEach var="board" items="${list }">
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                            </c:forEach>
-                                        </tr>
-                                    </tr>
+                                    <ul id="write_reply" class="See_All_ul">
+                                        <li>테스트</li>
+                                    </ul>
+                                </div>
+                                <div class="SA_con1" style="float: left;">
+                                    <ul id="like_reply" class="See_All_ul">
+                                        <li>테스트</li>
+                                    </ul>
                                 </div>
                             </table>
 
@@ -392,5 +364,6 @@
     <script type="text/javascript" src="/js/user/login.js"></script>
     <script type="text/javascript" src="/js/user/idcheck.js"></script>
     <script type="text/javascript" src="/js/user/profile.js"></script>
+    <script type="text/javascript" src="/js/user/userData.js"></script>
 </body>
 </html>
