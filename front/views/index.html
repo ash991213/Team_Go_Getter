@@ -70,19 +70,6 @@
                             <button class="btn_close custom-btn btn-5"><a href="/" align="center">CLOSE</a></button>
                         </div>
                     </div>
-                    <script>
-                        var target = document.querySelectorAll('.btn_open');
-                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-                        var targetID;
-    
-                        // 팝업 열기
-                        for(var i = 0; i < target.length; i++){
-                        target[i].addEventListener('click', function(){
-                            targetID = this.getAttribute('href');
-                            document.querySelector(targetID).style.display = 'block';
-                            });
-                        }
-                    </script>
                 </form> 
                 <!-- 프로필 페이지 팝업 -->
                 <!-- nunjucks작업을 하고 로그인 후!로 빼버려야함 -->
@@ -110,19 +97,6 @@
                             <button class="btn_close custom-btn btn-5"><a href="/" align="center">CLOSE</a></button>
                         </div>
                     </div>
-                    <script>
-                        var target = document.querySelectorAll('.btn_open');
-                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-                        var targetID;
-    
-                        // 팝업 열기
-                        for(var i = 0; i < target.length; i++){
-                        target[i].addEventListener('click', function(){
-                            targetID = this.getAttribute('href');
-                            document.querySelector(targetID).style.display = 'block';
-                            });
-                        }
-                    </script>
                 </form> 
                 <!-- 프로필 수정 팝업 -->
                 <form id="edit_frm" action="http://localhost:4000/user/edit" method="post">
@@ -148,19 +122,6 @@
                             <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
                         </div>
                     </div>
-                    <script>
-                        var target = document.querySelectorAll('.btn_open');
-                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-                        var targetID;
-    
-                        // 팝업 열기
-                        for(var i = 0; i < target.length; i++){
-                        target[i].addEventListener('click', function(){
-                            targetID = this.getAttribute('href');
-                            document.querySelector(targetID).style.display = 'block';
-                            });
-                        }
-                    </script>
                 </form> 
                 <!-- 사용자 활동 모아 보기 -->
                 <!-- <form id="See_All_frm" action=" " method="post"> -->
@@ -200,25 +161,9 @@
                                     </ul>
                                 </div>
                             </table>
-
-
-
                             <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
                         </div>
                     </div>
-                    <script>
-                        var target = document.querySelectorAll('.btn_open');
-                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-                        var targetID;
-    
-                        // 팝업 열기
-                        for(var i = 0; i < target.length; i++){
-                        target[i].addEventListener('click', function(){
-                            targetID = this.getAttribute('href');
-                            document.querySelector(targetID).style.display = 'block';
-                            });
-                        }
-                    </script>
                 <!-- </form>  -->
             </div>
         </div>
@@ -234,8 +179,7 @@
                     </div>
                     <div class="button_con2">
                         <button class="custom-btn btn-7">
-                            <!-- 채팅방 라우터 적어야함 -->
-                            <a href="/" align="center"><span class="munu_button">CHAT</span></a>
+                            <a href="/chat/list" align="center"><span class="munu_button">CHAT</span></a>
                         </button>
                     </div>
                     <div class="logo_con">
@@ -243,20 +187,71 @@
                     </div>
                 </div>
                 <div class="statistics">
-                    <div class="stat_1">
-                        <div class="pie-chart2"><span class="center"></span></div>
+                    <div class="USC">
+                        <div class="userSearch_con">
+                            <p class="sign" align="center">USER SEARCH</p>
+                            <div class="search">
+                                <input id="search_input" class="un" type="text" align="center" style="color: lightgray; width: 60%; " autocomplete="off">
+                                <button class="btn_close custom-btn btn-5" style="margin-top: 10px;">search</button>
+                            </div>
+                            <div class="user_profile">
+                                <div class="pop_inner_edit"> 
+                                    <p class="sign" align="center" style="font-size: 20px;">user profile</p>
+                                    <p class="reg_userid" type="text" align="center" style="color: lightgray; width: 95%;" >{{ UserID }} 더미</p>
+                                    <p class="reg_username" type="text" align="center" style="color: lightgray;width: 95%;">{{ Username}} 더미</p>
+                                    <p class="reg_nickname" type="text" align="center" style="color: lightgray;width: 95%;">{{ Nickname }} 더미</p>
+                                    <p class="reg_birthdate" type="date" align="center" style="color: lightgray;width: 95%;">{{ Birthdate }} 더미</p>
+                                    <p class="reg_adress" type="text" align="center"  style="color: lightgray;width: 95%;">{{ Adress }} 더미</p>
+                                    <p class="reg_gender" type="radio" align="center" style="color:lightgray;width: 95%;">{{ gender }} 더미</p>
+                                    <p class="reg_mobile" type="text" align="center"  style="color: lightgray;width: 95%;">{{ Mobile }} 더미</p>
+                                    <p class="reg_tel" type="text" align="center"  style="color: lightgray;width: 95%;">{{ Tel }} 더미</p>
+                                    <p class="reg_email" type="text" align="center"  style="color: lightgray;width: 95%;">{{ Email }} 더미</p>
+                                    <p class="reg_intro" type="text" align="center"  style="color: lightgray; height: 200px;width: 95%;">{{ intro }} 더미</p>
+                                </div>
+                            </div>                        
+                        </div>
                     </div>
-                    <div class="stat_2">
-                        <div class="pie-chart2"><span class="center"></span></div>
-                    </div>
-                    <div class="stat_3">
-                        
-                    </div>
-                    <div class="stat_4">
-                        <div class="pie-chart2"><span class="center"></span></div>
-                    </div>
-                    <div class="stat_5">
-                        <div class="pie-chart2"><span class="center"></span></div>
+                    <div class="stat_con">
+                        <div class="stat_p">
+                            <p class="sign" align="center" style="width: 200px; margin-left: 90px;">게시물 포인트 랭크</p>
+                            <p class="sign" align="center"  style="width: 200px; margin-left: 460px; margin-top: -55px;">댓글 포인트 랭크</p>
+                        </div>
+                        <div class="stat_1" style=" overflow:scroll;">
+                            <div class="stat_top">
+                                <div class="stat_menu1">
+                                    userid
+                                </div>
+                                <div class="stat_munu2" style="margin-left: 40px;">
+                                    ranking
+                                </div>
+                            </div>
+                            <ul class="rank_ul">
+                                <li class="rank_li">{{userid}} 이름 더미</li>
+                                <li class="rank_li">{{b_point}} 포인트 더미</li>
+                            </ul>
+                            <ul class="rank_ul">
+                                <li class="rank_li">{{userid}} 이름 더미</li>
+                                <li class="rank_li">{{b_point}} 포인트 더미</li>
+                            </ul>
+                        </div>
+                        <div class="stat_2" style="margin-left: 400px; overflow:scroll;">
+                            <div class="stat_top">
+                                <div class="stat_menu1">
+                                    userid
+                                </div>
+                                <div class="stat_munu2"style="margin-left: 40px; ">
+                                    ranking
+                                </div>
+                            </div>
+                            <ul class="rank_ul">
+                                <li class="rank_li">{{userid}} 이름 더미</li>
+                                <li class="rank_li">{{b_point}} 포인트 더미</li>
+                            </ul>
+                            <ul class="rank_ul">
+                                <li class="rank_li">{{userid}} 이름 더미</li>
+                                <li class="rank_li">{{b_point}} 포인트 더미</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -312,8 +307,6 @@
     </div>
 
     <script>
-
-    
     //스크롤 화면 이동 이벤트
         window.onload = function(){
 
@@ -360,10 +353,27 @@
     }
     
     </script>
+
+
+    <script>
+        var target = document.querySelectorAll('.btn_open');
+        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+        var targetID;
+
+        // 팝업 열기
+        for(var i = 0; i < target.length; i++){
+        target[i].addEventListener('click', function(){
+            targetID = this.getAttribute('href');
+            document.querySelector(targetID).style.display = 'block';
+            });
+        }
+    </script>
+    
     <script type="text/javascript" src="/js/user/join.js"></script>
     <script type="text/javascript" src="/js/user/login.js"></script>
     <script type="text/javascript" src="/js/user/idcheck.js"></script>
     <script type="text/javascript" src="/js/user/profile.js"></script>
     <script type="text/javascript" src="/js/user/userData.js"></script>
+
 </body>
 </html>
