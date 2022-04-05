@@ -12,6 +12,7 @@ join_Frm.addEventListener('submit', async (e)=>{
     mobile:document.querySelector('.reg_mobile').value,
     tel:document.querySelector('.reg_tel').value,
     email:document.querySelector('.reg_email').value,
+    intro:document.querySelector('.reg_intro').value,
   }
   console.log(body);
   try {

@@ -122,7 +122,7 @@ html.open {
     margin-left: 50px;
     margin-right: 75px;
 }
-.reg_userid,.reg_userpw,.reg_username,.reg_nickname,.reg_birthdate,.reg_adress,.reg_gender,.reg_mobile,.reg_tel,.reg_email{
+.reg_userid,.reg_userpw,.reg_username,.reg_nickname,.reg_birthdate,.reg_adress,.reg_gender,.reg_mobile,.reg_tel,.reg_email,.reg_intro{
     
     margin-bottom: 15px;
     width: 90%;
@@ -141,7 +141,7 @@ html.open {
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
 }
-.un:focus, .pass:focus ,.reg_userid:focus,.reg_userpw:focus,.reg_username:focus,.reg_nickname:focus,.reg_birthdate:focus,.reg_adress:focus,.reg_gender:focus,.reg_mobile:focus,.reg_tel:focus,.reg_email:focus{
+.un:focus, .pass:focus ,.reg_userid:focus,.reg_userpw:focus,.reg_username:focus,.reg_nickname:focus,.reg_birthdate:focus,.reg_adress:focus,.reg_gender:focus,.reg_mobile:focus,.reg_tel:focus,.reg_email:focus,.reg_intro:focus{
     border: 2px solid rgb(41, 189, 235) !important;
     transition-duration: 0.8s;
 }
@@ -194,7 +194,7 @@ html.open {
     padding:20px 30px; 
     background:#fff; 
     width:400px; 
-    height: 600px;
+    height: 800px;
     vertical-align:middle; 
     font-size:15px;
     background-color: rgb(70, 70, 70);

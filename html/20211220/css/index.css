@@ -1,0 +1,41 @@
+/* CSS style sheet */
+/*
+    * 선택자
+    margin padding
+
+*/
+
+*{
+    font-size:12px;
+    margin:0;
+   
+}
+
+#header{
+    background:red;
+    height:120px;
+    padding:15px;
+    margin:15px;
+    font-size:18px;
+    box-sizing: border-box;
+    color:#fff;
+   
+}
+
+#visual{
+    background:blue;
+    height:450px;
+    margin:15px;
+ 
+    
+    /*모든방향 다 12px씩 띄움
+    */
+}
+
+#content{
+    background:yellow;
+    margin: 30px;
+    height: 300px;
+    
+
+}
