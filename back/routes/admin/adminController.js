@@ -3,12 +3,6 @@ const pool = require('../../models/db.js').pool;
 const { makeToken } = require('../../utils/jwt.js');
 const { decodePayload } = require('../../utils/jwt.js');
 
-const secretKey = process.env.SECRET_KEY; // salt
-const algorithm = process.env.JWT_ALG; // 사용 알고리즘
-const expiresIn = process.env.JWT_EXP; // 만료기간
-const issuer = process.env.JWT_ISSUER; // 토큰 발급자
-
-// 관리자 로그인
 exports.login = async (req,res) => {
     const { userid,userpw } =req.body
 
@@ -28,18 +22,15 @@ exports.login = async (req,res) => {
         }
 
         if ( result.length != 0 ) {
-            if ( result[0].isActive == 3 ) {
-                // 로그인 성공
+            if ( result[0].level == 1 ) {
                 const token = makeToken(payload)
-                res.cookie('admin',token)
+                res.cookie('user',token)
             } else {
-                // 관리자 아이디가 아닙니다.
                 response = {
                     errno:3
                 }
             }
         } else {
-            // 존재하지 않는 아이디입니다.
             response = {
                 errno:2
             }
@@ -53,7 +44,6 @@ exports.login = async (req,res) => {
     res.json(response)
 }
 
-// 관리자 로그아웃
 exports.logout = async (req,res) => {
 
     let response = {
@@ -71,7 +61,6 @@ exports.logout = async (req,res) => {
     res.json(response)
 }
 
-// 카테고리 리스트
 exports.categoryList = async (req,res) => {
     const sql = `SELECT * FROM maincategory`
     const sql2 = `SELECT * FROM subcategory`
@@ -98,7 +87,6 @@ exports.categoryList = async (req,res) => {
     res.json(response)
 }
 
-// 메인 카테고리 추가
 exports.mainCategory = async (req,res) => {
     const { m_name } = req.body
 
@@ -110,8 +98,7 @@ exports.mainCategory = async (req,res) => {
     }
 
     try {
-        const [result] = await pool.execute(sql)
-        console.log(result)
+        await pool.execute(sql)
 
     } catch (error) {
         console.log(error.message)
@@ -122,7 +109,6 @@ exports.mainCategory = async (req,res) => {
     res.json(response)
 }
 
-// 서브 카테고리 추가
 exports.subCategory = async (req,res) => {
     const { s_name,m_idx } = req.body
 
@@ -146,11 +132,10 @@ exports.subCategory = async (req,res) => {
     res.json(response)
 }
 
-// 메인 카테고리 삭제
 exports.mainDelete = async (req,res) => {
     const { m_name } = req.body
 
-    const sql = `DELETE FROM maincategory WHERE m_name = ${m_name}`
+    const sql = `DELETE FROM maincategory WHERE m_name = '${m_name}'`
 
     let response = {
         errno:0
@@ -167,11 +152,10 @@ exports.mainDelete = async (req,res) => {
     res.json(response)
 }
 
-// 서브 카테고리 삭제
 exports.subDelete = async (req,res) => {
     const { s_name } = req.body
 
-    const sql = `DELETE FROM subcategory WHERE s_name = ${s_name}`
+    const sql = `DELETE FROM subcategory WHERE s_name = '${s_name}'`
 
     let response = {
         errno:0
@@ -191,20 +175,19 @@ exports.subDelete = async (req,res) => {
 exports.getUserEdit = async (req,res) => {
     const { userid } = req.body
 
-    // 본인 프로필
     const sql = `SELECT * FROM user a
                  JOIN intro AS b ON a.userid = b.userid
                  JOIN point AS c ON a.userid = c.userid
                  WHERE a.userid = userid`
-    // 본인이 쓴 글
+
     const sql2 = `SELECT * FROM board WHERE userid = '${userid}'`
-    // 본인이 쓴 댓글
+
     const sql3 = `SELECT * FROM reply WHERE userid = '${userid}'`
-    // 본인이 좋아요 누른 글
+    
     const sql4 = `SELECT * FROM likes a
                   JOIN board as b ON a.b_idx = b.b_idx
                   WHERE a.userid = '${userid}' AND a.like_num = 1`
-    // 본인이 좋아요 누른 댓글
+    
     const sql5 = `SELECT * FROM likes a
                   JOIN reply as b ON a.r_idx = b.r_idx
                   WHERE a.userid = '${userid}' AND a.like_num = 1`
@@ -242,7 +225,7 @@ exports.postUserEdit = async (req,res) => {
 
     const prepare = [userpw,username,nickname,adress,date,mobile,tel,email,isActive,level]
 
-    const sql2 = `UPDATE intro SET content = ${intro} WHERE userid = ${userid}`
+    const sql2 = `UPDATE intro SET content = '${intro}' WHERE userid = '${userid}'`
 
     let response = {
         errno:0
