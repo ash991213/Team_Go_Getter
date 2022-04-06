@@ -154,19 +154,17 @@ exports.getEdit = async (req,res) => {
     }
 
     try {
-        const [user] = await pool.execute(sql)
+        const [[user]] = await pool.execute(sql)
         const [board] = await pool.execute(sql2)
         const [reply] = await pool.execute(sql3)
         const [likes_board] = await pool.execute(sql4)
         const [likes_reply] = await pool.execute(sql5)
 
         const result = { user,board,reply,likes_board,likes_reply }
-        console.log(result)
         response = {
             ...response,
             result
         }
-
     } catch (error) {
         console.log(error.message)
         response = {
@@ -268,9 +266,11 @@ exports.list = async (req,res) => {
 exports.find = async (req,res) => {
     const { data } = req.body
 
-    const sql = `SELECT * FROM user WHERE userid LIKE ? OR username LIKE ?`
+    const sql = `SELECT * FROM user a 
+                 JOIN intro AS b ON a.userid = b.userid
+                 WHERE a.userid LIKE ? OR a.username LIKE ?`
 
-    const prepare = new Array(`%${data}%`,`%${data}%`)
+    const prepare = new Array(`${data}`,`${data}`)
 
     let response = {
         errno:0
@@ -353,7 +353,8 @@ exports.point = async (req,res) => {
         const [reply] = await pool.execute(sql2)
 
         const result = { board,reply }
-
+        console.log(result);
+        console.log(response);
         response = {
             ...response,
             result

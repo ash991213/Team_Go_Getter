@@ -4,6 +4,7 @@ const boardRouter = require('./board/boardRouter.js');
 const adminRouter = require('./admin/adminRouter.js');
 const replyRouter = require('./reply/replyRouter.js');
 const chatRouter = require('./chat/chatRouter.js');
+const axios = require('axios');
 
 const router = express.Router();
 
@@ -13,12 +14,21 @@ router.use('/admin',adminRouter);
 router.use('/reply',replyRouter);
 router.use('/chat',chatRouter);
 
-router.get('/',(req,res)=>{
-    // if (req.headers.cookie != undefined){
-    //     res.redirect('/')
-    // }else{
-    res.render('index.html');
-    // }
+router.get('/', async (req,res)=>{
+    // const response = await axios.post('http://localhost:4000/user/point') 
+
+    // const { board } = response.data.result
+    // const { reply } = response.data.result
+    // console.log(response.data);
+    // console.log(board)
+    // console.log(reply)
+
+<<<<<<< HEAD
+    res.render('index.html' );
+    // ,{board,reply}
+=======
+    res.render('index.html', {board,reply});
+>>>>>>> cd8d506e1a2a906c98adb6cf81cb4c5a8a19260e
 });
 
 router.get('/main_category',(req,res)=>{
