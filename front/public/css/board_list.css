@@ -53,7 +53,15 @@ p{
     float: left;
     display: flex;
 }
+.item:hover{
+    box-shadow: 0px 0px 30px 3px rgb(255, 0, 0) !important;
+    transition-duration: 0.8s;
+}
 .item_subject{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position: absolute;
     margin: 0 auto;
     width: 90%;
@@ -66,6 +74,10 @@ p{
     display:block;
 }
 .item_img{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position:absolute;
     margin: 0 auto;
     width: 90%;
@@ -75,6 +87,10 @@ p{
     border-radius: 30px;
 }
 .item_date{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position: absolute;
     margin: 0 auto;
     width: 90%;
@@ -87,6 +103,10 @@ p{
     display:block;
 }
 .item_hit{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position: absolute;
     margin: 0 auto;
     width: 90%;
@@ -99,6 +119,10 @@ p{
     display:block;
 }
 .item_reply_count{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position: absolute;
     margin: 0 auto;
     width: 90%;
@@ -111,6 +135,10 @@ p{
     display:block;
 }
 .item_subcategory{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position: absolute;
     margin: 0 auto;
     width: 90%;
@@ -123,6 +151,10 @@ p{
     display:block;
 }
 .item_likes{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position: absolute;
     margin: 0 auto;
     width: 90%;
@@ -135,6 +167,10 @@ p{
     display:block;
 }
 .item_likes2{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position: absolute;
     margin: 0 auto;
     width: 90%;
