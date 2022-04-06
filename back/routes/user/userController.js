@@ -266,9 +266,11 @@ exports.list = async (req,res) => {
 exports.find = async (req,res) => {
     const { data } = req.body
 
-    const sql = `SELECT * FROM user WHERE userid LIKE ? OR username LIKE ?`
+    const sql = `SELECT * FROM user a 
+                 JOIN intro AS b ON a.userid = b.userid
+                 WHERE a.userid LIKE ? OR a.username LIKE ?`
 
-    const prepare = new Array(`%${data}%`,`%${data}%`)
+    const prepare = new Array(`${data}`,`${data}`)
 
     let response = {
         errno:0

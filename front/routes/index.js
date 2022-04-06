@@ -23,8 +23,12 @@ router.get('/', async (req,res)=>{
     // console.log(board)
     // console.log(reply)
 
+<<<<<<< HEAD
     res.render('index.html' );
     // ,{board,reply}
+=======
+    res.render('index.html', {board,reply});
+>>>>>>> cd8d506e1a2a906c98adb6cf81cb4c5a8a19260e
 });
 
 router.get('/main_category',(req,res)=>{
