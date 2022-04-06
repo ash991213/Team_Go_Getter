@@ -20,9 +20,6 @@ router.get('/', async (req,res)=>{
     const { board } = response.data.result
     const { reply } = response.data.result
 
-    console.log(board)
-    console.log(reply)
-
     res.render('index.html', {board,reply});
 });
 
