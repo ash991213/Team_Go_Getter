@@ -102,11 +102,12 @@ exports.loginpost = async (req,res) => {
         }
         if (result.length !== 0) {
             if (result[0].isActive == 1) {
-                if (result[0].level == 3) {
+                if (result[0].level == 1) {
                     const token = makeToken(payload)
                     res.cookie('user',token)
                 } else {
                     console.log('관리자 아이디입니다.')
+                    alert
                     response = {
                         errno:4
                     }

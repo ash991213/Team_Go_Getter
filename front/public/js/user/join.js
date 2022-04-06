@@ -14,7 +14,6 @@ join_Frm.addEventListener('submit', async (e)=>{
     email:document.querySelector('.reg_email').value,
     intro:document.querySelector('.reg_intro').value,
   }
-  console.log(body);
   try {
     const response = await axios.post('http://localhost:4000/user/join',body,{
       'Content-type':'application/json',

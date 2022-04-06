@@ -31,7 +31,7 @@
                         <input id="login_userpw" class="pass" type="password" align="center" placeholder="Password" style="color: lightgray;">
                         <button class="custom-btn btn-5" type="submit">LOGIN</button>
                     </form>  
-                    <button class="custom-btn btn-5"><a href="#pop_info_1" class="btn_open" align="center">REGISTER</a></button>
+                    <button class="custom-btn btn-5"><a href="#pop_info_1" class="btn_open" align="center" style="display: block;">REGISTER</a></button>
                     <button id="profile_btn" class="custom-btn btn-5"><a href="#pop_info_2" class="btn_open" align="center">PROFILE</a></button>
                     {% endif %}
                 <div class="kakao_login">
@@ -44,7 +44,7 @@
                     <a href="/" ><img src="./btnG_official.png" width="185" height="40"> </a>
                 </div> 
                  <!-- 회원가입 팝업창 띄우기 -->
-                 <form id="join_frm" action="http://localhost:4000/user/join" method="post">
+                 <form id="join_frm" action="http://localhost:4000/user/join" method="post"></form>
                     <div id="pop_info_1" class="pop_wrap" style="display: none;">
                         <div class="pop_inner">
                             <p class="sign" align="center">REGISTER</p>
@@ -59,24 +59,26 @@
                             <!-- 회원가입 성별 라디오 버튼 -->
                             <p style="color: #362C2C; font-weight: bold;">gender</p>
                             <label style="display: flex; height: 40px;">
-                                <input class="reg_gender" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 35%; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">man</p>
-                                <input class="reg_gender" type="radio" align="center" style="color: lightgray;width: 20px; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">woman</p>
+                                <input class="reg_gender" type="radio" value="남자" align="center" style="color:lightgray;width: 20px;margin-left: 35%; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">man</p>
+                                <input class="reg_gender" type="radio" value="여자" align="center" style="color: lightgray;width: 20px; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">woman</p>
                             </label>
                             <input class="reg_mobile" type="text" align="center" placeholder="Mobile" style="color: lightgray;">
                             <input class="reg_tel" type="text" align="center" placeholder="Tel" style="color: lightgray;">
                             <input class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">
                             <input class="reg_intro" type="text" align="center" placeholder="intro" style="color: lightgray; height: 200px;">
+                            </form> 
                             <input id="submit_frm" class="custom-btn btn-5" type="submit">
                             <button class="btn_close custom-btn btn-5"><a href="/" align="center">CLOSE</a></button>
                         </div>
                     </div>
-                </form> 
+                </form>
                 <!-- 프로필 페이지 팝업 -->
                 <!-- nunjucks작업을 하고 로그인 후!로 빼버려야함 -->
-                <form id="profile_frm" action="http://localhost:4000/user/profile" method="post">
+                <form id="profile_frm" action="http://localhost:4000 method="post">
                     <div id="pop_info_2" class="pop_wrap" style="display: none;">
                         <div class="pop_inner_edit"> 
                             <p class="sign" align="center">PROFILE</p>
+                            <form id="profile_frm" action="http://localhost:4000/user/profile" method="post">
                             <input id="pro_userid" class="reg_userid" type="text" align="center" placeholder="UserID" style="color: lightgray; width: 70%;">
                             <button id="idcheck" class="custom-btn btn-5" type="click" style="width: 20%;">중복체크</button>
                             <input id="pro_userpw"class="reg_userpw" type="text" align="center" placeholder="UserPW" style="color: lightgray;">
@@ -93,41 +95,16 @@
                             <input id="pro_tel"class="reg_tel" type="text" align="center" placeholder="Tel" style="color: lightgray;">
                             <input id="pro_email"class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">
                             <input id="pro_intro"class="reg_intro" type="text" align="center" placeholder="intro" style="color: lightgray; height: 200px;">
+                            </form> 
                             <!-- 프로필 수정 페이지 이동 버튼 -->
-                            <button class="custom-btn btn-5" style="margin-bottom: 5px;width: 160px;"><a href="#pop_info_3" align="center" class="btn_open">EDIT</a></button>
+                            <button id="profileEdit_btn" class="custom-btn btn-5" style="margin-bottom: 5px;width: 160px;"><a href="#pop_info_3" align="center" class="btn_open">EDIT</a></button>
                             <button id="SEE_ALL_btn" class="custom-btn btn-5" style="margin-bottom: 5px; width: 160px;"><a href="#pop_info_4" align="center" class="btn_open">SEE ALL</a></button>
                             <!-- 회원탈퇴 > ? action 수정 필요 -->
-                            <button id="quit_frm" class="custom-btn btn-5" type="submit" style="width: 160px; margin-bottom: 10px;">회원 탈퇴</button>
+                            <button id="quit_frm" class="custom-btn btn-5" style="width: 160px; margin-bottom: 10px;">회원 탈퇴</button>
 
                             <button class="btn_close custom-btn btn-5" style="width: 160px;"><a href="/" align="center">CLOSE</a></button>
                         </div>
                     </div>
-                </form> 
-                <!-- 프로필 수정 팝업
-                <form id="edit_frm" action="http://localhost:4000/user/edit" method="post">
-                    <div id="pop_info_3" class="pop_wrap" style="display: none;">
-                        <div class="pop_inner">
-                            <p class="sign" align="center">EDIT</p>
-                            <input class="reg_userid" type="text" align="center" placeholder="UserID" style="color: lightgray; width: 70%;">
-                            <input class="reg_userpw" type="text" align="center" placeholder="UserPW" style="color: lightgray;">
-                            <input class="reg_username" type="text" align="center" placeholder="Username" style="color: lightgray;">
-                            <input class="reg_nickname" type="text" align="center" placeholder="Nickname" style="color: lightgray;">
-                            <input class="reg_birthdate" type="date" align="center" placeholder="Birthdate" style="color: rgb(70, 70, 70)">
-                            <input class="reg_adress" type="text" align="center" placeholder="Adress" style="color: lightgray;">
-                            <p style="color: #362C2C; font-weight: bold;">gender</p>
-                            <label style="display: flex; height: 40px;">
-                                <input class="reg_gender" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 35%; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">man</p>
-                                <input class="reg_gender" type="radio" align="center" style="color: lightgray;width: 20px; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">woman</p>
-                            </label>
-                            <input class="reg_mobile" type="text" align="center" placeholder="Mobile" style="color: lightgray;">
-                            <input class="reg_tel" type="text" align="center" placeholder="Tel" style="color: lightgray;">
-                            <input class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">
-                            <input class="reg_intro" type="text" align="center" placeholder="intro" style="color: lightgray; height: 200px;">
-                            <button id="edit_frm_btn" class="custom-btn btn-5" type="submit" ><a href="/" align="center" class="btn_open">SUBMIT</a></button>
-                            <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
-                        </div>
-                    </div>
-                </form>  -->
                 <!-- 사용자 활동 모아 보기 -->
                 <!-- <form id="See_All_frm" action=" " method="post"> -->
                     <div id="pop_info_4" class="pop_wrap" style="display: none;">
@@ -179,7 +156,7 @@
                 <div class="main2_button">
                     <div class="button_con1">
                         <button class="custom-btn btn-7">
-                            <a href="/main_category" align="center"><span class="munu_button">COMMUNITY</span></a>
+                            <a href="/category" align="center"><span class="munu_button">COMMUNITY</span></a>
                         </button>
                     </div>
                     <div class="button_con2">
@@ -358,34 +335,15 @@
     }
     
     </script>
-<<<<<<< HEAD
     <script type="text/javascript" src="/js/user/pop.js"></script>
-=======
-
-
-    <script>
-        var target = document.querySelectorAll('.btn_open');
-        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-        var targetID;
-
-        // 팝업 열기
-        for(var i = 0; i < target.length; i++){
-        target[i].addEventListener('click', function(){
-            targetID = this.getAttribute('href');
-            document.querySelector(targetID).style.display = 'block';
-            });
-        }
-    </script>
-    
-    <!-- USER -->
->>>>>>> cd8d506e1a2a906c98adb6cf81cb4c5a8a19260e
     <script type="text/javascript" src="/js/user/join.js"></script>
     <script type="text/javascript" src="/js/user/login.js"></script>
     <script type="text/javascript" src="/js/user/idcheck.js"></script>
     <script type="text/javascript" src="/js/user/profile.js"></script>
     <script type="text/javascript" src="/js/user/userData.js"></script>
     <script type="text/javascript" src="/js/user/find.js"></script>
-    
+    <script type="text/javascript" src="/js/user/profileEdit.js"></script>
+    <script type="text/javascript" src="/js/user/quit.js"></script>
     <!-- ADMIN -->
     <script type="text/javascript" src="/js/admin/login.js"></script>
 
