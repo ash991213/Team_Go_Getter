@@ -152,38 +152,29 @@ p{
     float:none;
     display:block;
 }
-.item_likes{
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    position: absolute;
-    margin: 0 auto;
-    width: 90%;
-    height: 20px;
-    margin-top: 275px;
-    margin-left: 8px;
-    border-radius: 30px;
-    background-color: rgb(49, 49, 49);
-    float:none;
-    display:block;
-}
-.item_likes2{
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    position: absolute;
-    margin: 0 auto;
-    width: 90%;
-    height: 20px;
-    margin-top: 298px;
-    margin-left: 8px;
-    border-radius: 30px;
-    background-color: rgb(49, 49, 49);
-    float:none;
-    display:block;
-}
+.container {
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } 
+  .container .button-container{
+    margin-top: 270px;
+    margin-left: 25px;
+  }
+  .container .button-container a {
+      width: 45px;
+      text-decoration: none;
+    background-color: #fff;
+    border: 2px solid #2199e8;
+    padding: 10px 20px;
+    border-radius: 2px;
+    color: #2199e8;
+  }    
+  .container .button-container a:hover {
+    background-color: #2199e8;
+    color: #fff;
+  }
 /* 스크롤 css */
 .contents::-webkit-scrollbar {
     width: 10px; 

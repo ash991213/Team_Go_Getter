@@ -187,7 +187,7 @@ html.open {
     width: 300px;
 }
 /* 팝업창 css */
-.btn_open{margin:5px; padding:4px 6px; color:#fff;}
+.btn_open{ color:#fff;}
 .pop_wrap{z-index: 10;position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.7); font-size:0; text-align:center;}
 .pop_wrap:after{display:inline-block; height:100%; vertical-align:middle; content:'';}
 /* 기본 회원가입 팝업 */
