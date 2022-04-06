@@ -233,6 +233,7 @@ exports.quit = async (req,res) => {
         await pool.execute(`SET foreign_key_checks = 0`)
         await pool.execute(sql)
         await pool.execute(`SET foreign_key_checks = 1`)
+        res.clearCookie('user')
     } catch (error) {
         console.log(error.message)
         response = {
