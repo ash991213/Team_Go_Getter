@@ -23,15 +23,16 @@
                 {% else %}
                 <p class="sign" align="center">SIGN IN</p>
                 {% endif %}
-                <form class="form1" id="login_frm">
                     {% if response %}
                     <a class="submit" align="center">profile</a>
                     {% else %}
                     <input id="login_userid" class="un" type="text" align="center" placeholder="Username" style="color: lightgray; " autocomplete="off">
                     <input id="login_userpw" class="pass" type="password" align="center" placeholder="Password" style="color: lightgray;">
-                    <button class="custom-btn btn-5" type="submit">LOGIN</button>
+                    <form class="form1" id="login_frm">
+                        <button class="custom-btn btn-5" type="submit">LOGIN</button>
+                    </form>  
                     <button class="custom-btn btn-5"><a href="#pop_info_1" class="btn_open" align="center">REGISTER</a></button>
-                    <button class="custom-btn btn-5"><a href="#pop_info_2" class="btn_open" align="center">PROFILE</a></button>
+                    <button id="profile_btn" class="custom-btn btn-5"><a href="#pop_info_2" class="btn_open" align="center">PROFILE</a></button>
                     {% endif %}
                 <div class="kakao_login">
                     <a href="/" ><img src="./kakao_login_medium_narrow (1).png"> </a>
@@ -41,8 +42,7 @@
                 </div>
                 <div class="naver_login">
                     <a href="/" ><img src="./btnG_official.png" width="185" height="40"> </a>
-                </div>
-                </form>   
+                </div> 
                  <!-- 회원가입 팝업창 띄우기 -->
                  <form id="join_frm" action="http://localhost:4000/user/join" method="post">
                     <div id="pop_info_1" class="pop_wrap" style="display: none;">
@@ -70,19 +70,6 @@
                             <button class="btn_close custom-btn btn-5"><a href="/" align="center">CLOSE</a></button>
                         </div>
                     </div>
-                    <script>
-                        var target = document.querySelectorAll('.btn_open');
-                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-                        var targetID;
-    
-                        // 팝업 열기
-                        for(var i = 0; i < target.length; i++){
-                        target[i].addEventListener('click', function(){
-                            targetID = this.getAttribute('href');
-                            document.querySelector(targetID).style.display = 'block';
-                            });
-                        }
-                    </script>
                 </form> 
                 <!-- 프로필 페이지 팝업 -->
                 <!-- nunjucks작업을 하고 로그인 후!로 빼버려야함 -->
@@ -90,47 +77,38 @@
                     <div id="pop_info_2" class="pop_wrap" style="display: none;">
                         <div class="pop_inner_edit"> 
                             <p class="sign" align="center">PROFILE</p>
-                            <p class="reg_userid" type="text" align="center" style="color: lightgray; padding-top: 3px;" >{{ UserID }}</p>
-                            <p class="reg_userpw" type="text" align="center" style="color: lightgray;">{{ UserPW }}</p>
-                            <p class="reg_username" type="text" align="center" style="color: lightgray;">{{ Username}}</p>
-                            <p class="reg_nickname" type="text" align="center" style="color: lightgray;">{{ Nickname }}</p>
-                            <p class="reg_birthdate" type="date" align="center" style="color: lightgray">{{ Birthdate }}</p>
-                            <p class="reg_adress" type="text" align="center"  style="color: lightgray;">{{ Adress }}</p>
-                            <p class="reg_gender" type="radio" align="center" style="color:lightgray;">{{ gender }}</p>
-                            <p class="reg_mobile" type="text" align="center"  style="color: lightgray;">{{ Mobile }}</p>
-                            <p class="reg_tel" type="text" align="center"  style="color: lightgray;">{{ Tel }}</p>
-                            <p class="reg_email" type="text" align="center"  style="color: lightgray;">{{ Email }}</p>
-                            <p class="reg_intro" type="text" align="center"  style="color: lightgray; height: 200px;">{{ intro }}</p>
+                            <input id="pro_userid" class="reg_userid" type="text" align="center" placeholder="UserID" style="color: lightgray; width: 70%;">
+                            <button id="idcheck" class="custom-btn btn-5" type="click" style="width: 20%;">중복체크</button>
+                            <input id="pro_userpw"class="reg_userpw" type="text" align="center" placeholder="UserPW" style="color: lightgray;">
+                            <input id="pro_username"class="reg_username" type="text" align="center" placeholder="Username" style="color: lightgray;">
+                            <input id="pro_nickname"class="reg_nickname" type="text" align="center" placeholder="Nickname" style="color: lightgray;">
+                            <input id="pro_birthdate"class="reg_birthdate" type="date" align="center" placeholder="Birthdate" style="color: rgb(70, 70, 70)">
+                            <input id="pro_adress"class="reg_adress" type="text" align="center" placeholder="Adress" style="color: lightgray;">
+                            <p style="color: #362C2C; font-weight: bold;">gender</p>
+                            <label style="display: flex; height: 40px;">
+                                <input id="pro_gender"class="reg_gender" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 35%; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">man</p>
+                                <input id="pro_gender"class="reg_gender" type="radio" align="center" style="color: lightgray;width: 20px; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">woman</p>
+                            </label>
+                            <input id="pro_mobile"class="reg_mobile" type="text" align="center" placeholder="Mobile" style="color: lightgray;">
+                            <input id="pro_tel"class="reg_tel" type="text" align="center" placeholder="Tel" style="color: lightgray;">
+                            <input id="pro_email"class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">
+                            <input id="pro_intro"class="reg_intro" type="text" align="center" placeholder="intro" style="color: lightgray; height: 200px;">
                             <!-- 프로필 수정 페이지 이동 버튼 -->
-                            <button class="custom-btn btn-5"><a href="#pop_info_3" align="center" class="btn_open">EDIT</a></button>
-                            <button class="custom-btn btn-5"><a href="#pop_info_4" align="center" class="btn_open">SEE ALL</a></button>
+                            <button class="custom-btn btn-5" style="margin-bottom: 5px;width: 160px;"><a href="#pop_info_3" align="center" class="btn_open">EDIT</a></button>
+                            <button id="SEE_ALL_btn" class="custom-btn btn-5" style="margin-bottom: 5px; width: 160px;"><a href="#pop_info_4" align="center" class="btn_open">SEE ALL</a></button>
                             <!-- 회원탈퇴 > ? action 수정 필요 -->
-                            <button id="quit_frm" class="custom-btn btn-5" type="submit" style="width: 40%; margin-bottom: 10px;">회원 탈퇴</button>
+                            <button id="quit_frm" class="custom-btn btn-5" type="submit" style="width: 160px; margin-bottom: 10px;">회원 탈퇴</button>
 
-                            <button class="btn_close custom-btn btn-5"><a href="/" align="center">CLOSE</a></button>
+                            <button class="btn_close custom-btn btn-5" style="width: 160px;"><a href="/" align="center">CLOSE</a></button>
                         </div>
                     </div>
-                    <script>
-                        var target = document.querySelectorAll('.btn_open');
-                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-                        var targetID;
-    
-                        // 팝업 열기
-                        for(var i = 0; i < target.length; i++){
-                        target[i].addEventListener('click', function(){
-                            targetID = this.getAttribute('href');
-                            document.querySelector(targetID).style.display = 'block';
-                            });
-                        }
-                    </script>
                 </form> 
-                <!-- 프로필 수정 팝업 -->
+                <!-- 프로필 수정 팝업
                 <form id="edit_frm" action="http://localhost:4000/user/edit" method="post">
                     <div id="pop_info_3" class="pop_wrap" style="display: none;">
                         <div class="pop_inner">
                             <p class="sign" align="center">EDIT</p>
                             <input class="reg_userid" type="text" align="center" placeholder="UserID" style="color: lightgray; width: 70%;">
-                            <input id="idcheck" class="custom-btn btn-5" type="submit" style="width: 20%;" placeholder="중복체크">
                             <input class="reg_userpw" type="text" align="center" placeholder="UserPW" style="color: lightgray;">
                             <input class="reg_username" type="text" align="center" placeholder="Username" style="color: lightgray;">
                             <input class="reg_nickname" type="text" align="center" placeholder="Nickname" style="color: lightgray;">
@@ -145,24 +123,11 @@
                             <input class="reg_tel" type="text" align="center" placeholder="Tel" style="color: lightgray;">
                             <input class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">
                             <input class="reg_intro" type="text" align="center" placeholder="intro" style="color: lightgray; height: 200px;">
-                            <button id="edit_frm" class="custom-btn btn-5" type="submit" ><a href="/" align="center" class="btn_open">SUBMIT</a></button>
+                            <button id="edit_frm_btn" class="custom-btn btn-5" type="submit" ><a href="/" align="center" class="btn_open">SUBMIT</a></button>
                             <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
                         </div>
                     </div>
-                    <script>
-                        var target = document.querySelectorAll('.btn_open');
-                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-                        var targetID;
-    
-                        // 팝업 열기
-                        for(var i = 0; i < target.length; i++){
-                        target[i].addEventListener('click', function(){
-                            targetID = this.getAttribute('href');
-                            document.querySelector(targetID).style.display = 'block';
-                            });
-                        }
-                    </script>
-                </form> 
+                </form>  -->
                 <!-- 사용자 활동 모아 보기 -->
                 <!-- <form id="See_All_frm" action=" " method="post"> -->
                     <div id="pop_info_4" class="pop_wrap" style="display: none;">
@@ -181,72 +146,29 @@
                                     </tr>
                                 </c:forEach> -->
                                 <div class="SA_con1" style="float: left;">
-                                    <tr>
-                                        <td><p>자신의 게시물</p></td>
-                                        <tr >
-                                            <c:forEach var="board" items="${list }">
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                            </c:forEach>
-                                        </tr>
-                                    </tr>
+                                    <ul id="write_board" class="See_All_ul">
+                                        <li>테스트</li>
+                                    </ul>
                                 </div>
                                 <div class="SA_con1" style="float: left;">
-                                    <tr>
-                                        <td><p>좋아요한 게시물</p></td>
-                                        <tr >
-                                            <c:forEach var="board" items="${list }">
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                            </c:forEach>
-                                        </tr>
-                                    </tr>
-                                </div>
-                                <div class="SA_con1">
-                                    <tr>
-                                        <td><p>자신의 댓글</p></td>
-                                        <tr >
-                                            <c:forEach var="board" items="${list }">
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                            </c:forEach>
-                                        </tr>
-                                    </tr>
+                                    <ul id="like_board" class="See_All_ul">
+                                        <li>테스트</li>
+                                    </ul>
                                 </div>
                                 <div class="SA_con1" style="float: left;">
-                                    <tr>
-                                        <td><p>좋아요한 댓글</p></td>
-                                        <tr >
-                                            <c:forEach var="board" items="${list }">
-                                                <td class="See_All_td"><a href="/board_view">dsfsfsd</a></td>
-                                            </c:forEach>
-                                        </tr>
-                                    </tr>
+                                    <ul id="write_reply" class="See_All_ul">
+                                        <li>테스트</li>
+                                    </ul>
+                                </div>
+                                <div class="SA_con1" style="float: left;">
+                                    <ul id="like_reply" class="See_All_ul">
+                                        <li>테스트</li>
+                                    </ul>
                                 </div>
                             </table>
-
-
-
                             <button class="btn_close custom-btn btn-5"><a href="/" align=s"center">CLOSE</a></button>
                         </div>
                     </div>
-                    <script>
-                        var target = document.querySelectorAll('.btn_open');
-                        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-                        var targetID;
-    
-                        // 팝업 열기
-                        for(var i = 0; i < target.length; i++){
-                        target[i].addEventListener('click', function(){
-                            targetID = this.getAttribute('href');
-                            document.querySelector(targetID).style.display = 'block';
-                            });
-                        }
-                    </script>
                 <!-- </form>  -->
             </div>
         </div>
@@ -262,7 +184,6 @@
                     </div>
                     <div class="button_con2">
                         <button class="custom-btn btn-7">
-                            <!-- 채팅방 라우터 적어야함 -->
                             <a href="/chat/list" align="center"><span class="munu_button">CHAT</span></a>
                         </button>
                     </div>
@@ -271,35 +192,70 @@
                     </div>
                 </div>
                 <div class="statistics">
-                    <!-- 유저 검색 기능 만들어야함! -->
                     <div class="USC">
                         <div class="userSearch_con">
+                            <p class="sign" align="center">USER SEARCH</p>
                             <div class="search">
-
+                                <input id="search_input" class="un" type="text" align="center" style="color: lightgray; width: 60%; " autocomplete="off">
+                                <button id="search_btn" class="btn_close custom-btn btn-5" style="margin-top: 10px;">search</button>
                             </div>
                             <div class="user_profile">
-
+                                <div class="pop_inner_edit"> 
+                                    <p class="sign" align="center" style="font-size: 20px;">user profile</p>
+                                    <p id="search_userid" class="reg_userid" type="text" align="center" style="color: lightgray; width: 95%;" >{{ UserID }} 더미</p>
+                                    <p id="search_username" class="reg_username" type="text" align="center" style="color: lightgray;width: 95%;">{{ Username}} 더미</p>
+                                    <p id="search_nickname" class="reg_nickname" type="text" align="center" style="color: lightgray;width: 95%;">{{ Nickname }} 더미</p>
+                                    <p id="search_birthdate" class="reg_birthdate" type="date" align="center" style="color: lightgray;width: 95%;">{{ Birthdate }} 더미</p>
+                                    <p id="search_adress" class="reg_adress" type="text" align="center"  style="color: lightgray;width: 95%;">{{ Adress }} 더미</p>
+                                    <p id="search_gender" class="reg_gender" type="radio" align="center" style="color:lightgray;width: 95%;">{{ gender }} 더미</p>
+                                    <p id="search_mobile" class="reg_mobile" type="text" align="center"  style="color: lightgray;width: 95%;">{{ Mobile }} 더미</p>
+                                    <p id="search_tel" class="reg_tel" type="text" align="center"  style="color: lightgray;width: 95%;">{{ Tel }} 더미</p>
+                                    <p id="search_email" class="reg_email" type="text" align="center"  style="color: lightgray;width: 95%;">{{ Email }} 더미</p>
+                                    <p id="search_intro" class="reg_intro" type="text" align="center"  style="color: lightgray; height: 200px;width: 95%;">{{ intro }} 더미</p>
+                                </div>
                             </div>                        
                         </div>
                     </div>
-                    <div class="stat_1">
-                        <div class="stat_top">
-                            <div class="stat_menu1">
-                                안녕
-                            </div>
-                            <div class="stat_munu2">
-                                아나녕
-                            </div>
+                    <div class="stat_con">
+                        <div class="stat_p">
+                            <p class="sign" align="center" style="width: 200px; margin-left: 90px;">게시물 포인트 랭크</p>
+                            <p class="sign" align="center"  style="width: 200px; margin-left: 460px; margin-top: -55px;">댓글 포인트 랭크</p>
                         </div>
-                    </div>
-                    <div class="stat_2">
-                        <div class="stat_top">
-                            <div class="stat_menu1">
-                                userid
+                        <div class="stat_1" style=" overflow:scroll;">
+                            <div class="stat_top">
+                                <div class="stat_menu1">
+                                    userid
+                                </div>
+                                <div class="stat_munu2" style="margin-left: 40px;">
+                                    ranking
+                                </div>
                             </div>
-                            <div class="stat_munu2">
-                                ranking
+                            <ul class="rank_ul">
+                                <li class="rank_li">{{ board[0].userid }}</li>
+                                <li class="rank_li">{{ board[0].b_point }}</li>
+                            </ul>
+                            <ul class="rank_ul">
+                                <li class="rank_li"></li>
+                                <li class="rank_li"></li>
+                            </ul>
+                        </div>
+                        <div class="stat_2" style="margin-left: 400px; overflow:scroll;">
+                            <div class="stat_top">
+                                <div class="stat_menu1">
+                                    userid
+                                </div>
+                                <div class="stat_munu2"style="margin-left: 40px; ">
+                                    ranking
+                                </div>
                             </div>
+                            <ul class="rank_ul">
+                                <li class="rank_li">{{ reply[0].userid }}</li>
+                                <li class="rank_li">{{ reply[0].r_point}}</li>
+                            </ul>
+                            <ul class="rank_ul">
+                                <li class="rank_li">{{userid}} 이름 더미</li>
+                                <li class="rank_li">{{b_point}} 포인트 더미</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -356,8 +312,6 @@
     </div>
 
     <script>
-
-    
     //스크롤 화면 이동 이벤트
         window.onload = function(){
 
@@ -404,12 +358,28 @@
     }
     
     </script>
-    <script type="text/javascript" src="/js/join.js"></script>
-    <script type="text/javascript" src="/js/login.js"></script>
-    <script type="text/javascript" src="/js/idcheck.js"></script>
-    <script type="text/javascript" src="/js/profile.js"></script>
-    <script type="text/javascript" src="/js/edit.js"></script>
-    <script type="text/javascript" src="/js/quit.js"></script>
+
+
+    <script>
+        var target = document.querySelectorAll('.btn_open');
+        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+        var targetID;
+
+        // 팝업 열기
+        for(var i = 0; i < target.length; i++){
+        target[i].addEventListener('click', function(){
+            targetID = this.getAttribute('href');
+            document.querySelector(targetID).style.display = 'block';
+            });
+        }
+    </script>
     
+    <script type="text/javascript" src="/js/user/join.js"></script>
+    <script type="text/javascript" src="/js/user/login.js"></script>
+    <script type="text/javascript" src="/js/user/idcheck.js"></script>
+    <script type="text/javascript" src="/js/user/profile.js"></script>
+    <script type="text/javascript" src="/js/user/userData.js"></script>
+    <script type="text/javascript" src="/js/user/find.js"></script>
+
 </body>
 </html>

@@ -1,14 +1,13 @@
 const pool = require('../../models/db.js').pool;
 const { decodePayload } = require('../../utils/jwt.js');
 
-// 댓글
 exports.mainwrite = async (req,res) => {
     const { content } = req.body
 
-    const b_idx = 5 //req.query
+    const b_idx = req.query
 
-    // const token = req.headers.cookie
-    const userid = 'ash991213' // decodePayload(token).userid
+    const token = req.cookies.user
+    const userid = decodePayload(token).userid
 
     const sql = `INSERT INTO 
                  reply(userid,b_idx,content,depth,seq,date) 
@@ -24,7 +23,7 @@ exports.mainwrite = async (req,res) => {
         const [result] = await pool.execute(sql,prepare)
         const [result2] = await pool.execute(`SELECT * FROM reply WHERE depth = 1`)
 
-        const groupNum = result2[result2.length-1].groupNum+1
+        const groupNum = result2[result2.length-2].groupNum+1
         const r_idx = result.insertId
         await pool.execute(`UPDATE reply SET groupNum=${groupNum} WHERE r_idx=${r_idx}`)
 
@@ -32,9 +31,9 @@ exports.mainwrite = async (req,res) => {
         const reply_count = result3.reply_count + 1
         await pool.execute(`UPDATE board SET reply_count = ${reply_count} WHERE b_idx = ${b_idx}`)
 
-        const [[result4]] = await pool.execute(`SELECT * FROM point WHERE userid = ${userid}`)
+        const [[result4]] = await pool.execute(`SELECT * FROM point WHERE userid = '${userid}'`)
         const r_point = result4.r_point + 10
-        await pool.execute(`UPDATE point SET r_point = ${r_point} WHERE userid = ${userid}`)
+        await pool.execute(`UPDATE point SET r_point = ${r_point} WHERE userid = '${userid}'`)
 
         response = {
             ...response,
@@ -53,14 +52,13 @@ exports.mainwrite = async (req,res) => {
     res.json(response)
 };
 
-// 대댓글
 exports.subwrite = async (req,res) => {
     const { content,groupNum } = req.body
     
-    const b_idx = 5 //req.query
+    const b_idx = req.query
 
-    // const token = req.headers.cookie
-    const userid = 'ash991213' // decodePayload(token).userid
+    const token = req.cookies.user
+    const userid = decodePayload(token).userid
 
     const sql = `INSERT INTO 
                  reply(userid,b_idx,content,depth,seq,date,groupNum) 
@@ -80,9 +78,7 @@ exports.subwrite = async (req,res) => {
         const prepare = [userid,b_idx,content,2,seq,groupNum]
         const [result2] = await pool.execute(sql,prepare)
 
-        const [[result3]] = await pool.execute(`SELECT * FROM point WHERE userid = ${userid}`)
-        const r_point = result3.r_point + 10
-        await pool.execute(`UPDATE point SET r_point = ${r_point} WHERE userid = ${userid}`)
+        await pool.execute(`UPDATE point SET r_point = r_point+10 WHERE userid = '${userid}'`)
     
         response = {
             ...response,
@@ -101,7 +97,7 @@ exports.subwrite = async (req,res) => {
 }
 
 exports.view = async (req,res) => {
-    const b_idx = 5 // req.query
+    const b_idx = req.query
 
     const sql = `SELECT a.userid, a.content, a.groupNum, a.date, b.username, b.gender, b.email 
                  FROM reply a
@@ -137,16 +133,14 @@ exports.view = async (req,res) => {
 }
 
 exports.edit = async (req,res) => {
-    const b_idx = 5 // req.query
-
     const { r_idx,content } = req.body
 
-    // const token = req.cookies.user
-    const userid = 'admin' // decodePayload(token).userid
+    const token = req.cookies.user
+    const userid = decodePayload(token).userid
      
     const sql = `UPDATE reply SET content = '${content}' WHERE r_idx = '${r_idx}'`
 
-    const sql2 = `SELECT * FROM board WHERE b_idx = ${b_idx} AND userid = '${userid}'`
+    const sql2 = `SELECT * FROM reply WHERE r_idx = ${r_idx} AND userid = '${userid}'`
     const [result2] = await pool.execute(sql2)
 
     let response = {
@@ -162,20 +156,19 @@ exports.edit = async (req,res) => {
             errno:0
         }
     }
+    res.json(response)
 }
 
 exports.delete = async (req,res) => {
-    const b_idx = 5 // req.query
-
     const { r_idx,groupNum,depth } = req.body
 
-    // const token = req.cookies.user
-    const userid = 'ash991213' // decodePayload(token).userid
+    const token = req.cookies.user
+    const userid = decodePayload(token).userid
 
     const sql = `DELETE FROM reply WHERE groupNum = ${groupNum}`
     const sql2 = `DELETE FROM reply WHERE r_idx = ${r_idx}`
 
-    const sql3 = `SELECT * FROM board WHERE b_idx = ${b_idx} AND userid = '${userid}'`
+    const sql3 = `SELECT * FROM reply WHERE r_idx = ${r_idx} AND userid = '${userid}'`
     const [result3] = await pool.execute(sql3)
 
     let response = {
@@ -198,10 +191,10 @@ exports.delete = async (req,res) => {
 }
 
 exports.likes = async (req,res) => {
-    const r_idx = 5 // req.body
+    const { r_idx } = req.body
 
-    // const token = req.headers.cookie
-    const userid = 'ash991213' // decodePayload(token).userid
+    const token = req.cookies.user
+    const userid = decodePayload(token).userid
 
     const sql = `SELECT * FROM likes WHERE userid=? AND r_idx=?`
 
@@ -252,10 +245,10 @@ exports.likes = async (req,res) => {
 }
 
 exports.dislikes = async (req,res) => {
-    const r_idx = 1 // req.body
+    const { r_idx } = req.body
 
-    // const token = req.headers.cookie
-    const userid = 'ash991213' // decodePayload(token).userid
+    const token = req.cookies.user
+    const userid = decodePayload(token).userid
 
     const sql = `SELECT * FROM likes WHERE userid=? AND r_idx=?`
 
