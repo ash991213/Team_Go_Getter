@@ -351,7 +351,8 @@ exports.point = async (req,res) => {
         const [reply] = await pool.execute(sql2)
 
         const result = { board,reply }
-
+        console.log(result);
+        console.log(response);
         response = {
             ...response,
             result

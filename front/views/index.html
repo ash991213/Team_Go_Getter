@@ -18,7 +18,7 @@
                 <source src="./KakaoTalk_20220324_090914533 (online-video-cutter.com).mp4" type="video/mp4">
             </video>
             <div class="main">
-                {% if response %}
+                {% if cookie %}
                 <p class="sign" align="center">{{username}}, Welcome!</p>
                 {% else %}
                 <p class="sign" align="center">SIGN IN</p>
@@ -26,9 +26,9 @@
                     {% if response %}
                     <a class="submit" align="center">profile</a>
                     {% else %}
-                    <input id="login_userid" class="un" type="text" align="center" placeholder="Username" style="color: lightgray; " autocomplete="off">
-                    <input id="login_userpw" class="pass" type="password" align="center" placeholder="Password" style="color: lightgray;">
                     <form class="form1" id="login_frm">
+                        <input id="login_userid" class="un" type="text" align="center" placeholder="Username" style="color: lightgray; " autocomplete="off">
+                        <input id="login_userpw" class="pass" type="password" align="center" placeholder="Password" style="color: lightgray;">
                         <button class="custom-btn btn-5" type="submit">LOGIN</button>
                     </form>  
                     <button class="custom-btn btn-5"><a href="#pop_info_1" class="btn_open" align="center">REGISTER</a></button>
@@ -358,22 +358,7 @@
     }
     
     </script>
-
-
-    <script>
-        var target = document.querySelectorAll('.btn_open');
-        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-        var targetID;
-
-        // 팝업 열기
-        for(var i = 0; i < target.length; i++){
-        target[i].addEventListener('click', function(){
-            targetID = this.getAttribute('href');
-            document.querySelector(targetID).style.display = 'block';
-            });
-        }
-    </script>
-    
+    <script type="text/javascript" src="/js/user/pop.js"></script>
     <script type="text/javascript" src="/js/user/join.js"></script>
     <script type="text/javascript" src="/js/user/login.js"></script>
     <script type="text/javascript" src="/js/user/idcheck.js"></script>
