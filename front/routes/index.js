@@ -23,11 +23,8 @@ router.get('/', async (req,res)=>{
     res.render('index.html', {board,reply});
 });
 
-router.get('/main_category',(req,res)=>{
-    res.render('main_category.html');
-});
-router.get('/sub_category',(req,res)=>{
-    res.render('sub_category.html');
+router.get('/category',(req,res)=>{
+    res.render('category.html');
 });
 router.get('/board_list',(req,res)=>{
     res.render('board_list.html');
