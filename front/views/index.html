@@ -286,19 +286,19 @@
         <div class="admin_back">
             <div class="admin_main">
                 <div class="admin_login_con">
-                    <form id="login-form" method="post">
+                    <form id="admin_login_form" method="post">
 
                         <label class="legend">ID</label>
       
-                        <input name="userid" type="text">
+                        <input id="admin_userid" name="userid" type="text">
       
       
       
                         <label class="legend">password</label> 
       
-                        <input name="passwprd" type="password"> 
+                        <input id="admin_userpw" name="password" type="password"> 
       
-                        <button class="custom-btn btn-5"><a href="/" class="admin_login_button" align="center">admin login</a></button>
+                        <button class="custom-btn btn-5" id="admin_login_button" align="center"admin login></button>
                </form>
                 </div>
             </div>
@@ -369,12 +369,16 @@
         }
     </script>
     
+    <!-- USER -->
     <script type="text/javascript" src="/js/user/join.js"></script>
     <script type="text/javascript" src="/js/user/login.js"></script>
     <script type="text/javascript" src="/js/user/idcheck.js"></script>
     <script type="text/javascript" src="/js/user/profile.js"></script>
     <script type="text/javascript" src="/js/user/userData.js"></script>
     <script type="text/javascript" src="/js/user/find.js"></script>
+    
+    <!-- ADMIN -->
+    <script type="text/javascript" src="/js/admin/login.js"></script>
 
 </body>
 </html>
