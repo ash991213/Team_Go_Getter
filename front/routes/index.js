@@ -15,16 +15,12 @@ router.use('/reply',replyRouter);
 router.use('/chat',chatRouter);
 
 router.get('/', async (req,res)=>{
-    // const response = await axios.post('http://localhost:4000/user/point') 
+    const response = await axios.post('http://localhost:4000/user/point') 
 
-    // const { board } = response.data.result
-    // const { reply } = response.data.result
-    // console.log(response.data);
-    // console.log(board)
-    // console.log(reply)
+    const { board } = response.data.result
+    const { reply } = response.data.result
 
-    res.render('index.html');
-    // {board,reply}
+    res.render('index.html', {board,reply});
 });
 
 router.get('/category',(req,res)=>{

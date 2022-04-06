@@ -5,6 +5,7 @@ body{
     background-color: #F3EBF6;
     font-family: 'Ubuntu', sans-serif;
 }
+
 ::-webkit-scrollbar {
     display: none;
 }
@@ -336,7 +337,8 @@ a {
     text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
     color: white;
     text-decoration: none;
-    display: block;
+    display:block;
+
 }
 .logo_con{
     width: 250px;
