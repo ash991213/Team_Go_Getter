@@ -1,10 +1,16 @@
 body,html{margin:0;padding:0;height:100%;}
 body{background:black; overflow:hidden}
 *{margin:0; padding:0;}
-.wrap
-{
+.wrap1 .wrap2{
     width: 80%;
-    margin: 0 auto;
+    height: 100%;
+}
+.wrap1{
+    margin-left: 50px;
+}
+p{
+    color: lightgray;
+    text-align: center;
 }
 .content_wrap {
     margin:50px auto 0 auto;
@@ -16,27 +22,180 @@ body{background:black; overflow:hidden}
     box-shadow: 0px 0px 35px 5px rgb(41, 189, 235);
   
 }
-table{
+.content_inner{
+    margin-top: 85px;
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+}
+.contents{
     width: 100%;
-    border-collapse: collapse;
-    line-height: 24px;
+    height: 600px;
+    margin-top: 50px;
+    border: solid 2px rgb(58, 58, 58);
+    border-radius: 20px 20px;
+    background-color: rgb(138, 138, 138);
+    /* 스크롤 만듦 */
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
-table td,th {
-    border-bottom: 2px solid rgb(58, 58, 58);
-    border-top:  2px solid  rgb(58, 58, 58);
-    border-collapse: collapse;
-    text-align: center;
-    padding: 10px;
+.item{
+    position: relative;
+    width: 15%;
+    height: 330px;
+    border: solid 2px rgb(70, 70, 70);
+    border-radius: 20px 20px;
+    background-color: rgb(58, 58, 58);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    /* 컨텐츠 가로 정렬 */
+    float: left;
+    display: flex;
 }
-th {
-	background: rgb(58, 58, 58);
+.item:hover{
+    box-shadow: 0px 0px 30px 3px rgb(255, 0, 0) !important;
+    transition-duration: 0.8s;
 }
-a:hover{
-    text-decoration: underline;
+.item_subject{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    margin: 0 auto;
+    width: 90%;
+    height: 20px;
+    margin-top: 3px;
+    margin-left: 8px;
+    border-radius: 30px;
+    background-color: rgb(49, 49, 49);
+    float:none;
+    display:block;
 }
-tr {
-    border: 1px solid  rgb(58, 58, 58);
-    color: lightgray;
+.item_img{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position:absolute;
+    margin: 0 auto;
+    width: 90%;
+    height: 150px;
+    margin-top: 30px;
+    margin-left: 8px;
+    border-radius: 30px;
+}
+.item_date{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    margin: 0 auto;
+    width: 90%;
+    height: 20px;
+    margin-top: 183px;
+    margin-left: 8px;
+    border-radius: 30px;
+    background-color: rgb(49, 49, 49);
+    float:none;
+    display:block;
+}
+.item_hit{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    margin: 0 auto;
+    width: 90%;
+    height: 20px;
+    margin-top: 206px;
+    margin-left: 8px;
+    border-radius: 30px;
+    background-color: rgb(49, 49, 49);
+    float:none;
+    display:block;
+}
+.item_reply_count{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    margin: 0 auto;
+    width: 90%;
+    height: 20px;
+    margin-top: 229px;
+    margin-left: 8px;
+    border-radius: 30px;
+    background-color: rgb(49, 49, 49);
+    float:none;
+    display:block;
+}
+.item_subcategory{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    margin: 0 auto;
+    width: 90%;
+    height: 20px;
+    margin-top: 252px;
+    margin-left: 8px;
+    border-radius: 30px;
+    background-color: rgb(49, 49, 49);
+    float:none;
+    display:block;
+}
+.item_likes{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    margin: 0 auto;
+    width: 90%;
+    height: 20px;
+    margin-top: 275px;
+    margin-left: 8px;
+    border-radius: 30px;
+    background-color: rgb(49, 49, 49);
+    float:none;
+    display:block;
+}
+.item_likes2{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    margin: 0 auto;
+    width: 90%;
+    height: 20px;
+    margin-top: 298px;
+    margin-left: 8px;
+    border-radius: 30px;
+    background-color: rgb(49, 49, 49);
+    float:none;
+    display:block;
+}
+/* 스크롤 css */
+.contents::-webkit-scrollbar {
+    width: 10px; 
+}
+
+.contents::-webkit-scrollbar-thumb {
+    height: 30%; 
+    background: #217af4; 
+    
+    border-radius: 30px;
+}
+
+.contents::-webkit-scrollbar-track {
+    background: rgba(138, 138, 138, 0); 
 }
 /* 버튼 */
 .custom-btn {
@@ -136,8 +295,8 @@ tr {
     display:inline-block;
     padding:20px 30px; 
     background:#fff; 
-    width:800px; 
-    height: 80%;
+    width:1000px; 
+    height: 90%;
     vertical-align:middle; 
     font-size:15px;
     background-color: rgb(70, 70, 70);

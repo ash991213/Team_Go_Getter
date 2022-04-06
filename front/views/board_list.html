@@ -9,110 +9,317 @@
 </head>
 <body>
     <div class="content_wrap">
-    	<div class="wrap">
+    	<div class="wrap1">
             <h2 style="font-weight: bold; color: #fff; ">COMMUNITY</h2>
-            <table>
-                <tr>
-                    <button class="custom-btn btn-5"><a href="/sub_category" align="center" style="color: #fff; display: block; text-decoration-line: none;">PREVIOUS</a></button>
-                    <button class="custom-btn btn-5" style="margin-left: 50px;"><a href="#pop_info_1" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">WRITING</a></button>
-                    <button class="custom-btn btn-5" style="margin-left: 50px;"><a href="#pop_info_2" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">POST SEARCH</a></button>
-                    <button class="custom-btn btn-5" style="margin-left: 50px;"><a href="#pop_info_3" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">USER SEARCH</a></button>
-                </tr>
-                <tr>
-                    <th>글번호</th>
-                    <th>글제목</th>
-                    <th>글내용</th>
-                    <th>작성자</th>
-                    <th>작성날짜</th>
-                    <th>조회수</th>
-                    <th>해시태그</th>
-                </tr>
-                <c:forEach var="board" items="${list }">
-                    <tr>
-                        <td>{{board.b_idx }}</td>
-                        <td>{{board.subject}}</td>
-                        <td>{{board.content}}</td>
-                        <td>{{board.userid }}</td>
-                        <td>{{board.date }}</td>
-                        <td>{{board.hit }}</td>
-                        <td>{{hashtag.name}}</td>
-                    </tr>
-                </c:forEach>
-                <tr>
-                    <td>1</td>
-                    <td><a href="/board_view">dsfsfsd</a></td>
-                    <td>gsdfgsg</td>
-                    <td>gdsg</td>
-                    <td>gsdgds</td>
-                    <td>gdsgds</td>
-                    <td>gsdgsg</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td><a href="/board_view">dsfsfsd</a></td>
-                    <td>gsdfgsg</td>
-                    <td>gdsg</td>
-                    <td>gsdgds</td>
-                    <td>gdsgds</td>
-                    <td>gsdgsg</td>
-                </tr>
-            </table>
+            <button class="custom-btn btn-5"><a href="/sub_category" align="center" style="color: #fff; display: block; text-decoration-line: none;">PREVIOUS</a></button>
+            <button class="custom-btn btn-5" style="margin-left: 10px;"><a href="#pop_info_1" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">WRITING</a></button>
+            <input class="write_subject" type="text" align="center" placeholder="게시글로 검색" style="color: lightgray;width: 350px;">
+            <button class="custom-btn btn-5" style="margin-left: 10px;"><a href="#pop_info_2" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">SEARCH</a></button>
+        </div>
+        <div class="wrap2">
+            <div class="content_inner">
+                <div class="contents">
+                    <div class="item" onclick="location.href='여기는 각 게시글 마다 나오게';">
+                        <div class="item_subject">
+                            <!-- 게시물 제목 넣기 -->
+                            <p>{{board.subject}}제목 더미 제목 더미제목 더미제목 더미</p>
+                        </div>
+                        <div class="item_img">
+                            <!-- 게시물 이미지 넣기 -->
+                            <img src="?" width="100%" height="100%">
+                        </div>
+                        <div class="item_date">
+                            <!-- 게시물 날짜 -->
+                            <p>{{board.date}}날짜 더미</p>
+                        </div>
+                        <div class="item_hit">
+                            <!-- 게시물 조회수 -->
+                            <p>{{board.hit}}조회수 더미</p>
+                        </div>
+                        <div class="item_reply_count">
+                            <!-- 게시물 댓글수 -->
+                            <p>{{board.reply_count}}댓글수 더미</p>
+                        </div>
+                        <div class="item_subcategory">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.subcategory}}서브카테고리 더미</p>
+                        </div>
+                        <div class="item_likes">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes}}좋아요 더미</p>
+                        </div>
+                        <div class="item_likes2">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes2}}싫어요 더미</p>
+                        </div>
+                    </div>
+                    <div class="item" onclick="location.href='여기는 각 게시글 마다 나오게';">
+                        <div class="item_subject">
+                            <!-- 게시물 제목 넣기 -->
+                            <p>{{board.subject}}제목 더미</p>
+                        </div>
+                        <div class="item_img">
+                            <!-- 게시물 이미지 넣기 -->
+                            <img src="?" width="100%" height="100%">
+                        </div>
+                        <div class="item_date">
+                            <!-- 게시물 날짜 -->
+                            <p>{{board.date}}날짜 더미</p>
+                        </div>
+                        <div class="item_hit">
+                            <!-- 게시물 조회수 -->
+                            <p>{{board.hit}}조회수 더미</p>
+                        </div>
+                        <div class="item_reply_count">
+                            <!-- 게시물 댓글수 -->
+                            <p>{{board.reply_count}}댓글수 더미</p>
+                        </div>
+                        <div class="item_subcategory">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.subcategory}}서브카테고리 더미</p>
+                        </div>
+                        <div class="item_likes">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes}}좋아요 더미</p>
+                        </div>
+                        <div class="item_likes2">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes2}}싫어요 더미</p>
+                        </div>
+                    </div>
+                    <div class="item" onclick="location.href='여기는 각 게시글 마다 나오게';">
+                        <div class="item_subject">
+                            <!-- 게시물 제목 넣기 -->
+                            <p>{{board.subject}}제목 더미</p>
+                        </div>
+                        <div class="item_img">
+                            <!-- 게시물 이미지 넣기 -->
+                            <img src="?" width="100%" height="100%">
+                        </div>
+                        <div class="item_date">
+                            <!-- 게시물 날짜 -->
+                            <p>{{board.date}}날짜 더미</p>
+                        </div>
+                        <div class="item_hit">
+                            <!-- 게시물 조회수 -->
+                            <p>{{board.hit}}조회수 더미</p>
+                        </div>
+                        <div class="item_reply_count">
+                            <!-- 게시물 댓글수 -->
+                            <p>{{board.reply_count}}댓글수 더미</p>
+                        </div>
+                        <div class="item_subcategory">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.subcategory}}서브카테고리 더미</p>
+                        </div>
+                        <div class="item_likes">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes}}좋아요 더미</p>
+                        </div>
+                        <div class="item_likes2">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes2}}싫어요 더미</p>
+                        </div>
+                    </div>
+                    <div class="item" onclick="location.href='여기는 각 게시글 마다 나오게';">
+                        <div class="item_subject">
+                            <!-- 게시물 제목 넣기 -->
+                            <p>{{board.subject}}제목 더미</p>
+                        </div>
+                        <div class="item_img">
+                            <!-- 게시물 이미지 넣기 -->
+                            <img src="?" width="100%" height="100%">
+                        </div>
+                        <div class="item_date">
+                            <!-- 게시물 날짜 -->
+                            <p>{{board.date}}날짜 더미</p>
+                        </div>
+                        <div class="item_hit">
+                            <!-- 게시물 조회수 -->
+                            <p>{{board.hit}}조회수 더미</p>
+                        </div>
+                        <div class="item_reply_count">
+                            <!-- 게시물 댓글수 -->
+                            <p>{{board.reply_count}}댓글수 더미</p>
+                        </div>
+                        <div class="item_subcategory">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.subcategory}}서브카테고리 더미</p>
+                        </div>
+                        <div class="item_likes">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes}}좋아요 더미</p>
+                        </div>
+                        <div class="item_likes2">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes2}}싫어요 더미</p>
+                        </div>
+                    </div>
+                    <div class="item" onclick="location.href='여기는 각 게시글 마다 나오게';">
+                        <div class="item_subject">
+                            <!-- 게시물 제목 넣기 -->
+                            <p>{{board.subject}}제목 더미</p>
+                        </div>
+                        <div class="item_img">
+                            <!-- 게시물 이미지 넣기 -->
+                            <img src="?" width="100%" height="100%">
+                        </div>
+                        <div class="item_date">
+                            <!-- 게시물 날짜 -->
+                            <p>{{board.date}}날짜 더미</p>
+                        </div>
+                        <div class="item_hit">
+                            <!-- 게시물 조회수 -->
+                            <p>{{board.hit}}조회수 더미</p>
+                        </div>
+                        <div class="item_reply_count">
+                            <!-- 게시물 댓글수 -->
+                            <p>{{board.reply_count}}댓글수 더미</p>
+                        </div>
+                        <div class="item_subcategory">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.subcategory}}서브카테고리 더미</p>
+                        </div>
+                        <div class="item_likes">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes}}좋아요 더미</p>
+                        </div>
+                        <div class="item_likes2">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes2}}싫어요 더미</p>
+                        </div>
+                    </div>
+                    <div class="item" onclick="location.href='여기는 각 게시글 마다 나오게';">
+                        <div class="item_subject">
+                            <!-- 게시물 제목 넣기 -->
+                            <p>{{board.subject}}제목 더미</p>
+                        </div>
+                        <div class="item_img">
+                            <!-- 게시물 이미지 넣기 -->
+                            <img src="?" width="100%" height="100%">
+                        </div>
+                        <div class="item_date">
+                            <!-- 게시물 날짜 -->
+                            <p>{{board.date}}날짜 더미</p>
+                        </div>
+                        <div class="item_hit">
+                            <!-- 게시물 조회수 -->
+                            <p>{{board.hit}}조회수 더미</p>
+                        </div>
+                        <div class="item_reply_count">
+                            <!-- 게시물 댓글수 -->
+                            <p>{{board.reply_count}}댓글수 더미</p>
+                        </div>
+                        <div class="item_subcategory">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.subcategory}}서브카테고리 더미</p>
+                        </div>
+                        <div class="item_likes">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes}}좋아요 더미</p>
+                        </div>
+                        <div class="item_likes2">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes2}}싫어요 더미</p>
+                        </div>
+                    </div>
+                    <div class="item" onclick="location.href='여기는 각 게시글 마다 나오게';">
+                        <div class="item_subject">
+                            <!-- 게시물 제목 넣기 -->
+                            <p>{{board.subject}}제목 더미</p>
+                        </div>
+                        <div class="item_img">
+                            <!-- 게시물 이미지 넣기 -->
+                            <img src="?" width="100%" height="100%">
+                        </div>
+                        <div class="item_date">
+                            <!-- 게시물 날짜 -->
+                            <p>{{board.date}}날짜 더미</p>
+                        </div>
+                        <div class="item_hit">
+                            <!-- 게시물 조회수 -->
+                            <p>{{board.hit}}조회수 더미</p>
+                        </div>
+                        <div class="item_reply_count">
+                            <!-- 게시물 댓글수 -->
+                            <p>{{board.reply_count}}댓글수 더미</p>
+                        </div>
+                        <div class="item_subcategory">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.subcategory}}서브카테고리 더미</p>
+                        </div>
+                        <div class="item_likes">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes}}좋아요 더미</p>
+                        </div>
+                        <div class="item_likes2">
+                            <!-- 게시물 서브카테고리 -->
+                            <p>{{board.likes2}}싫어요 더미</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- 게시글 추가 팝업 -->
         <div id="pop_info_1" class="pop_wrap" style="display:none;">
             <div class="pop_inner">
                 <input class="write_subject" type="text" align="center" placeholder="제목 입력" style="color: lightgray;">
                 <input class="write_content" type="text" align="center" placeholder="내용 입력" style="height: 250px;color: lightgray;">
-                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그 입력" style="color: lightgray;width: 70%; margin-right: 50%;margin-left: 15%;">
-                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그 입력" style="color: lightgray;width: 70%; margin-right: 50%;margin-left: 15%;">
-                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그 입력" style="color: lightgray;width: 70%; margin-right: 50%;margin-left: 15%;">
-                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그 입력" style="color: lightgray;width: 70%; margin-right: 50%;margin-left: 15%;">
-                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그 입력" style="color: lightgray;width: 70%; margin-right: 50%;margin-left: 15%;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
+                <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
                 <label style="display: flex; height: 40px;">
-                    <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리1</p>
-                    <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리2</p>
-                    <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리3</p>
+                    <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리 더미</p>
+                    <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리 더미</p>
+                    <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리 더미</p>
+                    <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리 더미</p>
+                    <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리 더미</p>
+                    <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리 더미</p>
+                    <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리 더미</p>
+                    <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리 더미</p>
                 </label>
-                <button class="custom-btn btn-5"><a href="/user/login" align="center" style="color: #fff; display: block; text-decoration-line: none;">SUBMIT</a></button>
-                <button class="btn_close custom-btn btn-5"><a href="/board_list" align="center" style="color: #fff; display: block; text-decoration-line: none;">CLOSE</a></button>
-            </div>
-        </div>
-        <!-- 게시글 찾기 팝업 -->
-        <div id="pop_info_2" class="pop_wrap" style="display:none;">
-            <div class="pop_inner">
-                <input class="search" type="text" name="search" size="40" required="required" style="color: lightgray;" /> 
-                <button class="custom-btn btn-5"><a href="/user/login" align="center"style="color: #fff; display: block; text-decoration-line: none;">SEARCH</a></button>
-                <button class="btn_close custom-btn btn-5"><a href="/board_list" align="center" style="color: #fff; display: block; text-decoration-line: none;">CLOSE</a></button>
-            </div>
-        </div>
-        <!-- 사용자 찾기 팝업 -->
-        <div id="pop_info_3" class="pop_wrap" style="display:none;">
-            <div class="pop_inner">
-                <input class="search" type="text" name="search" size="40" required="required" style="color: lightgray;" />
-                <button class="custom-btn btn-5"><a href="/user/login" align="center" style="color: #fff; display: block; text-decoration-line: none;">SEARCH</a></button>
-                <button class="btn_close custom-btn btn-5"><a href="/board_list" align="center" style="color: #fff; display: block; text-decoration-line: none;">CLOSE</a></button>
-            </div>
-        </div>
-        <script>
-        var target = document.querySelectorAll('.btn_open');
-        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-        var targetID;
+                <ul>
+                    <li style="list-style: none; margin-top: 30px;">
+                        <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
+                        <input type="file" id="sel-file" accept="image/*">
+                    </li>
+                    <li style="list-style: none;">
+                        <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
+                        <input type="file" id="sel-file" accept="image/*">
+                    </li>
+                    <li style="list-style: none;">
+                        <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
+                        <input type="file" id="sel-file" accept="image/*">
+                    </li>
+                    <li style="list-style: none;">
+                        <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
+                        <input type="file" id="sel-file" accept="image/*">
+                    </li>
+                    <li style="list-style: none;">
+                        <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
+                        <input type="file" id="sel-file" accept="image/*">
+                    </li>
+                </ul>
 
-        // 팝업 열기
-        for(var i = 0; i < target.length; i++){
-        target[i].addEventListener('click', function(){
-            targetID = this.getAttribute('href');
-            document.querySelector(targetID).style.display = 'block';
-        });
-        }
-
-        // 팝업 닫기
-        for(var j = 0; j < target.length; j++){
-        btnPopClose[j].addEventListener('click', function(){
-            this.parentNode.parentNode.style.display = 'none';
-        });
-        }
-        </script>
+                <button class="custom-btn btn-5" style="margin-top: 50px;"><a href="/user/login" align="center" style="color: #fff; display: block; text-decoration-line: none;">SUBMIT</a></button>
+                <button class="btn_close custom-btn btn-5"><a href="/board_list" align="center" style="color: #fff; display: block; text-decoration-line: none;">CLOSE</a></button>
+            </div>
+        </div>
+        <script type="text/javascript" src="/js/user/pop.js"></script>
+        <script type="text/javascript" src="/js/user/file_reader.js"></script>
     </div>
 </body>
 </html>
