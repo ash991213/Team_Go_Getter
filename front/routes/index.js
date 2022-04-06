@@ -23,19 +23,12 @@ router.get('/', async (req,res)=>{
     // console.log(board)
     // console.log(reply)
 
-<<<<<<< HEAD
-    res.render('index.html' );
-    // ,{board,reply}
-=======
-    res.render('index.html', {board,reply});
->>>>>>> cd8d506e1a2a906c98adb6cf81cb4c5a8a19260e
+    res.render('index.html');
+    // {board,reply}
 });
 
-router.get('/main_category',(req,res)=>{
-    res.render('main_category.html');
-});
-router.get('/sub_category',(req,res)=>{
-    res.render('sub_category.html');
+router.get('/category',(req,res)=>{
+    res.render('category.html');
 });
 router.get('/board_list',(req,res)=>{
     res.render('board_list.html');
