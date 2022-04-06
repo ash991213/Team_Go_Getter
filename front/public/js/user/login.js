@@ -12,7 +12,6 @@ login_frm.addEventListener('submit', async (e)=>{
             'Content-type':'application/json',
             withCredentials:true,
         })
-        console.log(response.data.errno);
         if (response.data.errno !== 0) throw new Error('Error')
         alert('로그인 성공.')
         location.href = 'http://localhost:3000'
