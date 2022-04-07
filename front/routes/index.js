@@ -22,14 +22,6 @@ router.get('/', async (req,res)=>{
 
     res.render('index.html', {board,reply});
 });
-router.get('/category',(req,res)=>{
-    res.render('category.html');
-});
-router.get('#join_frm',(req,res)=>{
-    res.render('index.html');
-});
-
-
 
 //이미지 불러오는 라우터
 router.use(express.static('views'));

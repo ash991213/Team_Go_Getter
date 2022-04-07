@@ -27,7 +27,7 @@ exports.joinpost  = async (req,res)=>{
     const sql2 = `INSERT INTO intro(userid,content)
                   VALUES ('${userid}','${intro}')`
 
-    const sql3 = `INSERT INTO point (userid) VALUES ('${userid}')`
+    const sql3 = `INSER INTO point (userid) VALUES ('${userid}')`
 
     let response = {
         errno:0

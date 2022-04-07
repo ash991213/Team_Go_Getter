@@ -11,7 +11,7 @@
     <div class="content_wrap">
     	<div class="wrap1">
             <h2 style="font-weight: bold; color: #fff; ">COMMUNITY</h2>
-            <button class="custom-btn btn-5"><a href="/category" align="center" style="color: #fff; display: block; text-decoration-line: none;">PREVIOUS</a></button>
+            <button class="custom-btn btn-5"><a href="/board/category" align="center" style="color: #fff; display: block; text-decoration-line: none;">PREVIOUS</a></button>
             <button class="custom-btn btn-5"><a href="/" align="center" style="color: #fff; display: block; text-decoration-line: none;">HOME</a></button>
             <button class="custom-btn btn-5" style="margin-left: 10px;"><a href="#pop_info_1" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">WRITING</a></button>
             <input class="write_subject" type="text" align="center" placeholder="게시글로 검색" style="color: lightgray;width: 350px;">
@@ -21,7 +21,7 @@
             <div class="content_inner">
                 <div class="contents">
                     <div class="item">
-                        <a class="content_a" href="/board/board_view">
+                        <a class="content_a" href="/board/view">
                             <div class="item_subject">
                                 <!-- 게시물 제목 넣기 -->
                                 <p>{{board.subject}}제목 더미</p>
@@ -50,8 +50,14 @@
                         <div class="container">
                             <div class="button-container like-container">
                                 <a href="#">
-                                    <i class="fa fa-heart-o"> Like</i>    
+                                    <i class="fa fa-heart-o">Like</i>    
                                 </a>
+                            </div>
+                            <div class="button-container dislike-container">
+                                <p>{{likes.l_idx}}300</p>
+                            </div>
+                            <div class="button-container dislike-container">
+                                <p>{{likes.l_idx}}300</p>
                             </div>
                             <div class="button-container dislike-container">
                                 <a href="#">
@@ -95,7 +101,7 @@
                         <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리 더미</p>
                         <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리 더미</p>
                     </label>
-                    <ul>
+                    <ul class="img_con1">
                         <li style="list-style: none; margin-top: 30px;">
                             <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
                             <input type="file" id="sel-file" accept="image/*">
@@ -108,6 +114,8 @@
                             <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
                             <input type="file" id="sel-file" accept="image/*">
                         </li>
+                    </ul>
+                    <ul class="img_con2">
                         <li style="list-style: none;">
                             <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
                             <input type="file" id="sel-file" accept="image/*">
@@ -119,11 +127,12 @@
                     </ul>
                 </form>
                 <button class="custom-btn btn-5" style="margin-top: 50px;"><a href="/user/login" align="center" style="color: #fff; display: block; text-decoration-line: none;">SUBMIT</a></button>
-                <button class="btn_close custom-btn btn-5"><a href="/board/board_list" align="center" style="color: #fff; display: block; text-decoration-line: none;">CLOSE</a></button>
+                <button class="btn_close custom-btn btn-5"><a href="/board/list" align="center" style="color: #fff; display: block; text-decoration-line: none;">CLOSE</a></button>
             </div>
         </div>
         <script type="text/javascript" src="/js/user/pop.js"></script>
         <script type="text/javascript" src="/js/user/file_reader.js"></script>
+        <script type="text/javascript" src="/js/board/write.js"></script>
         <script src="/js/user/likes.js"></script>
     </div>
 </body>
