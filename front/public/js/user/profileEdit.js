@@ -1,6 +1,7 @@
 const profileEdit_btn = document.querySelector('#profileEdit_btn')
 
 profileEdit_btn.addEventListener('click', async () => {
+    
     const body = {
         userid:document.querySelector('#pro_userid').value,
         userpw:document.querySelector('#pro_userpw').value,
@@ -14,7 +15,11 @@ profileEdit_btn.addEventListener('click', async () => {
         intro:document.querySelector('#pro_intro').value,
     }
 
-    const response = await axios.post('http://localhost:4000/user/edit',body)
+    try {
+        await axios.post('http://localhost:4000/user/edit',body)
 
-    alert('프로필이 수정 되었습니다.')
+        alert('프로필이 수정 되었습니다.')
+    } catch (error) {
+        console.log(error.message)
+    }
 })
