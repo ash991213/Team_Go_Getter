@@ -121,18 +121,7 @@ exports.list = async (req,res) => {
                  ORDER BY a.userid = 'admin' DESC, a.b_idx ASC;
                  `
 
-    const sql2 = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
-                  GROUP_CONCAT(DISTINCT b.image separator'/'),
-                  GROUP_CONCAT(DISTINCT d.name separator'/')
-                  FROM board AS a 
-                  JOIN file AS b ON a.b_idx = b.b_idx
-                  JOIN board_hash AS c ON a.b_idx = c.b_idx
-                  JOIN hashtag AS d ON c.h_idx = d.h_idx
-                  JOIN subcategory AS e ON a.s_idx = e.s_idx
-                  JOIN maincategory AS f ON e.m_idx = f.m_idx
-                  WHERE a.isActive = 1
-                  GROUP BY a.b_idx
-                  ORDER BY a.userid = 'admin' DESC, a.b_idx ASC;
+    const sql2 = `select * from board where isActive=1;
                   `
 
     let response = {
@@ -142,12 +131,14 @@ exports.list = async (req,res) => {
     try {
         if ( userid == 'admin' ) {
             const [result] = await pool.execute(sql)
+            console.log(result);
             response = {
                 ...response,
                 result
             }
         } else {
             const [result2] = await pool.execute(sql2)
+            console.log(result2);
             response = {
                 ...response,
                 result2

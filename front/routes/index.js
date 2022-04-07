@@ -20,8 +20,8 @@ router.get('/', async (req,res)=>{
     // const { board } = response.data.result
     // const { reply } = response.data.result
 
-    res.render('index.html');
-    //, {board,reply}
+    res.render('index.html');    //, {board,reply}
+
 });
 
 
