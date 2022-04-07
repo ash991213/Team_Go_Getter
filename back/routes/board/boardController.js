@@ -2,14 +2,19 @@ const pool = require('../../models/db.js').pool;
 const { decodePayload } = require('../../utils/jwt.js');
 
 exports.GetWrite = async (req,res) => {
-    const sql = 'SELECT * FROM subcategory'
+    const sql = `SELECT * FROM maincategory`
+    const sql2 = `SELECT * FROM subcategory`
 
     let response = {
         errno:0
     }
 
     try {
-        const [result] = await pool.execute(sql)
+        const [maincategory] = await pool.execute(sql)
+        const [subcategory] = await pool.execute(sql2)
+
+        const result = { maincategory,subcategory }
+
         response = {
             ...response,
             result
@@ -100,7 +105,7 @@ exports.PostWrite = async (req,res) => {
 }
 
 exports.list = async (req,res) => {
-    const token = req.cookies.user
+    const { user:token } = req.body
     const userid = decodePayload(token).userid
 
     const sql = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
@@ -160,7 +165,7 @@ exports.list = async (req,res) => {
 exports.mainList = async (req,res) => {
     const m_idx = req.query
 
-    const token = req.cookies.user
+    const { user:token } = req.body
     const userid = decodePayload(token).userid
 
     const sql = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
@@ -221,7 +226,7 @@ exports.mainList = async (req,res) => {
 exports.subList = async (req,res) => {
     const s_idx = req.query
 
-    const token = req.cookies.user
+    const { user:token } = req.body
     const userid = decodePayload(token).userid
 
     const sql = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
