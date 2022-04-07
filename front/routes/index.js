@@ -23,20 +23,6 @@ router.get('/', async (req,res)=>{
     res.render('index.html', {board,reply});
 });
 
-router.get('/category',(req,res)=>{
-    res.render('category.html');
-});
-router.get('/board_list',(req,res)=>{
-    res.render('board_list.html');
-});
-router.get('#join_frm',(req,res)=>{
-    res.render('index.html');
-});
-router.get('/board_view',(req,res)=>{
-    res.render('board_view.html')
-});
-
-
 //이미지 불러오는 라우터
 router.use(express.static('views'));
 router.use('/user',userRouter)
