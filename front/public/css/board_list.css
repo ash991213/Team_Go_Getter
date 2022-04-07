@@ -52,7 +52,7 @@ p{
     margin-left: 20px;
     /* 컨텐츠 가로 정렬 */
     float: left;
-    display: flex;
+
     box-shadow: 3px 3px 3px;
 }
 .item:hover{
@@ -87,6 +87,27 @@ p{
     margin-top: 30px;
     margin-left: 8px;
     border-radius: 30px;
+}
+.img_con1{
+    display: flex;
+    float: left;
+    margin-top: 30px;
+}
+.img_con1 li{
+    max-width: 300px;
+    max-height: 80px;
+    margin-top: 31px;
+}
+.img_con2{
+    width: 100%;
+    display: flex;
+    float: left;
+    margin-top: 30px;
+}
+.img_con2 li{
+    max-width: 300px;
+    max-height: 80px;
+    margin-top: 31px;
 }
 .item_date{
     display: block;
@@ -159,18 +180,27 @@ p{
     align-items: center;
   } 
   .container .button-container{
-    margin-top: 270px;
-    margin-left: 25px;
+    margin-left: 3px;
   }
   .container .button-container a {
-      width: 45px;
+      width: 30px;
       text-decoration: none;
     background-color: #fff;
     border: 2px solid #2199e8;
-    padding: 10px 20px;
+    padding: 5px 5px;
     border-radius: 2px;
     color: #2199e8;
   }    
+  .container .button-container p {
+    padding: 0px 0px;
+    width: 20px;
+    text-decoration: none;
+  background-color: #fff;
+  border: 2px solid #2199e8;
+  padding: 5px 10px;
+  border-radius: 2px;
+  color: #2199e8;
+}    
   .container .button-container a:hover {
     background-color: #2199e8;
     color: #fff;
@@ -182,8 +212,8 @@ p{
 
 .contents::-webkit-scrollbar-thumb {
     height: 30%; 
-    background: #217af4; 
-    
+    background: #fff; 
+    box-shadow: 0px 0px 10px 2px rgb(41, 189, 235);
     border-radius: 30px;
 }
 

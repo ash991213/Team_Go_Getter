@@ -12,9 +12,15 @@
     	<div class="wrap1">
             <h2 style="font-weight: bold; color: #fff; ">COMMUNITY</h2>
             <button class="custom-btn btn-5"><a href="/" align="center" style="color: #fff; display: block; text-decoration-line: none;">PREVIOUS</a></button>
+            <button class="custom-btn btn-5"><a href="/board/list" align="center" style="color: #fff; display: block; text-decoration-line: none;">전체 글 보기</a></button>
         </div>
         <div class="wrap3">
+            {% for main in maincategory %}
             <div class="circle">
+<<<<<<< HEAD
+                <a class="main_category" href="/board/list" style="display: block;">
+                    {{main.m_name}}
+=======
                 <a class="main_category" href="/board/mainlist?m_idx={{maincategory[0].m_idx}}" style="display: block;">
                     {{maincategory[0].m_name}}
                 </a>
@@ -42,54 +48,22 @@
             <div class="circle">
                 <a class="main_category" href="/board/list" style="display: block;">
                     {{maincategory.m_name}}메인 카테고리
+>>>>>>> d2ed3f3157f22206e4d043e0ed8b7e367b6f0744
                 </a>
             </div>
+            {% endfor %}
         </div>
         <div class="wrap2">
             <p>서브 카테고리 목록</p>
             <div class="sub_content">
+                {% for sub in subcategory %}
                 <div class="item_sub" onclick="location.href='http://localhost:3000/board/list';">
                     <div class="item_subject">
                         <!-- 게시물 제목 넣기 -->
-                        <p>{{board.subject}}제목 더미 제목 더미제목 더미제목 더미</p>
+                        <p>{{sub.s_name}}제목 더미 제목 더미제목 더미제목 더미</p>
                     </div>
                 </div>
-                <div class="item_sub" onclick="location.href='http://localhost:3000/board/list';">
-                    <div class="item_subject">
-                        <!-- 게시물 제목 넣기 -->
-                        <p>{{board.subject}}제목 더미 제목 더미제목 더미제목 더미</p>
-                    </div>
-                </div>
-                <div class="item_sub" onclick="location.href='http://localhost:3000/board/list';">
-                    <div class="item_subject">
-                        <!-- 게시물 제목 넣기 -->
-                        <p>{{board.subject}}제목 더미 제목 더미제목 더미제목 더미</p>
-                    </div>
-                </div>
-                <div class="item_sub" onclick="location.href='http://localhost:3000/board/list';">
-                    <div class="item_subject">
-                        <!-- 게시물 제목 넣기 -->
-                        <p>{{board.subject}}제목 더미 제목 더미제목 더미제목 더미</p>
-                    </div>
-                </div>
-                <div class="item_sub" onclick="location.href='http://localhost:3000/board/list';">
-                    <div class="item_subject">
-                        <!-- 게시물 제목 넣기 -->
-                        <p>{{board.subject}}제목 더미 제목 더미제목 더미제목 더미</p>
-                    </div>
-                </div>
-                <div class="item_sub" onclick="location.href='http://localhost:3000/board/list';">
-                    <div class="item_subject">
-                        <!-- 게시물 제목 넣기 -->
-                        <p>{{board.subject}}제목 더미 제목 더미제목 더미제목 더미</p>
-                    </div>
-                </div>
-                <div class="item_sub" onclick="location.href='http://localhost:3000/board/list';">
-                    <div class="item_subject">
-                        <!-- 게시물 제목 넣기 -->
-                        <p>{{board.subject}}제목 더미 제목 더미제목 더미제목 더미</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
