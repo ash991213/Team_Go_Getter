@@ -9,6 +9,7 @@ exports.list = async (req,res)=>{
 }
 
 exports.category = (req,res)=>{
+    
     res.render('category.html');
 }
 

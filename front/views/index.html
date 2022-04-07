@@ -206,14 +206,12 @@
                                     ranking
                                 </div>
                             </div>
+                            {% for item in board %}
                             <ul class="rank_ul">
-                                <li class="rank_li">{{ board[0].userid }}</li>
-                                <li class="rank_li">{{ board[0].b_point }}</li>
+                                <li class="rank_li">{{loop.index}}.{{ item.userid }}</li>
+                                <li class="rank_li">{{item.b_point }}</li>
                             </ul>
-                            <ul class="rank_ul">
-                                <li class="rank_li"></li>
-                                <li class="rank_li"></li>
-                            </ul>
+                            {% endfor %}
                         </div>
                         <div class="stat_2" style="margin-left: 400px; overflow:scroll;">
                             <div class="stat_top">
@@ -224,14 +222,12 @@
                                     ranking
                                 </div>
                             </div>
+                            {% for item in reply %}
                             <ul class="rank_ul">
-                                <li class="rank_li">{{ reply[0].userid }}</li>
-                                <li class="rank_li">{{ reply[0].r_point}}</li>
+                                <li class="rank_li">{{loop.index}}{{ item.userid }}</li>
+                                <li class="rank_li">{{ item.r_point}}</li>
                             </ul>
-                            <ul class="rank_ul">
-                                <li class="rank_li">{{userid}} 이름 더미</li>
-                                <li class="rank_li">{{b_point}} 포인트 더미</li>
-                            </ul>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

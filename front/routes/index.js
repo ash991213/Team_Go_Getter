@@ -16,12 +16,12 @@ router.use('/chat',chatRouter);
 
 router.get('/', async (req,res)=>{
     const response = await axios.post('http://localhost:4000/user/point') 
-
     const { board } = response.data.result
     const { reply } = response.data.result
 
     res.render('index.html', {board,reply});
 });
+
 
 //이미지 불러오는 라우터
 router.use(express.static('views'));
