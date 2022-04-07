@@ -16,6 +16,14 @@ exports.list = async (req,res)=>{
     res.render('board_list.html', { allBoard,board });
 }
 
+<<<<<<< HEAD
+exports.category = (req,res)=>{
+    const response = await axios.get('http://localhost:4000/board/write')
+    const maincategory = response.data.result.maincategory
+    const subcategory = response.data.result.subcategory
+
+    res.render('category.html',{maincategory,subcategory});
+=======
 // 메인 카테고리 글 m_idx
 exports.mainlist = async (req,res)=>{
     const { user } = req.cookies
@@ -63,6 +71,7 @@ exports.category = async (req,res)=>{
     const subcategory = response.data.result.subcategory
 
     res.render('category.html',{subcategory,maincategory});
+>>>>>>> d2ed3f3157f22206e4d043e0ed8b7e367b6f0744
 }
 
 exports.view = (req,res) => {

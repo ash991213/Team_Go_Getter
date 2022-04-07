@@ -48,11 +48,17 @@
                                 <p>{{board.subcategory}}서브카테고리 더미</p>
                             </div>
                         </a>
-                        <div class="container">
+                        <div class="container" style="margin-top: 290px; margin-left: 12px;">
                             <div class="button-container like-container">
                                 <a href="#">
-                                    <i class="fa fa-heart-o"> Like</i>    
+                                    <i class="fa fa-heart-o">Like</i>    
                                 </a>
+                            </div>
+                            <div class="button-container dislike-container">
+                                <p>{{likes.l_idx}}300</p>
+                            </div>
+                            <div class="button-container dislike-container">
+                                <p>{{likes.l_idx}}300</p>
                             </div>
                             <div class="button-container dislike-container">
                                 <a href="#">
@@ -96,7 +102,7 @@
                         <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리 더미</p>
                         <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">서브 카테고리 더미</p>
                     </label>
-                    <ul>
+                    <ul class="img_con1">
                         <li style="list-style: none; margin-top: 30px;">
                             <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
                             <input type="file" id="sel-file" accept="image/*">
@@ -109,6 +115,8 @@
                             <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
                             <input type="file" id="sel-file" accept="image/*">
                         </li>
+                    </ul>
+                    <ul class="img_con2">
                         <li style="list-style: none;">
                             <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
                             <input type="file" id="sel-file" accept="image/*">

@@ -18,12 +18,12 @@
                 <source src="./KakaoTalk_20220324_090914533 (online-video-cutter.com).mp4" type="video/mp4">
             </video>
             <div class="main">
-                {% if user %}
+                {% if islogin %}
                 <p class="sign" align="center">{{username}}, Welcome!</p>
                 {% else %}
                 <p class="sign" align="center">SIGN IN</p>
                 {% endif %}
-                    {% if user %}
+                    {% if isresponse %}
                     <a class="submit" align="center">profile</a>
                     {% else %}
                     <form class="form1" id="login_frm">
@@ -78,7 +78,6 @@
                     <div id="pop_info_2" class="pop_wrap" style="display: none;">
                         <div class="pop_inner_edit"> 
                             <p class="sign" align="center">PROFILE</p>
-                            <form id="profile_frm" action="http://localhost:4000/user/profile" method="post">
                             <input id="pro_userid" class="reg_userid" type="text" align="center" placeholder="UserID" style="color: lightgray; width: 70%;">
                             <button id="pro_idcheck" class="custom-btn btn-5" type="click" style="width: 20%;">중복체크</button>
                             <input id="pro_userpw"class="reg_userpw" type="text" align="center" placeholder="UserPW" style="color: lightgray;">
@@ -95,7 +94,6 @@
                             <input id="pro_tel"class="reg_tel" type="text" align="center" placeholder="Tel" style="color: lightgray;">
                             <input id="pro_email"class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">
                             <input id="pro_intro"class="reg_intro" type="text" align="center" placeholder="intro" style="color: lightgray; height: 200px;">
-                            </form> 
                             <!-- 프로필 수정 페이지 이동 버튼 -->
                             <button id="profileEdit_btn" class="custom-btn btn-5" style="margin-bottom: 5px;width: 160px;"><a href="#pop_info_3" align="center" class="btn_open">EDIT</a></button>
                             <button id="SEE_ALL_btn" class="custom-btn btn-5" style="margin-bottom: 5px; width: 160px;"><a href="#pop_info_4" align="center" class="btn_open">SEE ALL</a></button>
@@ -208,14 +206,12 @@
                                     ranking
                                 </div>
                             </div>
+                            {% for item in board %}
                             <ul class="rank_ul">
-                                <li class="rank_li">{{ board[0].userid }}</li>
-                                <li class="rank_li">{{ board[0].b_point }}</li>
+                                <li class="rank_li">{{loop.index}}.{{ item.userid }}</li>
+                                <li class="rank_li">{{item.b_point }}</li>
                             </ul>
-                            <ul class="rank_ul">
-                                <li class="rank_li"></li>
-                                <li class="rank_li"></li>
-                            </ul>
+                            {% endfor %}
                         </div>
                         <div class="stat_2" style="margin-left: 400px; overflow:scroll;">
                             <div class="stat_top">
@@ -226,14 +222,12 @@
                                     ranking
                                 </div>
                             </div>
+                            {% for item in reply %}
                             <ul class="rank_ul">
-                                <li class="rank_li">{{ reply[0].userid }}</li>
-                                <li class="rank_li">{{ reply[0].r_point}}</li>
+                                <li class="rank_li">{{loop.index}}{{ item.userid }}</li>
+                                <li class="rank_li">{{ item.r_point}}</li>
                             </ul>
-                            <ul class="rank_ul">
-                                <li class="rank_li">{{userid}} 이름 더미</li>
-                                <li class="rank_li">{{b_point}} 포인트 더미</li>
-                            </ul>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

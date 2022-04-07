@@ -3,10 +3,14 @@ body{background:black; overflow:hidden}
 *{margin:0; padding:0;}
 .wrap
 {
-    
     width: 80%;
     margin: 0 auto;
 }
+p{
+    color: lightgray;
+    text-align: center;
+}
+
 .content_wrap {
     position: absolute;
     margin-top: 5%;
@@ -103,7 +107,9 @@ tr {
   }
 @media (max-width: 600px) {
     .main {
+
         border-radius: 0px;
+
     }
 }
 /* 팝업 */
@@ -131,17 +137,66 @@ tr {
     vertical-align:middle; 
     font-size:15px;
 }
+.item_img{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position:absolute;
+    margin: 0 auto;
+    width: 90%;
+    height: 150px;
+    margin-top: 30px;
+    margin-left: 8px;
+    border-radius: 30px;
+}
+.item_subcategory{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    margin: 0 auto;
+    width: 90%;
+    height: 20px;
+    margin-top: 252px;
+    margin-left: 8px;
+    border-radius: 30px;
+    background-color: rgb(49, 49, 49);
+    float:none;
+    display:block;
+}
+.img_con1{
+    display: flex;
+    float: left;
+    margin-top: 30px;
+}
+.img_con1 li{
+    max-width: 300px;
+    max-height: 80px;
+    margin-top: 31px;
+}
+.img_con2{
+    width: 100%;
+    display: flex;
+    float: left;
+    margin-top: 30px;
+}
+.img_con2 li{
+    max-width: 300px;
+    max-height: 80px;
+    margin-top: 31px;
+}
 /* 팝업창 css */
 .btn_open{color:#fff;}
 .pop_wrap{z-index: 10;position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.7); font-size:0; text-align:center;}
 .pop_wrap:after{display:inline-block; height:100%; vertical-align:middle; content:'';}
 .pop_wrap .pop_inner{
-    margin-right: 50px;
     display:inline-block;
     padding:20px 30px; 
     background:#fff; 
-    width:800px; 
-    height: 80%;
+    width:1000px; 
+    height: 90%;
     vertical-align:middle; 
     font-size:15px;
     background-color: rgb(70, 70, 70);
@@ -152,12 +207,18 @@ tr {
 .btn_close{
     color:#fff;
 }
+.btn_close{
+    color:#fff;
+}
 /* 양식 css */
-
-.write_subject,.write_content,.write_hashtag,.search,.write_subject{
-    float: left;
+.main{
+    display: block;
+    width: 100%;
+    height: 30px;
+}
+.write_hashtag,.search{
     margin-bottom: 15px;
-    width: 90%;
+    width: 100%;
     color: rgb(38, 50, 56);
     font-weight: 700;
     font-size: 14px;
@@ -172,24 +233,121 @@ tr {
     margin-left: 10px;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
+    overflow: hidden;
+}
+.write_subject,.write_content{
+    margin-bottom: 15px;
+    width: 60%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgb(54, 44, 44);
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-left: 10px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;    
+    overflow-x: auto;
 }
 .write_subject:focus,.write_content:focus,.write_hashtag:focus,.search:focus,.write_subject:focus{
     border: 2px solid rgb(41, 189, 235) !important;
     transition-duration: 0.8s;
 }
+.write_info{
+    margin-bottom: 15px;
+    width: 30%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgb(54, 44, 44);
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-left: 10px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;    
+    overflow-x: auto;
+}
+.write_info2{
+    margin-bottom: 15px;
+    width: 12%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgb(54, 44, 44);
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-left: 10px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;    
+    overflow-x: auto;
+}
 .img_con{
     position: absolute;
     width: 50%;
     float: left;
-    height: 80vh;
+    height: 100%;
     border-right: solid 3px rgb(58, 58, 58);
 }
+.hashtag_con{
+    margin-top: 5%;
+    width: 100%;
+    height: 50px;
+    background-color: #362c2c;
+    overflow-y: auto;
+}
+.subcategory_con{
+    margin-top: 10%;
+    width: 100%;
+    height: 50px;
+    background-color: #362c2c;
+    overflow-y: auto;
+}
+.hash_li{
+    margin-left: 5px;
+    float: left;
+    list-style: none;
+}
+.subcategory_li{
+    margin-left: 5px;
+    float: left;
+    list-style: none;
+}
+.img_inner{
+    position: relative;
+    width: 80%;
+    height: 50%;
+    border: solid 2px black;
+    border-radius: 5px 5px;
+    background-color: #8a8a8a;
+    margin-top: 10vh;
+    margin-left: 10vh;
+    box-shadow: inset 5px 5px 5px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
 .user_img{
+    float: left;
+    display: inline;
     position: absolute;
-    width: 60%;
-    height: 60%;
-    margin-top: 20%;
-    margin-left: 20%;
+    width: 650px;
+    height: 35vh;
+    margin-top: 2%;
+    margin-left: 3%;
     border: solid 3px rgb(58, 58, 58);
     border-radius: 10px 10px;
     background-color: #fff;
@@ -203,7 +361,8 @@ tr {
     height: 80vh;
 }
 .content{
-    margin-top: 10vh;
+    display: block;
+    margin-top: 1vh;
     position: relative;
     top:0; 
     left:0; 
@@ -217,12 +376,136 @@ tr {
     text-align: left;
     max-width: 20px;
     max-height: 20px;
-    float: left;
+
 }
-.hashtag_con{
+
+.board_write{
+    height: 446px;
+}
+/* 좋아요 */
+.container {
+    float: left;
     display: flex;
-    width: 80px;
-    max-width: 50%;
-    max-height: 30%;
+    justify-content: center;
+    align-items: center;
+  } 
+  .container .button-container{
+    margin-left: 3px;
+  }
+  .container .button-container a {
+      width: 30px;
+      text-decoration: none;
+    background-color: #fff;
+    border: 2px solid #2199e8;
+    padding: 5px 5px;
+    border-radius: 2px;
+    color: #2199e8;
+  }    
+  .container .button-container p {
+    padding: 0px 0px;
+    width: 20px;
+    text-decoration: none;
+  background-color: #fff;
+  border: 2px solid #2199e8;
+  padding: 5px 10px;
+  border-radius: 2px;
+  color: #2199e8;
+}    
+  .container .button-container a:hover {
+    background-color: #2199e8;
+    color: #fff;
+  }
+.info_con{
+    width: 100%;
+    height: 30%;
+    margin-top: -312px;
+    margin-left: 540px;
+}
+/* 댓글 css */
+.comment_con{
+    display: inline-block;
+    overflow:hidden;
+    margin-top: 30vh;
+    width: 100%;
+    height: 50%;
+    background-color: rgb(138, 138, 138);
+    border: solid 2px rgb(58, 58, 58);
+    border-radius: 10px 10px;
+    box-shadow: inset 3px 3px 3px;
+    overflow-y: scroll;
+}
+.comment_write{
+    border: solid 2px #fff;
+    background-color: #2199e8;
+    border-radius: 10px 10px;
+    box-shadow: 2px 2px 2px;
+}
+.com_inner{
+    margin-left: 5px;
+    width: 98%;
+    border: solid 2px #fff;
+    background-color: #3dc8ff;
+    border-radius: 5px 5px;
+}
+.com_content{
+    border-radius: 5px 5px;
+    box-shadow: 1px 1px 1px;
+    width: 100%;
+    height: 70px;
+    list-style: none;
+}
+/* 스크롤 css */
+.img_inner::-webkit-scrollbar {
+    width: 10px; 
+}
+
+.img_inner::-webkit-scrollbar-thumb {
+    height: 30%; 
+    background: #fff; 
+    box-shadow: 0px 0px 10px 2px rgb(41, 189, 235);
+    border-radius: 30px;
+}
+
+.img_inner::-webkit-scrollbar-track {
+    background: rgba(138, 138, 138, 0%);
+    border-radius: 30px; 
+}
+.comment_con::-webkit-scrollbar {
+    width: 10px; 
+}
+
+.comment_con::-webkit-scrollbar-thumb {
+    height: 30%; 
+    background: #fff; 
+    box-shadow: 0px 0px 10px 2px rgb(41, 189, 235);
+    border-radius: 30px;
+}
+
+.comment_con::-webkit-scrollbar-track {
+    background: rgba(138, 138, 138, 0%);
+    border-radius: 30px; 
+}
+/* 검색창 */
+.search{
+    
+    margin-bottom: 15px;
+    width: 90%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: #fff;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-left: 10px;
     text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+.search:focus{
+    border: 2px solid rgb(41, 189, 235) !important;
+    transition-duration: 0.8s;
 }
