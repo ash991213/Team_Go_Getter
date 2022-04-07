@@ -9,8 +9,11 @@ exports.list = async (req,res)=>{
 }
 
 exports.category = (req,res)=>{
-    
-    res.render('category.html');
+    const response = await axios.get('http://localhost:4000/board/write')
+    const maincategory = response.data.result.maincategory
+    const subcategory = response.data.result.subcategory
+
+    res.render('category.html',{maincategory,subcategory});
 }
 
 exports.view = (req,res) => {
