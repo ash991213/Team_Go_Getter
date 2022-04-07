@@ -1,7 +1,8 @@
 const quit_frm = document.querySelector('#quit_frm')
 
-quit_frm.addEventListener('click', async () => {
-    
+quit_frm.addEventListener('click', async (e) => {
+    e.preventDefault()
+
     const option = {
         withCredentials:true,
     }

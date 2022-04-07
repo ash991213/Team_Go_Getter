@@ -8,7 +8,11 @@ profile_btn.addEventListener('click', async () => {
     try {
         const response = await axios.get('http://localhost:4000/user/edit',option)
 
+
+        console.log(response)
         const { user } = response.data.result
+
+        console.log(user)
         document.getElementById('pro_userid').value = user.userid
         document.getElementById('pro_userpw').value = user.userpw
         document.getElementById('pro_username').value = user.username
