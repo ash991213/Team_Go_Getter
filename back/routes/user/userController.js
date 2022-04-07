@@ -27,7 +27,7 @@ exports.joinpost  = async (req,res)=>{
     const sql2 = `INSERT INTO intro(userid,content)
                   VALUES ('${userid}','${intro}')`
 
-    const sql3 = `INSER INTO point (userid) VALUES ('${userid}')`
+    const sql3 = `INSERT INTO point (userid) VALUES ('${userid}')`
 
     let response = {
         errno:0
@@ -294,12 +294,13 @@ exports.find = async (req,res) => {
 }
 
 exports.data = async (req,res) => {
-    const { userid } = req.body
+    const token = req.cookies.user
+    const userid = decodePayload(token).userid
 
     const sql = `SELECT * FROM user a
                  JOIN intro AS b ON a.userid = b.userid
                  JOIN point AS c ON a.userid = c.userid
-                 WHERE a.userid = userid`
+                 WHERE a.userid = '${userid}'`
     const sql2 = `SELECT * FROM board WHERE userid = '${userid}'`
     const sql3 = `SELECT * FROM reply WHERE userid = '${userid}'`
     const sql4 = `SELECT * FROM likes a
