@@ -13,7 +13,6 @@ function makeToken(payload) {
 }
 
 function decodePayload(token) {
-  console.log(token)
   return jwt.verify(token, secretKey);
 }
 

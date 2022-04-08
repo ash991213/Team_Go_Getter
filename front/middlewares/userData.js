@@ -3,15 +3,15 @@ exports.userdata = (req, res, next) => {
     const token = req.cookies.user;
     try {
         if (token) {
-            const { userid } = decodePayload(token)
+            const { userid,username,nickname,level } = decodePayload(token)
 
-            req.userid = { userid, }
+            req.user = { userid,username,nickname,level }
 
             next()
         } else {
             next()
         }
-    } catch (err) {
+    } catch (err) {                 
         res.clearCookie('user')
         next()
     }

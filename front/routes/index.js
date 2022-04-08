@@ -16,12 +16,12 @@ router.use('/reply',replyRouter);
 router.use('/chat',chatRouter);
 
 router.get('/', userdata , async (req,res)=>{
-    const userid = req.userid
+    const user = req.user
     const response = await axios.post('http://localhost:4000/user/point') 
     const { board } = response.data.result
     const { reply } = response.data.result
 
-    res.render('index.html', {board,reply,userid});
+    res.render('index.html', {board,reply,user});
 });
 
 router.get('/login', async (req,res)=>{
