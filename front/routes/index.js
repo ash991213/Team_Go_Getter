@@ -20,7 +20,7 @@ router.get('/', userdata , async (req,res)=>{
     const response = await axios.post('http://localhost:4000/user/point') 
     const { board } = response.data.result
     const { reply } = response.data.result
-
+    console.log(user)
     res.render('index.html', {board,reply,user});
 });
 
