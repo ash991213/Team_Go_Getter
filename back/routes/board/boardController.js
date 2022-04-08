@@ -120,7 +120,7 @@ exports.list = async (req,res) => {
                  GROUP BY a.b_idx
                  ORDER BY a.userid = 'admin' DESC, a.b_idx ASC;
                  `
-
+    
     const sql2 = `SELECT a.b_idx, a.subject, a.content, DATE_FORMAT(a.date,'%Y-%m-%d') as date, a.hit, a.reply_count, e.s_name, f.m_name,
                   GROUP_CONCAT(DISTINCT b.image separator'/') AS image,
                   GROUP_CONCAT(DISTINCT d.name separator'/') AS hashtag
@@ -142,12 +142,14 @@ exports.list = async (req,res) => {
     try {
         if ( userid == 'admin' ) {
             const [result] = await pool.execute(sql)
+            console.log(result);
             response = {
                 ...response,
                 result
             }
         } else {
             const [result2] = await pool.execute(sql2)
+            console.log(result2);
             response = {
                 ...response,
                 result2
@@ -165,6 +167,7 @@ exports.list = async (req,res) => {
 exports.mainList = async (req,res) => {
     const { m_idx } = req.body
 
+    
     const { user:token } = req.body
     const userid = decodePayload(token).userid
 

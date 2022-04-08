@@ -23,12 +23,7 @@ router.get('/', userdata , async (req,res)=>{
     res.render('index.html', {board,reply,user});
 });
 
-router.get('/login', async (req,res)=>{
-    const response = await axios.post('http://localhost:4000/user/loginpost') 
-    const { login } = response.data.result
 
-    res.render('index.html', {login});
-});
 
 //이미지 불러오는 라우터
 router.use(express.static('views'));

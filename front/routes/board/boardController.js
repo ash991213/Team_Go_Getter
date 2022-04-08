@@ -7,13 +7,17 @@ exports.list = async (req,res)=>{
     const option = {
         withCredentials:true,
     }
+    const response1 = await axios.get('http://localhost:4000/board/write')
 
-    const response = await axios.post('http://localhost:4000/board/list',user,option)
+    const subcategory = response1.data.result.subcategory;
+    console.log(subcategory);
 
-    const allBoard = response.data.result
-    const board = response.data.result2
+    const response2 = await axios.post('http://localhost:4000/board/list',user,option)
+    
+    const allBoard = response2.data.result
+    const board = response2.data.result2
 
-    res.render('board_list.html', { allBoard,board });
+    res.render('board_list.html', { allBoard,board,subcategory});
 }
 
 // 메인 카테고리 글 m_idx
@@ -28,13 +32,12 @@ exports.mainlist = async (req,res)=>{
     const option = {
         withCredentials:true,
     }
-
     const response = await axios.post('http://localhost:4000/board/mainList',body,option)
-
+    console.log(response.data);
     const allBoard = response.data.result
     const board = response.data.result2
 
-    res.render('board_list.html', { allBoard,board });
+    res.render('board_list.html' ,{ allBoard,board });
 }
 
 // 서브 카테고리 글 s_idx
@@ -52,7 +55,7 @@ exports.sublist = async (req,res)=>{
     }
 
     const response = await axios.post('http://localhost:4000/board/subList',body,option)
-
+    console.log(response);
     const allBoard = response.data.result
     const board = response.data.result2
 
@@ -66,10 +69,10 @@ exports.category = async (req,res)=>{
 
     const maincategory = response.data.result.maincategory
     const subcategory = response.data.result.subcategory
-
+    
     res.render('category.html',{subcategory,maincategory});
 }
 
 exports.view = (req,res) => {
-    res.render('board_view.html')
+    res.render('board_view.html');
 }
