@@ -23,17 +23,18 @@ exports.list = async (req,res)=>{
 // 메인 카테고리 글 m_idx
 exports.mainlist = async (req,res)=>{
     const { user } = req.cookies
+    const { m_idx } = req.query
 
     const body = {
         user,
+        m_idx,
     }
 
     const option = {
         withCredentials:true,
     }
-
     const response = await axios.post('http://localhost:4000/board/mainList',body,option)
-
+    console.log(response.data);
     const allBoard = response.data.result
     const board = response.data.result2
 

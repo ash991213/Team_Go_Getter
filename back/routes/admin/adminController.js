@@ -18,7 +18,8 @@ exports.login = async (req,res) => {
         const payload = {
             userid : result[0].userid,
             username : result[0].username,
-            nickname : result[0].nickname
+            nickname : result[0].nickname,
+            level : result[0].level
         }
 
         if ( result.length != 0 ) {

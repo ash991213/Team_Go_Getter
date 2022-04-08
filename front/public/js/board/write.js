@@ -16,19 +16,3 @@ board_write.addEventListener('click', async (e) => {
     }
     console.log(body);
 })
-// const { e } = require("nunjucks/src/filters")
-// const board_write_btn = document.querySelector('board_write_btn')
-
-// board_write_btn.addEventListener('click', async () => {
-
-//     const body = {
-//         subject:document.querySelector('#write_subject').value,
-//         content:document.querySelector('#write_content').value,
-//         hashtag,
-//         subcategory:document.querySelector('.sub_category_radio').value
-
-//     }
-
-//     console.log(body)
-    
-// })

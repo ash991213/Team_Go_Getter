@@ -5,6 +5,7 @@ const adminRouter = require('./admin/adminRouter.js');
 const replyRouter = require('./reply/replyRouter.js');
 const chatRouter = require('./chat/chatRouter.js');
 const axios = require('axios');
+const { userdata } = require('../middlewares/userData.js')
 
 const router = express.Router();
 
@@ -14,14 +15,13 @@ router.use('/admin',adminRouter);
 router.use('/reply',replyRouter);
 router.use('/chat',chatRouter);
 
-router.get('/', async (req,res)=>{
-    // const response = await axios.post('http://localhost:4000/user/point') 
-    
-    // const { board } = response.data.result
-    // const { reply } = response.data.result
-
-    res.render('index.html');    //, {board,reply}
-
+router.get('/', userdata , async (req,res)=>{
+    const user = req.user
+    const response = await axios.post('http://localhost:4000/user/point') 
+    const { board } = response.data.result
+    const { reply } = response.data.result
+    console.log(user);
+    res.render('index.html', {board,reply,user});
 });
 
 

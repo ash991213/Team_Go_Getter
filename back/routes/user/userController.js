@@ -98,7 +98,8 @@ exports.loginpost = async (req,res) => {
         const payload = {
             userid : result[0].userid,
             username : result[0].username,
-            nickname : result[0].nickname
+            nickname : result[0].nickname,
+            level : result[0].level
         }
         if (result.length !== 0) {
             if (result[0].isActive == 1) {
@@ -107,7 +108,6 @@ exports.loginpost = async (req,res) => {
                     res.cookie('user',token)
                 } else {
                     console.log('관리자 아이디입니다.')
-                    alert
                     response = {
                         errno:4
                     }
