@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="/css/board_list.css" type="text/css" rel="stylesheet">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 </head>
 <body>
     <div class="content_wrap">
@@ -21,34 +21,67 @@
         <div class="wrap2">
             <div class="content_inner">
                 <div class="contents">
+                    {% for item in allBoard %}
                     <div class="item">
                         <a class="content_a" href="/board/view">
                             <div class="item_subject">
-                                <!-- 게시물 제목 넣기 -->
-                                <p>{{board.subject}}제목 더미</p>
+                                <p>{{item.subject}}</p>
                             </div>
                             <div class="item_img">
-                                <!-- 게시물 이미지 넣기 -->
-                                <img src="?" width="100%" height="100%">
+                                <img src="" width="100%" height="100%">
+                            </div>
+                            <div class="item_content">
+                                <p>{{item.content}}</p>
                             </div>
                             <div class="item_date">
-                                <!-- 게시물 날짜 -->
-                                <p>{{board.date}}날짜 더미</p>
+                                <p>{{item.date}}</p>
                             </div>
                             <div class="item_hit">
-                                <!-- 게시물 조회수 -->
-                                <p>{{board.hit}}조회수 더미</p>
+                                <p>{{item.hit}}</p>
                             </div>
                             <div class="item_reply_count">
-                                <!-- 게시물 댓글수 -->
-                                <p>{{board.reply_count}}댓글수 더미</p>
+                                <p>{{item.reply_count}}</p>
                             </div>
                             <div class="item_subcategory">
-                                <!-- 게시물 서브카테고리 -->
-                                <p>{{board.subcategory}}서브카테고리 더미</p>
+                                <p>{{item.s_name}}</p>
+                            </div>
+                            <div class="item_subcategory">
+                                <p>{{item.hashtag}}</p>
                             </div>
                         </a>
-                        <div class="container" style="margin-top: 290px; margin-left: 12px;">
+                    </div>
+                    {% endfor %}
+                    {% for item in board %}
+                    <div class="item">
+                        <a class="content_a" href="/board/view">
+                            <div class="item_subject">
+                                <p>{{item.subject}}</p>
+                            </div>
+                            <div class="item_img">
+                                <img src="" width="100%" height="100%">
+                            </div>
+                            <div class="item_content">
+                                <p>{{item.content}}</p>
+                            </div>
+                            <div class="item_date">
+                                <p>{{item.date}}</p>
+                            </div>
+                            <div class="item_hit">
+                                <p>{{item.hit}}</p>
+                            </div>
+                            <div class="item_reply_count">
+                                <p>{{item.reply_count}}</p>
+                            </div>
+                            <div class="item_subcategory">
+                                <p>{{item.s_name}}</p>
+                            </div>
+                            <div class="item_hashtag">
+                                <p>{{item.hashtag}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                        <!-- <div class="container" style="margin-top: 290px; margin-left: 12px;">
                             <div class="button-container like-container">
                                 <a href="#">
                                     <i class="fa fa-heart-o">Like</i>    
@@ -65,12 +98,11 @@
                                     <i class="fa fa-heart"> Dislike</i>
                                 </a>
                             </div>
-                        </div>
-                    </div>
+                        </div> -->
+                    
                 </div>
             </div>
         </div>
-        <!-- 게시글 추가 팝업 -->
         <div id="pop_info_1" class="pop_wrap" style="display:none;">
             <div class="pop_inner">
                 <form class="board_write" id="board_write" enctype="multipart/form-data" >
@@ -133,7 +165,6 @@
         </div>
         <script type="text/javascript" src="/js/user/pop.js"></script>
         <script type="text/javascript" src="/js/user/file_reader.js"></script>
-        <!-- <script type="text/javascript" src="/js/board/list.js"></script> -->
     </div>
 </body>
 </html>

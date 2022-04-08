@@ -108,9 +108,9 @@ exports.list = async (req,res) => {
     const { user:token } = req.body
     const userid = decodePayload(token).userid
 
-    const sql = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
-                 GROUP_CONCAT(DISTINCT b.image separator'/'),
-                 GROUP_CONCAT(DISTINCT d.name separator'/')
+    const sql = `SELECT a.b_idx, a.subject, a.content, DATE_FORMAT(a.date,'%Y-%m-%d') as date, a.hit, a.reply_count, e.s_name, f.m_name,
+                 GROUP_CONCAT(DISTINCT b.image separator'/') AS image,
+                 GROUP_CONCAT(DISTINCT d.name separator'/') AS hashtag
                  FROM board AS a 
                  JOIN file AS b ON a.b_idx = b.b_idx
                  JOIN board_hash AS c ON a.b_idx = c.b_idx
@@ -121,9 +121,9 @@ exports.list = async (req,res) => {
                  ORDER BY a.userid = 'admin' DESC, a.b_idx ASC;
                  `
 
-    const sql2 = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
-                  GROUP_CONCAT(DISTINCT b.image separator'/'),
-                  GROUP_CONCAT(DISTINCT d.name separator'/')
+    const sql2 = `SELECT a.b_idx, a.subject, a.content, DATE_FORMAT(a.date,'%Y-%m-%d') as date, a.hit, a.reply_count, e.s_name, f.m_name,
+                  GROUP_CONCAT(DISTINCT b.image separator'/') AS image,
+                  GROUP_CONCAT(DISTINCT d.name separator'/') AS hashtag
                   FROM board AS a 
                   JOIN file AS b ON a.b_idx = b.b_idx
                   JOIN board_hash AS c ON a.b_idx = c.b_idx
@@ -163,14 +163,14 @@ exports.list = async (req,res) => {
 }
 
 exports.mainList = async (req,res) => {
-    const m_idx = req.query
+    const { m_idx } = req.body
 
     const { user:token } = req.body
     const userid = decodePayload(token).userid
 
-    const sql = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
-                 GROUP_CONCAT(DISTINCT b.image separator'/'),
-                 GROUP_CONCAT(DISTINCT d.name separator'/')
+    const sql = `SELECT a.b_idx, a.subject, a.content, DATE_FORMAT(a.date,'%Y-%m-%d') as date, a.hit, a.reply_count, e.s_name, f.m_name,
+                 GROUP_CONCAT(DISTINCT b.image separator'/') AS image,
+                 GROUP_CONCAT(DISTINCT d.name separator'/') AS hashtag
                  FROM board AS a 
                  JOIN file AS b ON a.b_idx = b.b_idx
                  JOIN board_hash AS c ON a.b_idx = c.b_idx
@@ -182,9 +182,9 @@ exports.mainList = async (req,res) => {
                  ORDER BY a.userid = 'admin' DESC, a.b_idx ASC;
                  `
 
-    const sql2 = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
-                  GROUP_CONCAT(DISTINCT b.image separator'/'),
-                  GROUP_CONCAT(DISTINCT d.name separator'/')
+    const sql2 = `SELECT a.b_idx, a.subject, a.content, DATE_FORMAT(a.date,'%Y-%m-%d') as date, a.hit, a.reply_count, e.s_name, f.m_name,
+                  GROUP_CONCAT(DISTINCT b.image separator'/') AS image,
+                  GROUP_CONCAT(DISTINCT d.name separator'/') AS hashtag
                   FROM board AS a 
                   JOIN file AS b ON a.b_idx = b.b_idx
                   JOIN board_hash AS c ON a.b_idx = c.b_idx
@@ -224,14 +224,14 @@ exports.mainList = async (req,res) => {
 }
 
 exports.subList = async (req,res) => {
-    const s_idx = req.query
+    const { s_idx } = req.body
 
     const { user:token } = req.body
     const userid = decodePayload(token).userid
 
-    const sql = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
-                 GROUP_CONCAT(DISTINCT b.image separator'/'),
-                 GROUP_CONCAT(DISTINCT d.name separator'/')
+    const sql = `SELECT a.b_idx, a.subject, a.content, DATE_FORMAT(a.date,'%Y-%m-%d') as date, a.hit, a.reply_count, e.s_name, f.m_name,
+                 GROUP_CONCAT(DISTINCT b.image separator'/') AS image,
+                 GROUP_CONCAT(DISTINCT d.name separator'/') AS hashtag
                  FROM board AS a 
                  JOIN file AS b ON a.b_idx = b.b_idx
                  JOIN board_hash AS c ON a.b_idx = c.b_idx
@@ -243,9 +243,9 @@ exports.subList = async (req,res) => {
                  ORDER BY a.userid = 'admin' DESC, a.b_idx ASC;
                  `
 
-    const sql2 = `SELECT a.b_idx, a.subject, a.content, a.date, a.hit, a.reply_count, e.s_name, f.m_name,
-                  GROUP_CONCAT(DISTINCT b.image separator'/'),
-                  GROUP_CONCAT(DISTINCT d.name separator'/')
+    const sql2 = `SELECT a.b_idx, a.subject, a.content, DATE_FORMAT(a.date,'%Y-%m-%d') as date, a.hit, a.reply_count, e.s_name, f.m_name,
+                  GROUP_CONCAT(DISTINCT b.image separator'/') AS image,
+                  GROUP_CONCAT(DISTINCT d.name separator'/') AS hashtag
                   FROM board AS a 
                   JOIN file AS b ON a.b_idx = b.b_idx
                   JOIN board_hash AS c ON a.b_idx = c.b_idx
@@ -273,7 +273,6 @@ exports.subList = async (req,res) => {
                 ...response,
                 result2
             }
-            console.log(result2)
         }
     } catch (error) {
         console.log(error.message)

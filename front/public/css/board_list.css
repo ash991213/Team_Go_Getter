@@ -109,7 +109,7 @@ p{
     max-height: 80px;
     margin-top: 31px;
 }
-.item_date{
+.item_content{
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -125,7 +125,7 @@ p{
     float:none;
     display:block;
 }
-.item_hit{
+.item_date{
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -141,7 +141,7 @@ p{
     float:none;
     display:block;
 }
-.item_reply_count{
+.item_hit{
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -157,7 +157,7 @@ p{
     float:none;
     display:block;
 }
-.item_subcategory{
+.item_reply_count{
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -167,6 +167,38 @@ p{
     width: 90%;
     height: 20px;
     margin-top: 252px;
+    margin-left: 8px;
+    border-radius: 30px;
+    background-color: rgb(49, 49, 49);
+    float:none;
+    display:block;
+}
+.item_subcategory{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    margin: 0 auto;
+    width: 90%;
+    height: 20px;
+    margin-top: 275px;
+    margin-left: 8px;
+    border-radius: 30px;
+    background-color: rgb(49, 49, 49);
+    float:none;
+    display:block;
+}
+.item_hashtag{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    margin: 0 auto;
+    width: 90%;
+    height: 20px;
+    margin-top: 298px;
     margin-left: 8px;
     border-radius: 30px;
     background-color: rgb(49, 49, 49);

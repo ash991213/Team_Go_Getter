@@ -17,7 +17,7 @@
         <div class="wrap3">
             {% for main in maincategory %}
             <div class="circle">
-                <a class="main_category" href="/board/list" style="display: block;">
+                <a class="main_category" href="/board/mainlist?m_idx={{main.m_idx}}" style="display: block;">
                     {{main.m_name}}
                 </a>
             </div>
@@ -27,7 +27,7 @@
             <p>서브 카테고리 목록</p>
             <div class="sub_content">
                 {% for sub in subcategory %}
-                <div class="item_sub" onclick="location.href='http://localhost:3000/board/list';">
+                <div class="item_sub" onclick="location.href='http://localhost:3000/board/sublist?s_idx={{sub.s_idx}}';">
                     <div class="item_subject">
                         <!-- 게시물 제목 넣기 -->
                         <p>{{sub.s_name}}제목 더미 제목 더미제목 더미제목 더미</p>

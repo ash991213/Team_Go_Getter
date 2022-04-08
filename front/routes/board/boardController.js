@@ -19,11 +19,12 @@ exports.list = async (req,res)=>{
 // 메인 카테고리 글 m_idx
 exports.mainlist = async (req,res)=>{
     const { user } = req.cookies
+    const { m_idx } = req.query
 
     const body = {
         user,
+        m_idx,
     }
-
     const option = {
         withCredentials:true,
     }
@@ -39,9 +40,11 @@ exports.mainlist = async (req,res)=>{
 // 서브 카테고리 글 s_idx
 exports.sublist = async (req,res)=>{
     const { user } = req.cookies
+    const { s_idx } = req.query
 
     const body = {
         user,
+        s_idx,
     }
 
     const option = {
@@ -52,6 +55,8 @@ exports.sublist = async (req,res)=>{
 
     const allBoard = response.data.result
     const board = response.data.result2
+
+    console.log(board)
 
     res.render('board_list.html', { allBoard,board });
 }
