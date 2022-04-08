@@ -88,10 +88,17 @@
                      <input id="pro_birthdate"class="reg_birthdate" type="date" align="center" placeholder="Birthdate" style="color: rgb(70, 70, 70)">
                      <input id="pro_adress"class="reg_adress" type="text" align="center" placeholder="Adress" style="color: lightgray;">
                      <p style="color: #362C2C; font-weight: bold;">gender</p>
-                     <label style="display: flex; height: 40px;">
+                     <label style="display: flex; height: 30px;">
                          <input id="pro_gender"class="reg_gender" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 35%; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">man</p>
                          <input id="pro_gender"class="reg_gender" type="radio" align="center" style="color: lightgray;width: 20px; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">woman</p>
                      </label>
+                     {% if 1 == user.level %}
+                     <label style="display: flex; height: 30px;">
+                        <input id="pro_level"class="reg_gender" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 35%; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">level 1</p>
+                        <input id="pro_level"class="reg_gender" type="radio" align="center" style="color: lightgray;width: 20px; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">level 2</p>
+                        <input id="pro_level"class="reg_gender" type="radio" align="center" style="color: lightgray;width: 20px; margin-top: 0px;" name="gender"><p style="color: #362C2C; font-weight: bold;">level 3</p>
+                    </label>
+                     {% endif %}
                      <input id="pro_mobile"class="reg_mobile" type="text" align="center" placeholder="Mobile" style="color: lightgray;">
                      <input id="pro_tel"class="reg_tel" type="text" align="center" placeholder="Tel" style="color: lightgray;">
                      <input id="pro_email"class="reg_email" type="text" align="center" placeholder="Email" style="color: lightgray;">

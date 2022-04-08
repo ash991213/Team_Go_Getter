@@ -9,7 +9,7 @@ profile_btn.addEventListener('click', async () => {
         const response = await axios.get('http://localhost:4000/user/edit',option)
 
         const { user } = response.data.result
-
+        console.log(user);
         document.getElementById('pro_userid').value = user.userid
         document.getElementById('pro_userpw').value = user.userpw
         document.getElementById('pro_username').value = user.username
@@ -21,7 +21,8 @@ profile_btn.addEventListener('click', async () => {
         document.getElementById('pro_tel').value = user.tel
         document.getElementById('pro_email').value = user.email
         document.getElementById('pro_intro').value = user.content
-        
+        document.getElementById('pro_level').value = user.level
+        document.getElementById('pro_isActive').value = user.isActive
     } catch (error) {
         console.log(error.message)
     }
