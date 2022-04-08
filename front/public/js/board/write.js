@@ -1,18 +1,29 @@
-const board_write = document.querySelector('#board_write')
+const board_write_btn= document.querySelector('#board_write_btn')
 
-board_write.addEventListener('click', async (e) => {
+board_write_btn.addEventListener('click', async (e) => {
     e.preventDefault()
-    const hash = board_write.querySelectorAll('.write_hashtag').value
-    // for each문으로 돌려서 보내나?
-    // console.log(hash);
-    console.log(board_write.querySelector('.sub_category_radio').value);
+    let hashtag = new Array
+
+    const hash = document.querySelectorAll('.write_hashtag')
+    // const {upload} = e.target
+    console.log(upload);
+    const board_write = new FormData()
+    FormData.append('upload',upload.files[0])
+    console.log();
+
+    hash.forEach( (v)=>{
+        if (v.value != "")
+        hashtag.push(v.value)
+    })
+
     const body = {
         subject:board_write.querySelector('.write_subject').value,
         content:board_write.querySelector('.write_content').value,
-        hashtag:board_write.querySelectorAll('.write_hashtag').value,
-
-        subcategory:board_write.querySelectorAll('.sub_category_radio').value
-
+        hashtag,
+        subcategory:board_write.querySelector('.sub_category_radio').value,
+        files:board_write.querySelector('#print')
     }
     console.log(body);
+    
+    alert('글 작성이 완료되었습니다.')
 })

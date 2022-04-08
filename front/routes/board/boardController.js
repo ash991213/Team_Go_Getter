@@ -73,7 +73,12 @@ exports.category = async (req,res)=>{
     res.render('category.html',{subcategory,maincategory});
 }
 
-
-exports.view = (req,res) => {
-    res.render('board_view.html');
+exports.view = async (req,res) => {
+    console.log(req.query)
+    {b_idx=2}
+    const  {b_idx} = req.query
+    
+    const response = await axios.get('http://localhost:4000/board/edit')
+    console.log(response.data.result);
+    res.render('board_view.html',{b_idx});
 }

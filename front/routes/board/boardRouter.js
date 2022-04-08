@@ -7,4 +7,5 @@ router.get('/mainlist',boardController.mainlist);
 router.get('/sublist',boardController.sublist);
 router.get('/category',boardController.category);
 router.get('/view',boardController.view);
+
 module.exports = router;
