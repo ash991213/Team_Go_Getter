@@ -33,10 +33,10 @@ exports.mainlist = async (req,res)=>{
         withCredentials:true,
     }
     const response = await axios.post('http://localhost:4000/board/mainList',body,option)
-    console.log(response.data);
+
     const allBoard = response.data.result
     const board = response.data.result2
-
+    
     res.render('board_list.html' ,{ allBoard,board });
 }
 

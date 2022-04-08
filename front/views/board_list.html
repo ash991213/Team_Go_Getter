@@ -124,33 +124,31 @@
                     <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
                     <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
                     <label style="display: flex; height: 40px;">
-                        {% for item in subcategory %}
-                        <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">{{item.s_name}}</p>
-                        {% endfor %}
+
+                        <select name="subcategory">
+                            {% for item in subcategory %}
+                            <option class="sub_category_radio" value="subcategory">{{item.s_name}}</option>
+                            {% endfor %}
+                        </select>
+
                     </label>
                     <ul class="img_con1">
                         <li style="list-style: none; margin-top: 30px;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                            <input type="file" id="sel-file" accept="image/*">
+                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
                         </li>
-                        <li style="list-style: none;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                            <input type="file" id="sel-file" accept="image/*">
+                        <li style="list-style: none; margin-top: 30px;">
+                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
                         </li>
-                        <li style="list-style: none;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                            <input type="file" id="sel-file" accept="image/*">
+                        <li style="list-style: none; margin-top: 30px;">
+                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
                         </li>
-                    </ul>
-                    <ul class="img_con2">
-                        <li style="list-style: none;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                            <input type="file" id="sel-file" accept="image/*">
+                        <li style="list-style: none; margin-top: 30px;">
+                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
                         </li>
-                        <li style="list-style: none;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                            <input type="file" id="sel-file" accept="image/*">
+                        <li style="list-style: none; margin-top: 30px;">
+                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
                         </li>
+                        <input type="file" id="sel-file" accept="image/*" multiple>
                     </ul>
                 <input id="board_write_btn" class="custom-btn btn-5" style="margin-top: 50px;" type="submit">
                 <button class="btn_close custom-btn btn-5"><a href="/board/list" align="center" style="color: #fff; display: block; text-decoration-line: none;">CLOSE</a></button>

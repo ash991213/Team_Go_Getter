@@ -167,7 +167,6 @@ exports.list = async (req,res) => {
 exports.mainList = async (req,res) => {
     const { m_idx } = req.body
 
-    
     const { user:token } = req.body
     const userid = decodePayload(token).userid
 
