@@ -18,12 +18,12 @@
                 <source src="./KakaoTalk_20220324_090914533 (online-video-cutter.com).mp4" type="video/mp4">
             </video>
             <div class="main">
-                {% if userid %}
-                <p class="sign" align="center">{{username}}, Welcome!</p>
+                {% if user %}
+                <p class="sign" align="center">{{user.nickname}}님 환영합니다!</p>
                 {% else %}
                 <p class="sign" align="center">SIGN IN</p>
                 {% endif %}
-                    {% if isresponse %}
+                    {% if user %}
                     <a class="submit" align="center">profile</a>
                     {% else %}
                     <form class="form1" id="login_frm">
@@ -237,9 +237,31 @@
     
     <div class="section" style="font-size: 32px; text-align: center; background-color: black;">
 
-        <!-- admin 로그인 후 화면 -->
+        {% if 3 == user.level %}
+        <div class="admin_back">
+            <div class="admin_main">
+                <div class="admin_con1">
+                    <div class="admin_span_box">
+                        <span class="admin_span">어드민 아니라</span>
+                    </div>
+                </div>
+                <div class="admin_con2">
+                    <div class="admin_span_box">
+                        <span class="admin_span">유저로 로그인 됬음</span>
+                    </div>
+                </div>
+                <div class="admin_con3">
+                    <div class="admin_span_box">
+                        <span class="admin_span">어드민 로그인 안보이게 해야할듯</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
 
-         <!-- <div class="admin_back">
+        <!-- admin 로그인 후 화면 -->
+        {% if 1 == user.level %}
+         <div class="admin_back">
             <div class="admin_main">
                 <div class="admin_con1">
                     <div class="admin_span_box">
@@ -257,9 +279,10 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <!-- admin 로그인 화면 -->
+        {% else %}
         <div class="admin_back">
             <div class="admin_main">
                 <div class="admin_login_con">
@@ -280,6 +303,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
 
     </div>
 
