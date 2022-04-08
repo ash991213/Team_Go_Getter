@@ -450,6 +450,7 @@ a {
     border-top: solid 70px black;
 }
 .admin_main{
+    display: inline-block;
     width: 90%;
     height: 85%;
     background-color: rgb(70, 70, 70);
@@ -461,23 +462,16 @@ a {
 }
 .admin_con1{
     position: absolute;
-    width: 20%;
-    height: 91%;
-    border-right: solid 2px rgb(58, 58, 58); 
+    width: 30%;
+    height: 83%;
 }
 .admin_con2{
     position: absolute;
-    margin-left: 20%;
-    width: 20%;
-    height: 91%;
-    border-right: solid 2px rgb(58, 58, 58); 
+    margin-left: 30%;
+    width: 60%;
+    height: 83%;
 }
-.admin_con3{
-    position: absolute;
-    margin-left: 40%;
-    width: 49.1%;
-    height: 91%;
-}
+
 .admin_span{
     font-family: 'Ubuntu', sans-serif;
     font-size: 15px;
@@ -605,4 +599,119 @@ a {
 
 .See_All_td a{
     display: block;
+}
+/* 어드민 거부 화면 */
+
+.admin_denied{
+    width: 300px;
+    height: 250px;
+    margin: 0 auto ;
+    background-color: rgb(0, 0, 0);
+    border-radius: 30px;
+    margin-top: 15%;
+    color: red;
+    font-weight: bold;
+}
+.denied_img{
+    margin-top: 20px;
+    width: 300px;
+    width: 300px;
+    border-radius: 30px;
+
+}
+/* 어드민 로그인 후 화면 */
+.list_con{
+    display: inline-block;
+    margin-top: 50px;
+    width: 90%;
+    height: 750px;
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow-x: scroll;
+
+}
+.category_con{
+
+    float: left;
+    display: flex;
+    margin-top: 50px;
+    width: 100%;
+    height: 750px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.category_inner{
+    display: inline-block;
+    margin-top: 50px;
+width: 17%;
+height: 700px;
+border: 2px solid black;
+border-radius: 10px;
+overflow-x: scroll;
+}
+.maincategory_top{
+    width: 100%;
+    height: 100px;
+    background-color: #362C2C;
+    border-radius: 10px;
+    border: 1px black solid;
+}
+.main_ca_name,.sub_ca_name{
+    width: 90%;
+    height: 20px;
+    
+}
+.main_info{
+    font-size: 12px;
+    margin: 0px 0px 0px 0px ;
+    color: #fff;
+}
+.subcategory_bottom{
+    display: block;
+    width: 100%;
+    height: 100px;
+    background-color: #362C2C;
+    border-radius: 10px;
+    border: 1px black solid;
+}
+
+.subcategory_inner{
+    margin: 0px 0px 0px 0px;
+    margin-left: -90px;
+    margin-right: -150px;
+    width: 90%;
+    list-style: none;
+    height: 5%;
+    overflow-x: scroll;
+}
+.subcategory_content{
+    font-size: 15px;
+}
+.user_info{
+    display: inline-block;
+    margin: 0px 0px 0px 0px;
+    margin-left: -90px;
+    
+    width: 90%;
+    list-style: none;
+    height: 5%;
+    overflow-x: scroll;
+}
+/* 어드민 회원 정보 리스트 */
+.user_info{
+    height: 100%;
+    font-size: 20px;
+    font-weight: bold;
+}
+.user_list{
+    display: inline-block;
+    width: 80%;
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid black;
+    
+}
+.info_userid{
+    font-size: 14px;
+    text-align: left;
 }

@@ -70,6 +70,7 @@ exports.category = async (req,res)=>{
     res.render('category.html',{subcategory,maincategory});
 }
 
+
 exports.view = (req,res) => {
     res.render('board_view.html');
 }
