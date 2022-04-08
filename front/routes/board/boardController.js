@@ -29,7 +29,6 @@ exports.mainlist = async (req,res)=>{
         user,
         m_idx,
     }
-
     const option = {
         withCredentials:true,
     }
@@ -44,9 +43,11 @@ exports.mainlist = async (req,res)=>{
 // 서브 카테고리 글 s_idx
 exports.sublist = async (req,res)=>{
     const { user } = req.cookies
+    const { s_idx } = req.query
 
     const body = {
         user,
+        s_idx,
     }
 
     const option = {
@@ -57,6 +58,8 @@ exports.sublist = async (req,res)=>{
     console.log(response);
     const allBoard = response.data.result
     const board = response.data.result2
+
+    console.log(board)
 
     res.render('board_list.html', { allBoard,board });
 }
