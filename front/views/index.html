@@ -277,142 +277,147 @@
                             </ul>
                             {% endfor %}
                         </div>
-                        
                     </div>
                 </div>
                 <div class="admin_con2">
                     <div class="admin_span_box">
                         <span class="admin_span">카테고리 수정</span>
                         <div class="category_con">
+                            {% for main in maincategory %}
                             <div class="category_inner">
                                 <div class="maincategory_top">
                                     <p class="main_info">메인카테고리 수정</p>
-                                    <input class="main_ca_name">
-                                    <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
-                                    <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">삭제</button>
+                                    <input class="main_ca_name" value="{{ main.m_name }}">
+                                    {% if main.m_name == undefined %}
+                                    <button id="main_add_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
+                                    {% endif %}
+                                    <button id="main_delete_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;" value="{{main.m_idx}}">삭제</button>
                                 </div>
                                 <div class="subcategory_bottom">
                                     <p class="main_info">서브카테고리 추가</p>
                                     <input class="sub_ca_name">
-                                    <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
+                                    <button id="sub_add_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
                                 </div>
                                 <!-- index로 받는 sub카테고리 값 필요 -->
-                                {% for sub in board %} 
                                 <ul class="subcategory_inner">
-                                    <li class="subcategory_content">{{loop.index}}죽여줘</li>
+                                    {% for sub in subcategory %}
+                                    {% if sub.m_idx == main.m_idx %}
+                                    <li class="subcategory_content">{{ sub.s_name }}</li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endfor %}
+                            <!-- <div class="category_inner">
+                                <div class="maincategory_top">
+                                    <p class="main_info">메인카테고리 수정</p>
+                                    <input class="main_ca_name" value="{{ maincategory[1].m_name }}">
+                                    {% if maincategory[1].m_name == undefined %}
+                                    <button id="main_add_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
+                                    {% endif %}
+                                    <button id="main_delete_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;" value="{{maincategory[1].m_idx}}">삭제</button>
+                                </div>
+                                <div class="subcategory_bottom">
+                                    <p class="main_info">서브카테고리 추가</p>
+                                    <input class="sub_ca_name">
+                                    <button id="sub_add_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
+                                </div>
+                                {% for sub in subcategory %}
+                                <ul class="subcategory_inner">
+                                    {% if sub.m_idx == 2 %}
+                                    <li class="subcategory_content">{{loop.index}}{{ sub.s_name }}</li>
+                                    {% endif %}
                                 </ul>
                                 {% endfor %}
                             </div>
                             <div class="category_inner">
-                                <div class="category_top">
-                                    <div class="maincategory_top">
-                                        <p class="main_info">메인카테고리 수정</p>
-                                        <input class="main_ca_name">
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">삭제</button>
-                                    </div>
-                                    <div class="subcategory_bottom">
-                                        <p class="main_info">서브카테고리 추가</p>
-                                        <input class="sub_ca_name">
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
-                                    </div>
-                                    <!-- index로 받는 sub카테고리 값 필요 -->
-                                    {% for sub in board %} 
-                                    <ul class="subcategory_inner">
-                                        <li class="subcategory_content">{{loop.index}}죽여줘</li>
-                                    </ul>
-                                    {% endfor %}
-    
+                                <div class="maincategory_top">
+                                    <p class="main_info">메인카테고리 수정</p>
+                                    <input class="main_ca_name" value="{{ maincategory[2].m_name }}">
+                                    {% if maincategory[2].m_name == undefined %}
+                                    <button id="main_add_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
+                                    {% endif %}
+                                    <button id="main_delete_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;" value="{{maincategory[2].m_idx}}">삭제</button>
                                 </div>
+                                <div class="subcategory_bottom">
+                                    <p class="main_info">서브카테고리 추가</p>
+                                    <input class="sub_ca_name">
+                                    <button id="sub_add_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
+                                </div>
+                                {% for sub in subcategory %}
+                                <ul class="subcategory_inner">
+                                    {% if sub.m_idx == 3 %}
+                                    <li class="subcategory_content">{{loop.index}}{{ sub.s_name }}</li>
+                                    {% endif %}
+                                </ul>
+                                {% endfor %}
                             </div>
                             <div class="category_inner">
-                                <div class="category_top">
-                                    <div class="maincategory_top">
-                                        <p class="main_info">메인카테고리 수정</p>
-                                        <input class="main_ca_name">
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">삭제</button>
-                                    </div>
-                                    <div class="subcategory_bottom">
-                                        <p class="main_info">서브카테고리 추가</p>
-                                        <input class="sub_ca_name">
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
-                                    </div>
-                                    <!-- index로 받는 sub카테고리 값 필요 -->
-                                    {% for sub in board %} 
-                                    <ul class="subcategory_inner">
-                                        <li class="subcategory_content">{{loop.index}}죽여줘</li>
-                                    </ul>
-                                    {% endfor %}
-    
+                                <div class="maincategory_top">
+                                    <p class="main_info">메인카테고리 수정</p>
+                                    <input class="main_ca_name" value="{{ maincategory[3].m_name }}">
+                                    {% if maincategory[3].m_name == undefined %}
+                                    <button id="main_add_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
+                                    {% endif %}
+                                    <button id="main_delete_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;" value="{{maincategory[3].m_idx}}">삭제</button>
                                 </div>
+                                <div class="subcategory_bottom">
+                                    <p class="main_info">서브카테고리 추가</p>
+                                    <input class="sub_ca_name">
+                                    <button id="sub_add_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
+                                </div>
+                                {% for sub in subcategory %}
+                                <ul class="subcategory_inner">
+                                    {% if sub.m_idx == 4 %}
+                                    <li class="subcategory_content">{{loop.index}}{{ sub.s_name }}</li>
+                                    {% endif %}
+                                </ul>
+                                {% endfor %}
                             </div>
                             <div class="category_inner">
-                                <div class="category_top">
-                                    <div class="maincategory_top">
-                                        <p class="main_info">메인카테고리 수정</p>
-                                        <input class="main_ca_name">
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">삭제</button>
-                                    </div>
-                                    <div class="subcategory_bottom">
-                                        <p class="main_info">서브카테고리 추가</p>
-                                        <input class="sub_ca_name">
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
-                                    </div>
-                                    <!-- index로 받는 sub카테고리 값 필요 -->
-                                    {% for sub in board %} 
-                                    <ul class="subcategory_inner">
-                                        <li class="subcategory_content">{{loop.index}}죽여줘</li>
-                                    </ul>
-                                    {% endfor %}
-    
+                                <div class="maincategory_top">
+                                    <p class="main_info">메인카테고리 수정</p>
+                                    <input class="main_ca_name" value="{{ maincategory[4].m_name }}">
+                                    {% if maincategory[4].m_name == undefined %}
+                                    <button id="main_add_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
+                                    {% endif %}
+                                    <button id="main_delete_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;" value="{{maincategory[4].m_idx}}">삭제</button>
                                 </div>
+                                <div class="subcategory_bottom">
+                                    <p class="main_info">서브카테고리 추가</p>
+                                    <input class="sub_ca_name">
+                                    <button id="sub_add_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
+                                </div>
+                                {% for sub in subcategory %}
+                                <ul class="subcategory_inner">
+                                    {% if sub.m_idx == 5 %}
+                                    <li class="subcategory_content">{{loop.index}}{{ sub.s_name }}</li>
+                                    {% endif %}
+                                </ul>
+                                {% endfor %}
                             </div>
                             <div class="category_inner">
-                                <div class="category_top">
-                                    <div class="maincategory_top">
-                                        <p class="main_info">메인카테고리 수정</p>
-                                        <input class="main_ca_name">
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">삭제</button>
-                                    </div>
-                                    <div class="subcategory_bottom">
-                                        <p class="main_info">서브카테고리 추가</p>
-                                        <input class="sub_ca_name">
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
-                                    </div>
-                                    <!-- index로 받는 sub카테고리 값 필요 -->
-                                    {% for sub in board %} 
-                                    <ul class="subcategory_inner">
-                                        <li class="subcategory_content">{{loop.index}}죽여줘</li>
-                                    </ul>
-                                    {% endfor %}
-    
+                                <div class="maincategory_top">
+                                    <p class="main_info">메인카테고리 수정</p>
+                                    <input class="main_ca_name" value="{{ maincategory[5].m_name }}">
+                                    {% if maincategory[5].m_name == undefined %}
+                                    <button id="main_add_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
+                                    {% endif %}
+                                    <button id="main_delete_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;" value="{{maincategory[5].m_idx}}" >삭제</button>
                                 </div>
-                            </div>
-                            <div class="category_inner">
-                                <div class="category_top">
-                                    <div class="maincategory_top">
-                                        <p class="main_info">메인카테고리 수정</p>
-                                        <input class="main_ca_name">
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">삭제</button>
-                                    </div>
-                                    <div class="subcategory_bottom">
-                                        <p class="main_info">서브카테고리 추가</p>
-                                        <input class="sub_ca_name">
-                                        <button class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
-                                    </div>
-                                    <!-- index로 받는 sub카테고리 값 필요 -->
-                                    {% for sub in board %} 
-                                    <ul class="subcategory_inner">
-                                        <li class="subcategory_content">{{loop.index}}죽여줘</li>
-                                    </ul>
-                                    {% endfor %}
-    
+                                <div class="subcategory_bottom">
+                                    <p class="main_info">서브카테고리 추가</p>
+                                    <input class="sub_ca_name">
+                                    <button id="sub_add_btn" class="custom-btn btn-5" type="submit" style="width: 50px; height: 40px;">추가</button>
                                 </div>
-                            </div>
+                                {% for sub in subcategory %}
+                                <ul class="subcategory_inner">
+                                    {% if sub.m_idx == 6 %}
+                                    <li class="subcategory_content">{{loop.index}}{{ sub.s_name }}</li>
+                                    {% endif %}
+                                </ul>
+                                {% endfor %}
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -505,6 +510,8 @@
     <script type="text/javascript" src="/js/user/quit.js"></script>
     <!-- ADMIN -->
     <script type="text/javascript" src="/js/admin/login.js"></script>
+    <script type="text/javascript" src="/js/admin/main_category.js"></script>
+    <script type="text/javascript" src="/js/admin/sub_category.js"></script>
 
 </body>
 </html>

@@ -24,7 +24,7 @@ CREATE TABLE point (
     userid VARCHAR(32) NOT NULL,
     b_point INT NOT NULL DEFAULT 0,
     r_point INT NOT NULL DEFAULT 0,
-    FOREIGN KEY (userid) REFERENCES user (userid)
+    FOREIGN KEY (userid) REFERENCES user (userid) ON DELETE CASCADE
 );
 
 CREATE TABLE maincategory (
@@ -36,7 +36,7 @@ CREATE TABLE subcategory (
     s_idx INT PRIMARY KEY AUTO_INCREMENT,
     m_idx INT NOT NULL,
     s_name VARCHAR(32) NOT NULL,
-    FOREIGN KEY (m_idx) REFERENCES maincategory (m_idx)
+    FOREIGN KEY (m_idx) REFERENCES maincategory (m_idx) ON DELETE CASCADE
 );
 
 CREATE TABLE board (
@@ -49,8 +49,8 @@ CREATE TABLE board (
     hit INT DEFAULT 0,
     isActive BOOLEAN NOT NULL DEFAULT 1,
     reply_count INT DEFAULT 0,
-    FOREIGN KEY (userid) REFERENCES user (userid),
-    FOREIGN KEY (s_idx) REFERENCES subcategory (s_idx)
+    FOREIGN KEY (userid) REFERENCES user (userid) ON DELETE CASCADE,
+    FOREIGN KEY (s_idx) REFERENCES subcategory (s_idx) ON DELETE CASCADE
 );
 
 CREATE TABLE reply (
@@ -62,14 +62,14 @@ CREATE TABLE reply (
     seq INT NOT NULL,
     groupNum INT,
     date TIMESTAMP NOT NULL,
-    FOREIGN KEY (userid) REFERENCES user (userid)
+    FOREIGN KEY (userid) REFERENCES user (userid) ON DELETE CASCADE
 );
 
 CREATE TABLE intro (
     i_idx INT PRIMARY KEY AUTO_INCREMENT,
     userid VARCHAR(32) NOT NULL,
     content VARCHAR(255) NOT NULL,
-    FOREIGN KEY (userid) REFERENCES user (userid)
+    FOREIGN KEY (userid) REFERENCES user (userid) ON DELETE CASCADE
 );
 
 CREATE TABLE likes (
@@ -80,16 +80,16 @@ CREATE TABLE likes (
     like_num INT NOT NULL DEFAULT 0,
     dislike_num INT NOT NULL DEFAULT 0,
     like_check INT NOT NULL DEFAULT 0,
-    FOREIGN KEY (userid) REFERENCES user (userid),
-    FOREIGN KEY (b_idx) REFERENCES board (b_idx),
-    FOREIGN KEY (r_idx) REFERENCES reply (r_idx)
+    FOREIGN KEY (userid) REFERENCES user (userid) ON DELETE CASCADE,
+    FOREIGN KEY (b_idx) REFERENCES board (b_idx) ON DELETE CASCADE,
+    FOREIGN KEY (r_idx) REFERENCES reply (r_idx) ON DELETE CASCADE
 );
 
 CREATE TABLE file (
     f_idx INT PRIMARY KEY AUTO_INCREMENT,
     b_idx INT NOT NULL,
     image VARCHAR(64) NOT NULL,
-    FOREIGN KEY (b_idx) REFERENCES board (b_idx)
+    FOREIGN KEY (b_idx) REFERENCES board (b_idx) ON DELETE CASCADE
 );
 
 CREATE TABLE hashtag (
@@ -100,8 +100,8 @@ CREATE TABLE hashtag (
 CREATE TABLE board_hash (
     h_idx INT NOT NULL,
     b_idx INT NOT NULL,
-    FOREIGN KEY (h_idx) REFERENCES hashtag (h_idx),
-    FOREIGN KEY (b_idx) REFERENCES board (b_idx)
+    FOREIGN KEY (h_idx) REFERENCES hashtag (h_idx) ON DELETE CASCADE,
+    FOREIGN KEY (b_idx) REFERENCES board (b_idx) ON DELETE CASCADE
 );
 
 CREATE TABLE chatroom (
@@ -115,6 +115,6 @@ CREATE TABLE chat (
     cr_idx INT NOT NULL,
     content TEXT NOT NULL,
     date TIMESTAMP NOT NULL,
-    FOREIGN KEY (userid) REFERENCES user (userid),
-    FOREIGN KEY (cr_idx) REFERENCES chatroom (cr_idx)
+    FOREIGN KEY (userid) REFERENCES user (userid) ON DELETE CASCADE,
+    FOREIGN KEY (cr_idx) REFERENCES chatroom (cr_idx) ON DELETE CASCADE
 );

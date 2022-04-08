@@ -84,7 +84,6 @@ exports.categoryList = async (req,res) => {
             errno:1
         }
     }
-    console.log(response)
     res.json(response)
 }
 
@@ -113,6 +112,9 @@ exports.mainCategory = async (req,res) => {
 exports.subCategory = async (req,res) => {
     const { s_name,m_idx } = req.body
 
+    console.log(s_name)
+    console.log(m_idx)
+
     const sql = `INSERT INTO subcategory(s_name,m_idx)
                  VALUES ('${s_name}',${m_idx})`
 
@@ -134,16 +136,18 @@ exports.subCategory = async (req,res) => {
 }
 
 exports.mainDelete = async (req,res) => {
-    const { m_name } = req.body
+    const { m_idx } = req.body
 
-    const sql = `DELETE FROM maincategory WHERE m_name = '${m_name}'`
+    const sql = `DELETE FROM maincategory WHERE m_idx = ${m_idx}`
 
     let response = {
         errno:0
     }
 
     try {
+        await pool.execute(`SET foreign_key_checks = 0`)
         await pool.execute(sql)
+        await pool.execute(`SET foreign_key_checks = 1`)
     } catch (error) {
         console.log(error.message)
         response = {
@@ -154,9 +158,9 @@ exports.mainDelete = async (req,res) => {
 }
 
 exports.subDelete = async (req,res) => {
-    const { s_name } = req.body
+    const { s_idx } = req.body
 
-    const sql = `DELETE FROM subcategory WHERE s_name = '${s_name}'`
+    const sql = `DELETE FROM subcategory WHERE s_idx = '${s_idx}'`
 
     let response = {
         errno:0

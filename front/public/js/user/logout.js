@@ -6,8 +6,6 @@ logout_btn.addEventListener('click', async ()=>{
     try {
         const response = await axios.post('http://localhost:4000/user/logout',null,option)
 
-        console.log(response.data.errno)
-
         if (response.data.errno == 0)
         alert('로그아웃이 완료되었습니다.')
         location.href = '/'
