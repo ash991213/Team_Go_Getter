@@ -28,7 +28,7 @@ exports.mainlist = async (req,res)=>{
         withCredentials:true,
     }
 
-    const response = await axios.post('http://localhost:4000/board/list',body,option)
+    const response = await axios.post('http://localhost:4000/board/mainList',body,option)
 
     const allBoard = response.data.result
     const board = response.data.result2
@@ -48,7 +48,7 @@ exports.sublist = async (req,res)=>{
         withCredentials:true,
     }
 
-    const response = await axios.post('http://localhost:4000/board/list',body,option)
+    const response = await axios.post('http://localhost:4000/board/subList',body,option)
 
     const allBoard = response.data.result
     const board = response.data.result2
