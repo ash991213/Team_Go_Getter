@@ -25,7 +25,7 @@
                 {% endif %}
                     {% if user %}
                     <button id="profile_btn" class="custom-btn btn-5"><a href="#pop_info_2" class="btn_open" align="center">PROFILE</a></button>
-                    <button class="custom-btn btn-5" type="submit">LOGOUT</button>
+                    <button id="logout_btn" class="custom-btn btn-5" type="submit">LOGOUT</button>
                     {% else %}
                     <form class="form1" id="login_frm">
                         <input id="login_userid" class="un" type="text" align="center" placeholder="Username" style="color: lightgray; " autocomplete="off">
@@ -501,6 +501,7 @@
     <script type="text/javascript" src="/js/user/pop.js"></script>
     <script type="text/javascript" src="/js/user/join.js"></script>
     <script type="text/javascript" src="/js/user/login.js"></script>
+    <script type="text/javascript" src="/js/user/logout.js"></script>
     <script type="text/javascript" src="/js/user/idcheck.js"></script>
     <script type="text/javascript" src="/js/user/profile.js"></script>
     <script type="text/javascript" src="/js/user/userData.js"></script>
