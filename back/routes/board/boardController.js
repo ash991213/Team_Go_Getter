@@ -300,7 +300,7 @@ exports.view = async (req,res) => {
 
     const sql3 = `SELECT GROUP_CONCAT(DISTINCT a.name separator',') AS name 
                   FROM hashtag a
-                  LEFT OUTER JOIN board_hash AS b
+                  JOIN board_hash AS b
                   ON a.h_idx = b.h_idx
                   WHERE b.b_idx = ${b_idx}`
 
@@ -367,14 +367,14 @@ exports.GetEdit = async (req,res) => {
 
     const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.username, b.gender, b.email
                  FROM board a
-                 LEFT OUTER JOIN user AS b ON a.userid = b.userid
+                 JOIN user AS b ON a.userid = b.userid
                  WHERE a.b_idx = ${b_idx}
                  `
 
     const sql2 = `SELECT image FROM file WHERE b_idx = ${b_idx}`
 
     const sql3 = `SELECT a.name FROM hashtag a
-                  LEFT OUTER JOIN board_hash AS b
+                  JOIN board_hash AS b
                   ON a.h_idx = b.h_idx
                   WHERE b_idx = ${b_idx}`
 
@@ -442,7 +442,7 @@ exports.PostEdit = async (req,res) => {
 
         if ( hashtag.length == 0 ){
             const sql4=`DELETE a FROM board_hash AS a
-                        LEFT OUTER JOIN hashtag AS b
+                        JOIN hashtag AS b
                         ON a.h_idx = b.h_idx
                         WHERE a.b_idx = ${b_idx}`
 
@@ -451,8 +451,8 @@ exports.PostEdit = async (req,res) => {
         hashtag.forEach( async v => {
             const sql = `SELECT a.b_idx, b.h_idx, c.name
                              FROM board a
-                             LEFT OUTER JOIN board_hash AS b ON a.b_idx = b.b_idx
-                             LEFT OUTER JOIN hashtag AS c ON b.h_idx = c.h_idx
+                             JOIN board_hash AS b ON a.b_idx = b.b_idx
+                             JOIN hashtag AS c ON b.h_idx = c.h_idx
                              WHERE c.name = '${v}'
                              `
             const [result] = await pool.execute(sql)
@@ -527,14 +527,14 @@ exports.delete = async (req,res) => {
 
     const sql = `DELETE a,b,c
                  FROM board AS a
-                 LEFT OUTER JOIN board_hash AS b ON a.b_idx = b.b_idx
-                 LEFT OUTER JOIN file AS c ON a.b_idx = c.b_idx
+                 JOIN board_hash AS b ON a.b_idx = b.b_idx
+                 JOIN file AS c ON a.b_idx = c.b_idx
                  WHERE a.b_idx = ${b_idx}
                  `
 
     const sql2 = `DELETE a
                   FROM hashtag AS a
-                  LEFT OUTER JOIN board_hash AS b
+                  JOIN board_hash AS b
                   ON a.h_idx = b.h_idx
                   WHERE b.h_idx IS NULL
                   `
