@@ -75,7 +75,7 @@ exports.category = async (req,res)=>{
 
 exports.view = async (req,res) => {
     console.log(req.query)
-    {b_idx=2}
+    // {b_idx=2}
     const  {b_idx} = req.query
     
     const response = await axios.get('http://localhost:4000/board/edit')
