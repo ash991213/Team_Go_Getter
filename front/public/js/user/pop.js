@@ -1,6 +1,6 @@
 
 var target = document.querySelectorAll('.btn_open');
-var btnPopClose = document.querySelectorAll('.pop_wrap');
+// var btnPopClose = document.querySelectorAll('.pop_wrap');
 var targetID;
 
 // 팝업 열기

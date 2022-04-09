@@ -13,10 +13,10 @@ exports.list = async (req,res)=>{
     console.log(subcategory);
 
     const response2 = await axios.post('http://localhost:4000/board/list',user,option)
-    
+    console.log(response2.data.result2);
     const allBoard = response2.data.result
     const board = response2.data.result2
-
+    console.log(allBoard);
     res.render('board_list.html', { allBoard,board,subcategory});
 }
 

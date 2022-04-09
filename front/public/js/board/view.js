@@ -96,17 +96,20 @@ board_down.addEventListener('click',async ()=>{
         console.log(e.message);
     }
 })
+const board_edit_hidden = document.querySelector('#board_edit_hidden')
 
-// const board_edit= document.querySelector('#board_edit')
+console.log(board_edit.value,"이것은 보드에딧 값");
 
-// board_edit.addEventListener('click', async (e) => {
-//     e.preventDefault()
-//     const body ={
-//         b_idx,
-//     }
-//     const option={
-//         withCredentials:true,
-//     }
-//     const response = await axios.get('http://localhost:4000/board/edit',body,option)
-//     console.log(response);
-// })
+const board_edit= document.querySelector('#board_edit')
+
+board_edit.addEventListener('click', async (e) => {
+    e.preventDefault()
+    const body ={
+        b_idx:board_edit_hidden.value,
+    }
+    const option={
+        withCredentials:true,
+    }
+    const response = await axios.get('http://localhost:4000/board/edit',body,option)
+    console.log(response);
+})
