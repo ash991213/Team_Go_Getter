@@ -514,7 +514,7 @@ exports.PostEdit = async (req,res) => {
 };
 
 exports.delete = async (req,res) => {
-    const b_idx = req.query
+    const { b_idx } = req.body
 
     const token = req.cookies.user
     const userid = decodePayload(token).userid
@@ -557,7 +557,7 @@ exports.delete = async (req,res) => {
 
 exports.likes = async (req,res) => {
     const { b_idx } = req.body
-
+    
     const token = req.cookies.user
     const userid = decodePayload(token).userid
 

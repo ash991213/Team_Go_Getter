@@ -17,10 +17,22 @@ router.use('/chat',chatRouter);
 
 router.get('/', userdata , async (req,res)=>{
     const user = req.user
-    const response = await axios.post('http://localhost:4000/user/point') 
+    const response = await axios.post('http://localhost:4000/user/point')
+
     const { board } = response.data.result
     const { reply } = response.data.result
-    res.render('index.html', {board,reply,user});
+
+    let category
+    let maincategory
+    let subcategory
+
+    if ( user && user.level == 1 ) {
+    category = await axios.post('http://localhost:4000/admin/categoryList')
+        maincategory = category.data.result
+        subcategory = category.data.result2
+    }
+
+    res.render('index.html', {board,reply,user,maincategory,subcategory});
 });
 
 
