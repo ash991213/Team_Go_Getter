@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { pool } = require('../../../back/models/db');
 
 // 전체글
 exports.list = async (req,res)=>{
@@ -10,14 +11,12 @@ exports.list = async (req,res)=>{
     const response1 = await axios.get('http://localhost:4000/board/write')
 
     const subcategory = response1.data.result.subcategory;
-    console.log(subcategory);
 
     const response2 = await axios.post('http://localhost:4000/board/list',user,option)
-    console.log(response2.data.result2);
     const allBoard = response2.data.result
     const board = response2.data.result2
-    console.log(allBoard);
-    res.render('board_list.html', { allBoard,board,subcategory});
+
+    res.render('board_list.html', { allBoard,board,subcategory,allBoard,board});
 }
 
 // 메인 카테고리 글 m_idx
@@ -55,11 +54,9 @@ exports.sublist = async (req,res)=>{
     }
 
     const response = await axios.post('http://localhost:4000/board/subList',body,option)
-    console.log(response);
+    
     const allBoard = response.data.result
     const board = response.data.result2
-
-    console.log(board)
 
     res.render('board_list.html', { allBoard,board });
 }
@@ -74,11 +71,16 @@ exports.category = async (req,res)=>{
 }
 
 exports.view = async (req,res) => {
-    console.log(req.query)
-    // {b_idx=2}
-    const  {b_idx} = req.query
-    
-    const response = await axios.get('http://localhost:4000/board/edit')
-    console.log(response.data.result);
-    res.render('board_view.html',{b_idx});
+    const  { b_idx } = req.query
+
+    const body = {
+        b_idx,
+    }
+
+    const response = await axios.post('http://localhost:4000/reply/view',body)
+
+    const main = response.data.result
+    const sub = response.data.result2
+
+    res.render('board_view.html',{b_idx,main,sub});
 }

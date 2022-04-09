@@ -287,20 +287,26 @@ exports.subList = async (req,res) => {
 }
 
 exports.view = async (req,res) => {
-    const b_idx = req.query
+    const { b_idx } = req.body
 
-    const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.username, b.gender, b.email
+    const sql = `SELECT a.b_idx, a.subject, a.content, DATE_FORMAT(a.date,'%Y-%m-%d') as date, a.hit, b.username, b.gender, b.email, c.s_name
                  FROM board a
-                 LEFT OUTER JOIN user AS b ON a.userid = b.userid
+                 LEFT JOIN user AS b ON a.userid = b.userid
+                 LEFT JOIN subcategory AS c ON a.s_idx = c.s_idx
                  WHERE a.b_idx = ${b_idx}
                  `
 
     const sql2 = `SELECT image FROM file WHERE b_idx = ${b_idx}`
 
-    const sql3 = `SELECT a.name FROM hashtag a
+    const sql3 = `SELECT GROUP_CONCAT(DISTINCT a.name separator',') AS name 
+                  FROM hashtag a
                   LEFT OUTER JOIN board_hash AS b
                   ON a.h_idx = b.h_idx
-                  WHERE b_idx = ${b_idx}`
+                  WHERE b.b_idx = ${b_idx}`
+
+    const sql4 = `SELECT * FROM likes WHERE b_idx = ${b_idx} AND like_num = 1;`
+
+    const sql5 = `SELECT * FROM likes WHERE b_idx = ${b_idx} AND dislike_num = 1;`
 
     let cookies = req.cookies.visit
 
@@ -316,9 +322,7 @@ exports.view = async (req,res) => {
         if ( cookies != undefined ) {
             let newCookie = cookies.split('/')
 
-            function findNum(n) { if(parseInt(n) === b_idx) return true }
-
-            if ( newCookie.findIndex(findNum) == -1 ) {
+            if ( newCookie.includes(b_idx) == false ) {
             await pool.execute(`UPDATE board SET hit = hit+1 WHERE b_idx = ${b_idx}`)
                 cookies = cookies + '/' + b_idx
                 res.cookie('visit',cookies, {
@@ -336,8 +340,10 @@ exports.view = async (req,res) => {
         const [board] = await pool.execute(sql)
         const [image] = await pool.execute(sql2)
         const [hashtag] = await pool.execute(sql3)
+        const[likes] = await pool.execute(sql4)
+        const[dislikes] = await pool.execute(sql5)
 
-        const result = {board,image,hashtag}
+        const result = {board,image,hashtag,likes,dislikes}
 
         response = {
             ...response,
@@ -354,41 +360,41 @@ exports.view = async (req,res) => {
 }
 
 exports.GetEdit = async (req,res) => {
-    // const b_idx = req.query
+    const { b_idx } = req.body
 
-    // const token = req.cookies.user
-    // const userid = decodePayload(token).userid
+    const token = req.cookies.user
+    const userid = decodePayload(token).userid
 
     const sql = `SELECT a.b_idx, a.userid, a.subject, a.content, a.date, a.hit, b.username, b.gender, b.email
                  FROM board a
                  LEFT OUTER JOIN user AS b ON a.userid = b.userid
-                 WHERE a.b_idx = 1
+                 WHERE a.b_idx = ${b_idx}
                  `
 
-    // const sql2 = `SELECT image FROM file WHERE b_idx = ${b_idx}`
+    const sql2 = `SELECT image FROM file WHERE b_idx = ${b_idx}`
 
-    // const sql3 = `SELECT a.name FROM hashtag a
-    //               LEFT OUTER JOIN board_hash AS b
-    //               ON a.h_idx = b.h_idx
-    //               WHERE b_idx = ${b_idx}`
+    const sql3 = `SELECT a.name FROM hashtag a
+                  LEFT OUTER JOIN board_hash AS b
+                  ON a.h_idx = b.h_idx
+                  WHERE b_idx = ${b_idx}`
 
-    // const sql4 = `SELECT * FROM board WHERE b_idx = ${b_idx} AND userid = '${userid}'`
+    const sql4 = `SELECT * FROM board WHERE b_idx = ${b_idx} AND userid = '${userid}'`
 
-    // const [result4] = await pool.execute(sql4)
+    const [result4] = await pool.execute(sql4)
 
     let response = {
         errno:0
     }
 
     try {
-        // if ( result4.length == 0 && userid != 'admin' ) throw new Error ('본인의 글만 수정할 수 있습니다.')
+        if ( result4.length == 0 && userid != 'admin' ) throw new Error ('본인의 글만 수정할 수 있습니다.')
         
         const [board] = await pool.execute(sql)
-        // const [image] = await pool.execute(sql2)
-        // const [hashtag] = await pool.execute(sql3)
+        const [image] = await pool.execute(sql2)
+        const [hashtag] = await pool.execute(sql3)
 
-        const result = { board }
-        //, image, hashtag
+        const result = { board,image,hashtag }
+
         response = {
             ...response,
             result
@@ -514,7 +520,7 @@ exports.PostEdit = async (req,res) => {
 };
 
 exports.delete = async (req,res) => {
-    const b_idx = req.query
+    const { b_idx } = req.body
 
     const token = req.cookies.user
     const userid = decodePayload(token).userid
@@ -663,7 +669,7 @@ exports.dislikes = async (req,res) => {
     res.json(response)
 }
 
-exports.down = async (rep,res) => {
+exports.down = async (req,res) => {
     const { b_idx } = req.body
 
     const sql = `SELECT * FROM board WHERE b_idx = ${b_idx}`

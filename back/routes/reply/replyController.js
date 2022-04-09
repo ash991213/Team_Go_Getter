@@ -2,9 +2,7 @@ const pool = require('../../models/db.js').pool;
 const { decodePayload } = require('../../utils/jwt.js');
 
 exports.mainwrite = async (req,res) => {
-    const { content } = req.body
-
-    const b_idx = req.query
+    const { content,b_idx } = req.body
 
     const token = req.cookies.user
     const userid = decodePayload(token).userid
@@ -97,16 +95,16 @@ exports.subwrite = async (req,res) => {
 }
 
 exports.view = async (req,res) => {
-    const b_idx = req.query
+    const { b_idx } = req.body
 
-    const sql = `SELECT a.userid, a.content, a.groupNum, a.date, b.username, b.gender, b.email 
+    const sql = `SELECT a.userid, a.r_idx, a.depth, a.content, a.groupNum, DATE_FORMAT(a.date,'%Y-%m-%d') as date, b.username, b.gender, b.email 
                  FROM reply a
-                 LEFT OUTER JOIN user AS b ON a.userid = b.userid
+                 JOIN user AS b ON a.userid = b.userid
                  WHERE depth = 1 AND b_idx = ${b_idx}
                  `
-    const sql2 = `SELECT a.userid, a.content, a.groupNum, a.seq, a.date, b.username, b.gender, b.email 
+    const sql2 = `SELECT a.userid, a.r_idx, a.depth, a.content, a.groupNum, a.seq, DATE_FORMAT(a.date,'%Y-%m-%d') as date, b.username, b.gender, b.email 
                   FROM reply a
-                  LEFT OUTER JOIN user AS b ON a.userid = b.userid
+                  JOIN user AS b ON a.userid = b.userid
                   WHERE depth = 2 AND b_idx = ${b_idx}
                   `
 
