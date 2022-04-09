@@ -24,12 +24,9 @@ const main_ca_name = document.querySelectorAll('.main_ca_name')
 
 main_add_btns.forEach( (v,i) => {
     v.addEventListener('click', async () => {
-
         const body = {
-            m_name:main_ca_name[i+1].value
+            m_name:main_ca_name[6-main_add_btns.length].value
         }
-
-        console.log(body)
 
         try {
             const response = await axios.post('http://localhost:4000/admin/mainCategory',body)

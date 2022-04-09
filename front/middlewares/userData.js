@@ -4,7 +4,6 @@ exports.userdata = (req, res, next) => {
     try {
         if (token) {
             const { userid,username,nickname,level } = decodePayload(token)
-            console.log(level);
             req.user = { userid,username,nickname,level, }
 
             next()

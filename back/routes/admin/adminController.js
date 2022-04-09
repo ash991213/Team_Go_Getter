@@ -112,9 +112,6 @@ exports.mainCategory = async (req,res) => {
 exports.subCategory = async (req,res) => {
     const { s_name,m_idx } = req.body
 
-    console.log(s_name)
-    console.log(m_idx)
-
     const sql = `INSERT INTO subcategory(s_name,m_idx)
                  VALUES ('${s_name}',${m_idx})`
 
@@ -158,15 +155,16 @@ exports.mainDelete = async (req,res) => {
 }
 
 exports.subDelete = async (req,res) => {
-    const { s_idx } = req.body
+    const { s_name } = req.body
 
-    const sql = `DELETE FROM subcategory WHERE s_idx = '${s_idx}'`
+    const sql = `DELETE FROM subcategory WHERE s_name = '${s_name}'`
 
     let response = {
         errno:0
     }
 
     try {
+        if (s_name == '') throw new Error('서브카테고리 이름 빈값')
         await pool.execute(sql)
     } catch (error) {
         console.log(error.message)

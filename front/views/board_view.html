@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="/css/board_view.css" type="text/css" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div class="content_wrap">
@@ -20,32 +21,28 @@
             </div>
             <div class="hashtag_con"> 
                 <ul>
-                    <li class="hash_li">해쉬태그 출력</li>
-                    <li class="hash_li">해쉬태그 출력</li>
-                    <li class="hash_li">해쉬태그 출력</li>
+                    <li id="view_hashtag" class="hash_li"></li>
                 </ul>
             </div>
             <div class="subcategory_con"> 
                 <ul>
-                    <li class="subcategory_li">서브카테고리 출력</li>
-                    <li class="subcategory_li">서브카테고리 출력</li>
-                    <li class="subcategory_li">서브카테고리 출력</li>
+                    <li id="view_subcategory" class="subcategory_li"></li>
                 </ul>
             </div>
             <div class="container" style="margin-left: 250px; margin-top: 20px;">
                 <div class="button-container like-container">
-                    <a href="#">
+                    <a id="like_btn" href="">
                         <i class="fa fa-heart-o">Like</i>    
                     </a>
                 </div>
                 <div class="button-container dislike-container">
-                    <p>{{likes.l_idx}}300</p>
+                    <p id="likes"></p>
                 </div>
                 <div class="button-container dislike-container">
-                    <p>{{likes.l_idx}}300</p>
+                    <p id="dislikes"></p>
                 </div>
                 <div class="button-container dislike-container">
-                    <a href="#">
+                    <a id="dislike_btn" href="">
                         <i class="fa fa-heart"> Dislike</i>
                     </a>
                 </div>
@@ -56,101 +53,57 @@
         <div class="content_con">
             <div class="content">
                 <div class="main">
-                <p class="write_subject" type="text" style="color: lightgray;">제목입니다</p>
-                <p class="write_content" type="text" style="height: 250px;color: lightgray;">컨텐츠 입니다</p>
+                <p id="view_subject" class="write_subject" type="text" style="color: lightgray;">/p>
+                <p id="view_content" class="write_content" type="text" style="height: 250px;color: lightgray;"></p>
                 <!-- 유저 정보 -->
                 <div class="info_con">
-                <p class="write_info2" type="text" style="color: lightgray;">조회수</p>
-                <p class="write_info" type="text" style="color: lightgray;">작성자 : 김덕배</p>
-                <p class="write_info" type="text" style="color: lightgray;">작성 날짜</p>
+                <p id="view_hit" class="write_info2" type="text" style="color: lightgray;"></p>
+                <p id="view_userid" class="write_info" type="text" style="color: lightgray;"></p>
+                <p id="view_date" class="write_info" type="text" style="color: lightgray;"></p>
             </div>       
         </div>
     </div>
         <div class="comment_con">
             <div class="comment_write">
-                <input class="search" type="text" placeholder="comment" style="color: gray;width: 500px;">
-                <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;"><a href="#" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">작성</a></button>
+                <input id="main_reply_input" class="search" type="text" placeholder="comment" style="color: gray;width: 500px;">
+                <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;">
+                    <a id="main_reply_btn" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">
+                        작성
+                    </a>
+                </button>
             </div>
             <div class="comment">
                 <ul class="com_inner">
+                    {% for item in main %}
                     <li class="com_content">
                         <div class="container">
                             <div class="button-container like-container">
-                                <a href="#">
-                                    <i class="fa fa-heart-o">Like</i>    
+                                <a>
+                                    <i id="reply_like_btn" class="fa fa-heart-o">Like</i>    
                                 </a>
                             </div>
                             <div class="button-container dislike-container">
-                                <p>{{likes.l_idx}}300</p>
-                            </div>
-                            <div class="button-container dislike-container">
-                                <p>{{likes.l_idx}}300</p>
-                            </div>
-                            <div class="button-container dislike-container">
-                                <a href="#">
-                                    <i class="fa fa-heart"> Dislike</i>
+                                <a>
+                                    <i id="reply_dislike_btn" class="fa fa-heart"> Dislike</i>
                                 </a>
                             </div>
                         </div>
-                        {{reply.content}}하윙
-                        {{reply.time?}}2000-00-00
-                        {{reply.userid}}김덕배
-                        <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;"><a href="#" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">수정</a></button>
-                        <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;"><a href="#" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">삭제</a></button>
+                        <input id="r_idx" type="hidden" value="{{item.r_idx}}">
+                        <input id="groupNum" type="hidden" value="{{item.groupNum}}">
+                        <input id="depth" type="hidden" value="{{item.depth}}">
+                        {{item.content}}
+                        {{item.date}}
+                        {{item.userid}}
+                        <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;"><a href="" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">수정</a></button>
+                        <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;">
+                            <a id="main_delete_btn" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">
+                                삭제
+                            </a>
+                        </button>
                     </li>
-                </ul>
-                <ul class="com_inner">
-                    <li class="com_content">
-                        {{reply.content}}하윙
-                        {{reply.time?}}2000-00-00
-                        {{reply.userid}}김덕배
-                        <div class="container">
-                            <div class="button-container like-container">
-                                <a href="#">
-                                    <i class="fa fa-heart-o">Like</i>    
-                                </a>
-                            </div>
-                            <div class="button-container dislike-container">
-                                <p>{{likes.l_idx}}300</p>
-                            </div>
-                            <div class="button-container dislike-container">
-                                <p>{{likes.l_idx}}300</p>
-                            </div>
-                            <div class="button-container dislike-container">
-                                <a href="#">
-                                    <i class="fa fa-heart"> Dislike</i>
-                                </a>
-                            </div>
-                        </div>
-                        <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;"><a href="#" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">수정</a></button>
-                        <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;"><a href="#" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">삭제</a></button>
-                    </li>
-                    <!-- nunjucks for문으로 -->
-                    <li class="com_content" style="height: 50%;">
-                        >{{reply.content}}대댓글입니다
-                        {{reply.time?}}2000-00-00
-                        {{reply.userid}}김덕배
-                        <div class="container">
-                            <div class="button-container like-container">
-                                <a href="#" id="like_a">
-                                    <i class="fa fa-heart-o">Like</i>    
-                                </a>
-                            </div>
-                            <div class="button-container dislike-container">
-                                <p>{{likes.l_idx}}300</p>
-                            </div>
-                            <div class="button-container dislike-container">
-                                <p>{{likes.l_idx}}300</p>
-                            </div>
-                            <div class="button-container dislike-container">
-                                <a href="#" id="dislike_a">
-                                    <i class="fa fa-heart"> Dislike</i>
-                                </a>
-                            </div>
-                        </div>
-                        <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;height: 40px;"><a href="#" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">수정</a></button>
-                        <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;"><a href="#" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">삭제</a></button>
-                    </li>
+                    {% endfor %}
+                    {% for item in sub %}
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -162,8 +115,8 @@
                     <button class="custom-btn btn-5"><a href="/board/list" align="center" style="color: #fff; display: block; text-decoration-line: none;">PREVIOUS</a></button>
                     <button id="board_edit" class="custom-btn btn-5" style="margin-left: 10px;"><a href="#pop_info_1" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">EDIT</a></button>
                     <input type="hidden" value="{{b_idx}}" id="board_edit_hidden">
-                    <button id="board_delete" class="custom-btn btn-5" style="margin-left: 10px;"><a href="#" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">DELETE</a></button>
-                    <button id="board_down"class="custom-btn btn-5" style="margin-left: 10px;"><a href="#" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">숨김</a></button>
+                    <button id="board_delete" class="custom-btn btn-5" style="margin-left: 10px;"><a href="" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">DELETE</a></button>
+                    <button id="board_down"class="custom-btn btn-5" style="margin-left: 10px;"><a href="" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">숨김</a></button>
                 </tr>
             </table>
             </div>
@@ -227,13 +180,14 @@
                 </ul>
             </form>
             <button id="board_edit" class="custom-btn btn-5" style="margin-top: 50px;"><a href="/board/view" align="center" style="color: #fff; display: block; text-decoration-line: none;">SUBMIT</a></button>
-            <button class="btn_close custom-btn btn-5"><a href="/board/view" align="center" style="color: #fff; display: block; text-decoration-line: none;">CLOSE</a></button>
+            <button class="btn_close custom-btn btn-5"><a href="/board/view?b_idx={{b_idx}}" align="center" style="color: #fff; display: block; text-decoration-line: none;">CLOSE</a></button>
         </div>
     </div>
 </body>
 <script type="text/javascript" src="/js/user/pop.js"></script>
 <script type="text/javascript" src="/js/user/file_reader.js"></script>
 <script type="text/javascript" src="/js/board/view.js"></script>
+<script type="text/javascript" src="/js/reply/reply.js"></script>
 
 </html>
     </div>
