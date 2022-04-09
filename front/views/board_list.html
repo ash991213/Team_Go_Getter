@@ -21,9 +21,9 @@
         <div class="wrap2">
             <div class="content_inner">
                 <div class="contents">
-                    {% for item in allBoard %}
+                    {% for item in allboard %}
                     <div class="item">
-                        <a class="content_a" href="/board/view">
+                        <a class="content_a" href="/board/view?b_idx={{item.b_idx}}">
                             <div class="item_subject">
                                 <p>{{item.subject}}</p>
                             </div>
@@ -51,9 +51,38 @@
                         </a>
                     </div>
                     {% endfor %}
+                    <!-- 더미 삭제하기 -->
+                    <div class="item">
+                        <a class="content_a" href="/board/view?b_idx={{item.b_idx}}">
+                            <div class="item_subject">
+                                <p>{{item.subject}}</p>
+                            </div>
+                            <div class="item_img">
+                                <img src="" width="100%" height="100%">
+                            </div>
+                            <div class="item_content">
+                                <p>{{item.content}}</p>
+                            </div>
+                            <div class="item_date">
+                                <p>{{item.date}}</p>
+                            </div>
+                            <div class="item_hit">
+                                <p>{{item.hit}}</p>
+                            </div>
+                            <div class="item_reply_count">
+                                <p>{{item.reply_count}}</p>
+                            </div>
+                            <div class="item_subcategory">
+                                <p>{{item.s_name}}</p>
+                            </div>
+                            <div class="item_subcategory">
+                                <p>{{item.hashtag}}</p>
+                            </div>
+                        </a>
+                    </div>
                     {% for item in board %}
                     <div class="item">
-                        <a class="content_a" href="/board/view">
+                        <a class="content_a" href="/board/view?b_idx={{item.b_idx}}">
                             <div class="item_subject">
                                 <p>{{item.subject}}</p>
                             </div>
@@ -81,24 +110,6 @@
                         </a>
                     </div>
                     {% endfor %}
-                        <!-- <div class="container" style="margin-top: 290px; margin-left: 12px;">
-                            <div class="button-container like-container">
-                                <a href="#">
-                                    <i class="fa fa-heart-o">Like</i>    
-                                </a>
-                            </div>
-                            <div class="button-container dislike-container">
-                                <p>{{board.like_num}}</p>
-                            </div>
-                            <div class="button-container dislike-container">
-                                <p>{{board.dislike_num}}</p>
-                            </div>
-                            <div class="button-container dislike-container">
-                                <a href="#">
-                                    <i class="fa fa-heart"> Dislike</i>
-                                </a>
-                            </div>
-                        </div> -->
                 </div>
             </div>
         </div>
@@ -123,42 +134,38 @@
                     <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
                     <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
                     <input class="write_hashtag" type="text" align="center" placeholder="해쉬태그" style="color: lightgray;width: 70%; width: 110px;">
-                    <label style="display: flex; height: 40px;">
+                    <select name="subcategory">
                         {% for item in subcategory %}
-                        <input class="sub_category_radio" type="radio" align="center" style="color:lightgray;width: 20px;margin-left: 5%;margin-top: 0px;"><p style="color: #362C2C; font-weight: bold;">{{item.s_name}}</p>
+                        <option class="sub_category_radio" value="subcategory">{{item.s_name}}</option>
                         {% endfor %}
+                    </select>
                     </label>
                     <ul class="img_con1">
                         <li style="list-style: none; margin-top: 30px;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                            <input type="file" id="sel-file" accept="image/*">
+                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
                         </li>
-                        <li style="list-style: none;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                            <input type="file" id="sel-file" accept="image/*">
+                        <li style="list-style: none; margin-top: 30px;">
+                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
                         </li>
-                        <li style="list-style: none;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                            <input type="file" id="sel-file" accept="image/*">
+                        <li style="list-style: none; margin-top: 30px;">
+                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
                         </li>
+                        <li style="list-style: none; margin-top: 30px;">
+                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
+                        </li>
+                        <li style="list-style: none; margin-top: 30px;">
+                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
+                        </li>
+                        <input name="upload" type="file" id="sel-file" accept="image/*" multiple>
                     </ul>
-                    <ul class="img_con2">
-                        <li style="list-style: none;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                            <input type="file" id="sel-file" accept="image/*">
-                        </li>
-                        <li style="list-style: none;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                            <input type="file" id="sel-file" accept="image/*">
-                        </li>
-                    </ul>
-                <input id="board_write_btn" class="custom-btn btn-5" style="margin-top: 50px;" type="submit">
+                <button id="board_write_btn" class="custom-btn btn-5" style="margin-top: 50px;" type="submit">write</button>
                 <button class="btn_close custom-btn btn-5"><a href="/board/list" align="center" style="color: #fff; display: block; text-decoration-line: none;">CLOSE</a></button>
-            </form>
+             </form>
             </div>
         </div>
         <script type="text/javascript" src="/js/user/pop.js"></script>
         <script type="text/javascript" src="/js/user/file_reader.js"></script>
+        <script type="text/javascript" src="/js/board/write.js"></script>
     </div>
 </body>
 </html>

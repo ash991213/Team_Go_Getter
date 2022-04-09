@@ -13,10 +13,10 @@ exports.list = async (req,res)=>{
     console.log(subcategory);
 
     const response2 = await axios.post('http://localhost:4000/board/list',user,option)
-    
+    console.log(response2.data.result2);
     const allBoard = response2.data.result
     const board = response2.data.result2
-
+    console.log(allBoard);
     res.render('board_list.html', { allBoard,board,subcategory});
 }
 
@@ -33,10 +33,10 @@ exports.mainlist = async (req,res)=>{
         withCredentials:true,
     }
     const response = await axios.post('http://localhost:4000/board/mainList',body,option)
-    console.log(response.data);
+
     const allBoard = response.data.result
     const board = response.data.result2
-
+    
     res.render('board_list.html' ,{ allBoard,board });
 }
 
@@ -73,7 +73,12 @@ exports.category = async (req,res)=>{
     res.render('category.html',{subcategory,maincategory});
 }
 
-
-exports.view = (req,res) => {
-    res.render('board_view.html');
+exports.view = async (req,res) => {
+    console.log(req.query)
+    // {b_idx=2}
+    const  {b_idx} = req.query
+    
+    const response = await axios.get('http://localhost:4000/board/edit')
+    console.log(response.data.result);
+    res.render('board_view.html',{b_idx});
 }

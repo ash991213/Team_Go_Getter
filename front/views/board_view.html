@@ -132,7 +132,7 @@
                         {{reply.userid}}김덕배
                         <div class="container">
                             <div class="button-container like-container">
-                                <a href="#">
+                                <a href="#" id="like_a">
                                     <i class="fa fa-heart-o">Like</i>    
                                 </a>
                             </div>
@@ -143,7 +143,7 @@
                                 <p>{{likes.l_idx}}300</p>
                             </div>
                             <div class="button-container dislike-container">
-                                <a href="#">
+                                <a href="#" id="dislike_a">
                                     <i class="fa fa-heart"> Dislike</i>
                                 </a>
                             </div>
@@ -160,9 +160,10 @@
             <table>
                 <tr>
                     <button class="custom-btn btn-5"><a href="/board/list" align="center" style="color: #fff; display: block; text-decoration-line: none;">PREVIOUS</a></button>
-                    <button class="custom-btn btn-5" style="margin-left: 10px;"><a href="#pop_info_1" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">EDIT</a></button>
-                    <button class="custom-btn btn-5" style="margin-left: 10px;"><a href="#" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">DELETE</a></button>
-                    <button class="custom-btn btn-5" style="margin-left: 10px;"><a href="#" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">숨김</a></button>
+                    <button id="board_edit" class="custom-btn btn-5" style="margin-left: 10px;"><a href="#pop_info_1" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">EDIT</a></button>
+                    <input type="hidden" value="{{b_idx}}" id="board_edit_hidden">
+                    <button id="board_delete" class="custom-btn btn-5" style="margin-left: 10px;"><a href="#" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">DELETE</a></button>
+                    <button id="board_down"class="custom-btn btn-5" style="margin-left: 10px;"><a href="#" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none;">숨김</a></button>
                 </tr>
             </table>
             </div>
@@ -225,13 +226,15 @@
                     </li>
                 </ul>
             </form>
-            <button class="custom-btn btn-5" style="margin-top: 50px;"><a href="/user/login" align="center" style="color: #fff; display: block; text-decoration-line: none;">SUBMIT</a></button>
+            <button id="board_edit" class="custom-btn btn-5" style="margin-top: 50px;"><a href="/board/view" align="center" style="color: #fff; display: block; text-decoration-line: none;">SUBMIT</a></button>
             <button class="btn_close custom-btn btn-5"><a href="/board/view" align="center" style="color: #fff; display: block; text-decoration-line: none;">CLOSE</a></button>
         </div>
     </div>
 </body>
 <script type="text/javascript" src="/js/user/pop.js"></script>
 <script type="text/javascript" src="/js/user/file_reader.js"></script>
+<script type="text/javascript" src="/js/board/view.js"></script>
+
 </html>
     </div>
 </body>

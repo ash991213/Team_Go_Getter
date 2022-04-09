@@ -160,18 +160,20 @@ exports.getEdit = async (req,res) => {
         const [reply] = await pool.execute(sql3)
         const [likes_board] = await pool.execute(sql4)
         const [likes_reply] = await pool.execute(sql5)
-
+        console.log(user);
         const result = { user,board,reply,likes_board,likes_reply }
         response = {
             ...response,
             result
         }
+        
     } catch (error) {
         console.log(error.message)
         response = {
             errno:1
         }
     }
+
     res.json(response)
 }
 
