@@ -35,7 +35,6 @@ router.get('/', userdata , async (req,res)=>{
     res.render('index.html', {board,reply,user,maincategory,subcategory});
 });
 
-
 //이미지 불러오는 라우터
 router.use(express.static('views'));
 router.use('/user',userRouter)
