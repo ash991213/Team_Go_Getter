@@ -53,7 +53,7 @@
         <div class="content_con">
             <div class="content">
                 <div class="main">
-                <p id="view_subject" class="write_subject" type="text" style="color: lightgray;">/p>
+                <p id="view_subject" class="write_subject" type="text" style="color: lightgray;"></p>
                 <p id="view_content" class="write_content" type="text" style="height: 250px;color: lightgray;"></p>
                 <!-- 유저 정보 -->
                 <div class="info_con">
@@ -91,9 +91,9 @@
                         <input id="r_idx" type="hidden" value="{{item.r_idx}}">
                         <input id="groupNum" type="hidden" value="{{item.groupNum}}">
                         <input id="depth" type="hidden" value="{{item.depth}}">
-                        {{item.content}}
-                        {{item.date}}
-                        {{item.userid}}
+                        {{item.content}}제목
+                        {{item.date}}날짜
+                        {{item.userid}}유저아이디
                         <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;"><a href="" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">수정</a></button>
                         <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;">
                             <a id="main_delete_btn" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">
@@ -101,6 +101,10 @@
                             </a>
                         </button>
                     </li>
+
+                    <!-- 대댓글 작성 input -->
+
+                    <input class="search" type="text" placeholder="comment" style="color: gray;width: 200px;">
                     {% endfor %}
                     {% for item in sub %}
                     {% endfor %}
