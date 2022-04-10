@@ -139,28 +139,19 @@
                         <option class="sub_category_radio" value="subcategory">{{item.s_name}}</option>
                         {% endfor %}
                     </select>
+                    
                     </label>
                     <ul class="img_con1">
-                        <li style="list-style: none; margin-top: 30px;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
+                        <li style="list-style: none; margin-top: 30px; margin: 0 auto;">
+                            <img id="print" src="" style="width: 200px; height: 200px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
                         </li>
-                        <li style="list-style: none; margin-top: 30px;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
-                        </li>
-                        <li style="list-style: none; margin-top: 30px;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
-                        </li>
-                        <li style="list-style: none; margin-top: 30px;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
-                        </li>
-                        <li style="list-style: none; margin-top: 30px;">
-                            <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="img를 선택하시오.">
-                        </li>
-                        <input name="upload" type="file" id="sel-file" accept="image/*" multiple>
+                        <input name="upload" type="file" id="sel-file" accept="image/*">
                     </ul>
+                    <div style="width: 100%;">
                 <button id="board_write_btn" class="custom-btn btn-5" style="margin-top: 50px;" type="submit">write</button>
                 <button class="btn_close custom-btn btn-5"><a href="/board/list" align="center" style="color: #fff; display: block; text-decoration-line: none;">CLOSE</a></button>
-             </form>
+            </div> 
+            </form>
             </div>
         </div>
         <script type="text/javascript" src="/js/user/pop.js"></script>

@@ -6,7 +6,21 @@ body{background:black; overflow:hidden}
     height: 100%;
 }
 .wrap1{
+    height: 15%;
     margin-left: 50px;
+}
+.wrap2{
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+}
+.wrap3{
+    float: left;
+    display: flex;
+    margin-top: 10%;
+    width: 100%;
+    height: 35%;
+    margin: 0 auto;
 }
 p{
     color: lightgray;
@@ -22,16 +36,29 @@ p{
     box-shadow: 0px 0px 35px 5px rgb(41, 189, 235);
   
 }
-.content_inner{
-    margin-top: 20px;
-    width: 90%;
-    height: 90%;
-    margin: 0 auto;
+.circle{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #00d3d3;
+    font-size: 16px;
+    text-align: center;
+    line-height: 200px;
+    border: 6px solid #fff;
+    margin-left: 65px;
+    box-shadow: 0 0 16px rgb(221, 221, 221);
 }
-.contents{
+.circle:hover{
+    background-color: #217af4;
+    transition-duration: 0.8s;
+}
+.main_category{
+    color: #fff;
+    text-decoration: none;
+}
+.sub_content{
     width: 100%;
-    height: 700px;
-    margin-top: 20px;
+    height: 50%;
     border: solid 2px rgb(58, 58, 58);
     border-radius: 20px 20px;
     background-color: rgb(138, 138, 138);
@@ -39,6 +66,21 @@ p{
     overflow-x: hidden;
     overflow-y: scroll;
     box-shadow: inset 5px 5px 5px;
+}
+.item_sub{
+    position: relative;
+    width: 18%;
+    height: 100px;
+    border: solid 2px rgb(70, 70, 70);
+    border-radius: 20px 20px;
+    background-color: rgb(58, 58, 58);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    /* 컨텐츠 가로 정렬 */
+    float: left;
+    display: flex;
+    box-shadow: 3px 3px 3px;
 }
 .item{
     position: relative;
@@ -52,10 +94,11 @@ p{
     margin-left: 20px;
     /* 컨텐츠 가로 정렬 */
     float: left;
-
+    display: flex;
     box-shadow: 3px 3px 3px;
 }
-.item:hover{
+
+.item:hover,.item_sub:hover{
     box-shadow: 0px 0px 30px 3px rgb(255, 0, 0) !important;
     transition-duration: 0.8s;
 }
@@ -88,29 +131,7 @@ p{
     margin-left: 8px;
     border-radius: 30px;
 }
-.img_con1{
-    width: 100%;
-    display: flex;
-    float: left;
-    margin-top: 30px;
-}
-.img_con1 li{
-    max-width: 300px;
-    max-height: 80px;
-    margin-top: 31px;
-}
-.img_con2{
-    width: 100%;
-    display: flex;
-    float: left;
-    margin-top: 30px;
-}
-.img_con2 li{
-    max-width: 300px;
-    max-height: 80px;
-    margin-top: 31px;
-}
-.item_content{
+.item_date{
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -126,7 +147,7 @@ p{
     float:none;
     display:block;
 }
-.item_date{
+.item_hit{
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -142,7 +163,7 @@ p{
     float:none;
     display:block;
 }
-.item_hit{
+.item_reply_count{
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -158,7 +179,7 @@ p{
     float:none;
     display:block;
 }
-.item_reply_count{
+.item_subcategory{
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -174,7 +195,7 @@ p{
     float:none;
     display:block;
 }
-.item_subcategory{
+.item_likes{
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -190,7 +211,7 @@ p{
     float:none;
     display:block;
 }
-.item_hashtag{
+.item_likes2{
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -206,51 +227,29 @@ p{
     float:none;
     display:block;
 }
-.container {
-    float: left;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  } 
-  .container .button-container{
-    margin-left: 3px;
-  }
-  .container .button-container a {
-      width: 30px;
-      text-decoration: none;
-    background-color: #fff;
-    border: 2px solid #2199e8;
-    padding: 5px 5px;
-    border-radius: 2px;
-    color: #2199e8;
-  }    
-  .container .button-container p {
-    padding: 0px 0px;
-    width: 20px;
-    text-decoration: none;
-  background-color: #fff;
-  border: 2px solid #2199e8;
-  padding: 5px 10px;
-  border-radius: 2px;
-  color: #2199e8;
-}    
-  .container .button-container a:hover {
-    background-color: #2199e8;
-    color: #fff;
-  }
 /* 스크롤 css */
 .contents::-webkit-scrollbar {
     width: 10px; 
 }
-
 .contents::-webkit-scrollbar-thumb {
     height: 30%; 
-    background: #fff; 
-    box-shadow: 0px 0px 10px 2px rgb(41, 189, 235);
+    background: #217af4; 
+    
     border-radius: 30px;
 }
-
 .contents::-webkit-scrollbar-track {
+    background: rgba(138, 138, 138, 0); 
+}
+.sub_content::-webkit-scrollbar {
+    width: 10px; 
+}
+.sub_content::-webkit-scrollbar-thumb {
+    height: 30%; 
+    background: #217af4; 
+    
+    border-radius: 30px;
+}
+.sub_content::-webkit-scrollbar-track {
     background: rgba(138, 138, 138, 0); 
 }
 /* 버튼 */

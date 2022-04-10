@@ -81,6 +81,6 @@ exports.view = async (req,res) => {
 
     const main = response.data.result
     const sub = response.data.result2
-
+    console.log(main,sub);
     res.render('board_view.html',{b_idx,main,sub});
 }

@@ -21,12 +21,15 @@
             </div>
             <div class="hashtag_con"> 
                 <ul>
-                    <li id="view_hashtag" class="hash_li"></li>
+                    {% for item in main %}
+                    <li id="view_hashtag" class="hash_li">{{item.hashtag}} 해쉬 더미;
+                    </li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="subcategory_con"> 
                 <ul>
-                    <li id="view_subcategory" class="subcategory_li"></li>
+                    <li id="view_subcategory" class="subcategory_li">서브 더미;</li>
                 </ul>
             </div>
             <div class="container" style="margin-left: 250px; margin-top: 20px;">
@@ -53,13 +56,13 @@
         <div class="content_con">
             <div class="content">
                 <div class="main">
-                <p id="view_subject" class="write_subject" type="text" style="color: lightgray;"></p>
-                <p id="view_content" class="write_content" type="text" style="height: 250px;color: lightgray;"></p>
+                <p id="view_subject" class="write_subject" type="text" style="color: lightgray;">hi</p>
+                <p id="view_content" class="write_content" type="text" style="height: 250px;color: lightgray;">hi</p>
                 <!-- 유저 정보 -->
                 <div class="info_con">
-                <p id="view_hit" class="write_info2" type="text" style="color: lightgray;"></p>
-                <p id="view_userid" class="write_info" type="text" style="color: lightgray;"></p>
-                <p id="view_date" class="write_info" type="text" style="color: lightgray;"></p>
+                <p id="view_hit" class="write_info2" type="text" style="color: lightgray;">10</p>
+                <p id="view_userid" class="write_info" type="text" style="color: lightgray;">hi</p>
+                <p id="view_date" class="write_info" type="text" style="color: lightgray;">2000-00-00</p>
             </div>       
         </div>
     </div>
@@ -91,9 +94,9 @@
                         <input id="r_idx" type="hidden" value="{{item.r_idx}}">
                         <input id="groupNum" type="hidden" value="{{item.groupNum}}">
                         <input id="depth" type="hidden" value="{{item.depth}}">
-                        {{item.content}}제목
-                        {{item.date}}날짜
-                        {{item.userid}}유저아이디
+                        {{item.content}}<p>제목</p>
+                        {{item.date}}<p>날짜</p>
+                        {{item.userid}}<p>유저아이디</p>
                         <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;"><a href="" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">수정</a></button>
                         <button class="custom-btn btn-5" style="margin-left: 5px;width: 40px;">
                             <a id="main_delete_btn" class="btn_open" align="center" style="color: #fff; display: block; text-decoration-line: none; ">
@@ -160,24 +163,6 @@
                 </label>
                 <ul class="img_con1">
                     <li style="list-style: none; margin-top: 30px;">
-                        <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                        <input type="file" id="sel-file" accept="image/*">
-                    </li>
-                    <li style="list-style: none;">
-                        <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                        <input type="file" id="sel-file" accept="image/*">
-                    </li>
-                    <li style="list-style: none;">
-                        <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                        <input type="file" id="sel-file" accept="image/*">
-                    </li>
-                </ul>
-                <ul class="img_con2">
-                    <li style="list-style: none;">
-                        <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
-                        <input type="file" id="sel-file" accept="image/*">
-                    </li>
-                    <li style="list-style: none;">
                         <img id="print" src="" style="width: 70px; height: 70px; border: #362C2C 2px solid;" alt="선택한이미지 표시영역">
                         <input type="file" id="sel-file" accept="image/*">
                     </li>
